@@ -26,25 +26,14 @@ function Collections({ loading, error, items, isSwiper = false }) {
               <Swiper {...swiperOptions}>
                 {[7, 8, 9, 10, 11, 12, 13, 14, 15].map(childId => (
                   <SwiperSlide key={childId}>
-                    <Skeleton
-                      wrapper="div"
-                      style={{
-                        paddingTop: '150%',
-                      }}
-                    />
+                    <Titles loading={loading} />
                   </SwiperSlide>
                 ))}
               </Swiper>
             ) : (
               <MovieList>
                 {[7, 8, 9, 10, 11, 12, 13, 14, 15].map(childId => (
-                  <Skeleton
-                    key={childId}
-                    wrapper="div"
-                    style={{
-                      paddingTop: '150%',
-                    }}
-                  />
+                  <Titles key={childId} loading={loading} />
                 ))}
               </MovieList>
             )}
