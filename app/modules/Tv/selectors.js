@@ -21,5 +21,11 @@ const makeSelectTv = () =>
     substate => substate,
   );
 
+const makeSelectCollections = () =>
+  createSelector(
+    selectTvDomain,
+    substate => substate.collections,
+  );
+
 export default makeSelectTv;
-export { selectTvDomain };
+export { makeSelectCollections };

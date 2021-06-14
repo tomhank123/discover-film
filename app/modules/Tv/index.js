@@ -4,30 +4,35 @@
  *
  */
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
-import { FormattedMessage } from 'react-intl';
 import { createStructuredSelector } from 'reselect';
-import { compose } from 'redux';
+import { bindActionCreators, compose } from 'redux';
 import { Switch, Route } from 'react-router-dom';
 
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
 
+import { Container } from 'react-bootstrap';
 import TvDetails from 'modules/TvDetails';
+import Collections from 'components/Collections';
 import Header from 'components/Header';
-import makeSelectTv from './selectors';
+import * as actions from './actions';
+import { makeSelectCollections } from './selectors';
 import reducer from './reducer';
 import saga from './saga';
-import messages from './messages';
 
-export function Tv({ ...routeProps }) {
+export function Tv({ collections, onLoadCollections, ...routeProps }) {
   useInjectReducer({ key: 'tv', reducer });
   useInjectSaga({ key: 'tv', saga });
 
   const { match } = routeProps;
+
+  useEffect(() => {
+    onLoadCollections();
+  }, []);
 
   return (
     <Switch>
@@ -35,14 +40,16 @@ export function Tv({ ...routeProps }) {
         exact
         path={match.path}
         render={() => (
-          <div>
+          <React.Fragment>
             <Helmet>
               <title>Tv</title>
               <meta name="description" content="Description of Tv" />
             </Helmet>
             <Header />
-            <FormattedMessage {...messages.header} />
-          </div>
+            <Container className="py-5">
+              <Collections isSwiper {...collections} />
+            </Container>
+          </React.Fragment>
         )}
       />
       <Route
@@ -54,16 +61,19 @@ export function Tv({ ...routeProps }) {
 }
 
 Tv.propTypes = {
-  dispatch: PropTypes.func.isRequired,
+  collections: PropTypes.object,
+  onLoadCollections: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
-  tv: makeSelectTv(),
+  collections: makeSelectCollections(),
 });
 
 function mapDispatchToProps(dispatch) {
+  const onLoadCollections = actions.getCollections.request;
+
   return {
-    dispatch,
+    ...bindActionCreators({ onLoadCollections }, dispatch),
   };
 }
 
