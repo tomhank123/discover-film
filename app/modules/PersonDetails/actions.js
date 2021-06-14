@@ -3,11 +3,7 @@
  * PersonDetails actions
  *
  */
+import { createAsyncAction, createRequestTypes } from 'utils/reduxUtils';
 
-import { DEFAULT_ACTION } from './constants';
-
-export function defaultAction() {
-  return {
-    type: DEFAULT_ACTION,
-  };
-}
+export const GET_DETAILS = createRequestTypes('app/PersonDetails/GET_DETAILS');
+export const getDetails = createAsyncAction(GET_DETAILS);

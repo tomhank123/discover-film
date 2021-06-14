@@ -1,5 +1,17 @@
+import { matchPath } from 'react-router';
 import truncate from 'lodash/truncate';
 import * as ROUTES from 'routes/constants';
+
+export const getIdFromRoute = location => {
+  const match = matchPath(location.pathname, {
+    path: '/person/:personId',
+    exact: true,
+    strict: true,
+  });
+  const personId = +match.params.personId;
+
+  return personId;
+};
 
 export const getPoster = posterPath =>
   posterPath

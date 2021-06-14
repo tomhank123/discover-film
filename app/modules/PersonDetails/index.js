@@ -4,25 +4,39 @@
  *
  */
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
-import { FormattedMessage } from 'react-intl';
 import { createStructuredSelector } from 'reselect';
-import { compose } from 'redux';
+import { bindActionCreators, compose } from 'redux';
 
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
+import * as personUtils from 'utils/personUtils';
+import { Container } from 'react-bootstrap';
 import Header from 'components/Header';
-import makeSelectPersonDetails from './selectors';
+import PersonArticle from './PersonArticle';
+
+import * as actions from './actions';
+import { makeSelectDetails } from './selectors';
 import reducer from './reducer';
 import saga from './saga';
-import messages from './messages';
 
-export function PersonDetails() {
+export function PersonDetails({ details, onLoadDetails, ...restProps }) {
   useInjectReducer({ key: 'personDetails', reducer });
   useInjectSaga({ key: 'personDetails', saga });
+
+  const { location } = restProps;
+  const personId = personUtils.getIdFromRoute(location);
+
+  useEffect(() => {
+    if (personId) {
+      onLoadDetails({ personId });
+    }
+  }, [personId]);
+
+  if (!personId) return null;
 
   return (
     <div>
@@ -31,22 +45,27 @@ export function PersonDetails() {
         <meta name="description" content="Description of PersonDetails" />
       </Helmet>
       <Header />
-      <FormattedMessage {...messages.header} />
+      <Container className="py-5">
+        <PersonArticle {...details} />
+      </Container>
     </div>
   );
 }
 
 PersonDetails.propTypes = {
-  dispatch: PropTypes.func.isRequired,
+  details: PropTypes.object,
+  onLoadDetails: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
-  personDetails: makeSelectPersonDetails(),
+  details: makeSelectDetails(),
 });
 
 function mapDispatchToProps(dispatch) {
+  const onLoadDetails = actions.getDetails.request;
+
   return {
-    dispatch,
+    ...bindActionCreators({ onLoadDetails }, dispatch),
   };
 }
 
