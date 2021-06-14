@@ -21,5 +21,11 @@ const makeSelectTvDetails = () =>
     substate => substate,
   );
 
+const makeSelectDetails = () =>
+  createSelector(
+    selectTvDetailsDomain,
+    substate => substate.details,
+  );
+
 export default makeSelectTvDetails;
-export { selectTvDetailsDomain };
+export { makeSelectDetails };

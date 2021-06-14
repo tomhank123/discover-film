@@ -1,5 +1,17 @@
+import { matchPath } from 'react-router';
 import truncate from 'lodash/truncate';
 import * as ROUTES from 'routes/constants';
+
+export const getIdFromRoute = location => {
+  const match = matchPath(location.pathname, {
+    path: '/tv/:tvId',
+    exact: true,
+    strict: true,
+  });
+  const tvId = +match.params.tvId;
+
+  return tvId;
+};
 
 export const getPoster = poster =>
   poster ? `https://www.themoviedb.org/t/p/original/${poster}` : poster;
