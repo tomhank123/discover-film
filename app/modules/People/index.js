@@ -4,30 +4,35 @@
  *
  */
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
-import { FormattedMessage } from 'react-intl';
 import { createStructuredSelector } from 'reselect';
-import { compose } from 'redux';
+import { bindActionCreators, compose } from 'redux';
 import { Switch, Route } from 'react-router-dom';
 
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
 
+import { Container } from 'react-bootstrap';
 import PersonDetails from 'modules/PersonDetails';
 import Header from 'components/Header';
-import makeSelectPeople from './selectors';
+import PersonList from './PersonList';
+import * as actions from './actions';
+import { makeSelectPopularPeople } from './selectors';
 import reducer from './reducer';
 import saga from './saga';
-import messages from './messages';
 
-export function People({ ...routeProps }) {
+export function People({ people, onLoadPeople, ...routeProps }) {
   useInjectReducer({ key: 'people', reducer });
   useInjectSaga({ key: 'people', saga });
 
   const { match } = routeProps;
+
+  useEffect(() => {
+    onLoadPeople({});
+  }, []);
 
   return (
     <Switch>
@@ -41,7 +46,9 @@ export function People({ ...routeProps }) {
               <meta name="description" content="Description of People" />
             </Helmet>
             <Header />
-            <FormattedMessage {...messages.header} />
+            <Container className="py-5">
+              <PersonList {...people} />
+            </Container>
           </div>
         )}
       />
@@ -54,16 +61,19 @@ export function People({ ...routeProps }) {
 }
 
 People.propTypes = {
-  dispatch: PropTypes.func.isRequired,
+  people: PropTypes.object,
+  onLoadPeople: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
-  people: makeSelectPeople(),
+  people: makeSelectPopularPeople(),
 });
 
 function mapDispatchToProps(dispatch) {
+  const onLoadPeople = actions.getPopular.request;
+
   return {
-    dispatch,
+    ...bindActionCreators({ onLoadPeople }, dispatch),
   };
 }
 

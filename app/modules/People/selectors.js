@@ -21,5 +21,11 @@ const makeSelectPeople = () =>
     substate => substate,
   );
 
+const makeSelectPopularPeople = () =>
+  createSelector(
+    selectPeopleDomain,
+    substate => substate.popularPeople,
+  );
+
 export default makeSelectPeople;
-export { selectPeopleDomain };
+export { makeSelectPopularPeople };
