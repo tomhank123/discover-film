@@ -11,6 +11,7 @@ import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 
 import BrowseModule from 'modules/Browse/Loadable';
+import SearchModule from 'modules/Search/Loadable';
 import PeopleModule from 'modules/People/Loadable';
 import MovieModule from 'modules/Movies/Loadable';
 import TvModule from 'modules/Tv/Loadable';
@@ -26,6 +27,7 @@ export default function App() {
         {/* Published User Routes */}
         {/* Protected Routes */}
         <Route exact path={ROUTES.HOME} component={BrowseModule} />
+        <Route exact path={ROUTES.SEARCH} component={SearchModule} />
         <Route
           path={ROUTES.PERSON}
           render={routeProps => <PeopleModule {...routeProps} />}

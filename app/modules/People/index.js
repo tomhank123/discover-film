@@ -11,26 +11,43 @@ import { Helmet } from 'react-helmet';
 import { FormattedMessage } from 'react-intl';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
+import { Switch, Route } from 'react-router-dom';
 
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
+
+import PersonDetails from 'modules/PersonDetails';
 import makeSelectPeople from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import messages from './messages';
 
-export function People() {
+export function People({ ...routeProps }) {
   useInjectReducer({ key: 'people', reducer });
   useInjectSaga({ key: 'people', saga });
 
+  const { match } = routeProps;
+
   return (
-    <div>
-      <Helmet>
-        <title>People</title>
-        <meta name="description" content="Description of People" />
-      </Helmet>
-      <FormattedMessage {...messages.header} />
-    </div>
+    <Switch>
+      <Route
+        exact
+        path={match.path}
+        render={() => (
+          <div>
+            <Helmet>
+              <title>People</title>
+              <meta name="description" content="Description of People" />
+            </Helmet>
+            <FormattedMessage {...messages.header} />
+          </div>
+        )}
+      />
+      <Route
+        path={`${match.path}/:personId`}
+        render={() => <PersonDetails {...routeProps} />}
+      />
+    </Switch>
   );
 }
 

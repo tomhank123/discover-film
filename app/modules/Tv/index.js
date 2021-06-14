@@ -11,26 +11,43 @@ import { Helmet } from 'react-helmet';
 import { FormattedMessage } from 'react-intl';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
+import { Switch, Route } from 'react-router-dom';
 
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
+
+import TvDetails from 'modules/TvDetails';
 import makeSelectTv from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import messages from './messages';
 
-export function Tv() {
+export function Tv({ ...routeProps }) {
   useInjectReducer({ key: 'tv', reducer });
   useInjectSaga({ key: 'tv', saga });
 
+  const { match } = routeProps;
+
   return (
-    <div>
-      <Helmet>
-        <title>Tv</title>
-        <meta name="description" content="Description of Tv" />
-      </Helmet>
-      <FormattedMessage {...messages.header} />
-    </div>
+    <Switch>
+      <Route
+        exact
+        path={match.path}
+        render={() => (
+          <div>
+            <Helmet>
+              <title>Tv</title>
+              <meta name="description" content="Description of Tv" />
+            </Helmet>
+            <FormattedMessage {...messages.header} />
+          </div>
+        )}
+      />
+      <Route
+        path={`${match.path}/:personId`}
+        render={() => <TvDetails {...routeProps} />}
+      />
+    </Switch>
   );
 }
 
