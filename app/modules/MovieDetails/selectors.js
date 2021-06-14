@@ -21,5 +21,11 @@ const makeSelectMovieDetails = () =>
     substate => substate,
   );
 
+const makeSelectDetails = () =>
+  createSelector(
+    selectMovieDetailsDomain,
+    substate => substate.details,
+  );
+
 export default makeSelectMovieDetails;
-export { selectMovieDetailsDomain };
+export { makeSelectDetails };
