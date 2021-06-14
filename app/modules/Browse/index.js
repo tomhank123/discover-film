@@ -15,6 +15,8 @@ import { compose } from 'redux';
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
 import Header from 'components/Header';
+import Jumbotron from './Jumbotron';
+
 import makeSelectBrowse from './selectors';
 import reducer from './reducer';
 import saga from './saga';
@@ -31,6 +33,7 @@ export function Browse() {
         <meta name="description" content="Description of Browse" />
       </Helmet>
       <Header />
+      <Jumbotron />
       <FormattedMessage {...messages.header} />
     </div>
   );
