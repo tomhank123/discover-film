@@ -21,5 +21,11 @@ const makeSelectBrowse = () =>
     substate => substate,
   );
 
+const makeSelectCollections = () =>
+  createSelector(
+    selectBrowseDomain,
+    substate => substate.collections,
+  );
+
 export default makeSelectBrowse;
-export { selectBrowseDomain };
+export { makeSelectCollections };
