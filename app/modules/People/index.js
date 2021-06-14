@@ -17,6 +17,7 @@ import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
 
 import PersonDetails from 'modules/PersonDetails';
+import Header from 'components/Header';
 import makeSelectPeople from './selectors';
 import reducer from './reducer';
 import saga from './saga';
@@ -39,6 +40,7 @@ export function People({ ...routeProps }) {
               <title>People</title>
               <meta name="description" content="Description of People" />
             </Helmet>
+            <Header />
             <FormattedMessage {...messages.header} />
           </div>
         )}

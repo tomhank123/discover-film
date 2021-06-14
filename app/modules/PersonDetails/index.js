@@ -14,6 +14,7 @@ import { compose } from 'redux';
 
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
+import Header from 'components/Header';
 import makeSelectPersonDetails from './selectors';
 import reducer from './reducer';
 import saga from './saga';
@@ -29,6 +30,7 @@ export function PersonDetails() {
         <title>PersonDetails</title>
         <meta name="description" content="Description of PersonDetails" />
       </Helmet>
+      <Header />
       <FormattedMessage {...messages.header} />
     </div>
   );

@@ -14,6 +14,7 @@ import { compose } from 'redux';
 
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
+import Header from 'components/Header';
 import makeSelectTvDetails from './selectors';
 import reducer from './reducer';
 import saga from './saga';
@@ -29,6 +30,7 @@ export function TvDetails() {
         <title>TvDetails</title>
         <meta name="description" content="Description of TvDetails" />
       </Helmet>
+      <Header />
       <FormattedMessage {...messages.header} />
     </div>
   );

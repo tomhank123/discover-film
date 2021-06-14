@@ -14,6 +14,7 @@ import { compose } from 'redux';
 
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
+import Header from 'components/Header';
 import makeSelectSearch from './selectors';
 import reducer from './reducer';
 import saga from './saga';
@@ -29,6 +30,7 @@ export function Search() {
         <title>Search</title>
         <meta name="description" content="Description of Search" />
       </Helmet>
+      <Header />
       <FormattedMessage {...messages.header} />
     </div>
   );

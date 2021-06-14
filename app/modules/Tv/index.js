@@ -17,6 +17,7 @@ import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
 
 import TvDetails from 'modules/TvDetails';
+import Header from 'components/Header';
 import makeSelectTv from './selectors';
 import reducer from './reducer';
 import saga from './saga';
@@ -39,6 +40,7 @@ export function Tv({ ...routeProps }) {
               <title>Tv</title>
               <meta name="description" content="Description of Tv" />
             </Helmet>
+            <Header />
             <FormattedMessage {...messages.header} />
           </div>
         )}

@@ -16,6 +16,7 @@ import { Switch, Route } from 'react-router-dom';
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
 import MovieDetails from 'modules/MovieDetails';
+import Header from 'components/Header';
 
 import makeSelectMovies from './selectors';
 import reducer from './reducer';
@@ -34,13 +35,14 @@ export function Movies({ ...routeProps }) {
         exact
         path={match.path}
         render={() => (
-          <div>
+          <React.Fragment>
             <Helmet>
               <title>Movies</title>
               <meta name="description" content="Description of Movies" />
             </Helmet>
+            <Header />
             <FormattedMessage {...messages.header} />
-          </div>
+          </React.Fragment>
         )}
       />
       <Route
