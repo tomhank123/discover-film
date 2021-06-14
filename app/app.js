@@ -16,7 +16,6 @@ import { ConnectedRouter } from 'connected-react-router';
 import history from 'utils/history';
 import 'sanitize.css/sanitize.css';
 import 'swiper/swiper.min.css';
-import 'swiper/components/pagination/pagination.min.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 // Import root app
