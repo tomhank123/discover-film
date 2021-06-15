@@ -1,17 +1,21 @@
-import { all, call, delay, put, takeLatest } from 'redux-saga/effects';
+import { all, call, delay, put, takeLatest, select } from 'redux-saga/effects';
 import { REQUEST } from 'utils/reduxUtils';
+import { createEndpoint } from 'utils/apiUtils';
 import request from 'api/request';
+import { makeSelectLocale } from 'containers/LanguageProvider/selectors';
 import { getCollections, GET_COLLECTIONS } from './actions';
 
 export function* fetchCollecttions() {
   yield delay(2000);
 
+  const language = yield select(makeSelectLocale());
+
   try {
     const [popular, nowPlaying, upcoming, topRated] = yield all([
-      call(request, 'get', '/tv/popular'),
-      call(request, 'get', '/tv/airing_today'),
-      call(request, 'get', '/tv/on_the_air'),
-      call(request, 'get', 'tv/top_rated'),
+      call(request, 'get', createEndpoint('/tv/popular', { language })),
+      call(request, 'get', createEndpoint('/tv/airing_today', { language })),
+      call(request, 'get', createEndpoint('/tv/on_the_air', { language })),
+      call(request, 'get', createEndpoint('/tv/top_rated', { language })),
     ]);
 
     yield put(

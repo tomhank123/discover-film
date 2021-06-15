@@ -1,15 +1,20 @@
 import request from 'api/request';
 import { REQUEST } from 'utils/reduxUtils';
-import { takeLatest, all, call, put, delay } from 'redux-saga/effects';
+import { createEndpoint } from 'utils/apiUtils';
+import { takeLatest, all, call, put, delay, select } from 'redux-saga/effects';
+import { makeSelectLocale } from 'containers/LanguageProvider/selectors';
 import { GET_POPULAR, getPopular } from './actions';
 
 export function* fetchPopularPeople() {
-  const requestUrl = '/person/popular';
-
   yield delay(2000);
+  const language = yield select(makeSelectLocale());
 
   try {
-    const response = yield call(request, 'get', requestUrl);
+    const response = yield call(
+      request,
+      'get',
+      createEndpoint('/person/popular', { language }),
+    );
 
     yield put(getPopular.success(response));
   } catch ({ message }) {

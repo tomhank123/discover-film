@@ -1,15 +1,21 @@
 import request from 'api/request';
 import { REQUEST } from 'utils/reduxUtils';
-import { takeLatest, all, call, put, delay } from 'redux-saga/effects';
+import { createEndpoint } from 'utils/apiUtils';
+import { takeLatest, all, call, put, delay, select } from 'redux-saga/effects';
+import { makeSelectLocale } from 'containers/LanguageProvider/selectors';
 import { GET_DETAILS, getDetails } from './actions';
 
 export function* fetchDetails({ request: { movieId } }) {
-  const requestDetails = `/movie/${movieId}?append_to_response=similar,videos,images,credits,reviews`;
-
   yield delay(2000);
 
+  const language = yield select(makeSelectLocale());
+  const requestUrl = createEndpoint(`/movie/${movieId}`, {
+    append_to_response: 'similar,videos,images,credits,reviews',
+    language,
+  });
+
   try {
-    const details = yield call(request, 'get', requestDetails);
+    const details = yield call(request, 'get', requestUrl);
 
     yield put(
       getDetails.success({

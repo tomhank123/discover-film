@@ -1,13 +1,24 @@
-import { all, call, delay, put, takeLatest } from 'redux-saga/effects';
+import { all, call, delay, put, takeLatest, select } from 'redux-saga/effects';
 import { REQUEST } from 'utils/reduxUtils';
+import { createEndpoint } from 'utils/apiUtils';
 import request from 'api/request';
+import { makeSelectLocale } from 'containers/LanguageProvider/selectors';
 import { getKeywords, getMultiResults, GET_MULTI_RESULTS } from './actions';
 
 export function* fetchMultiResults({ request: { query } }) {
   yield delay(2000);
 
+  const language = yield select(makeSelectLocale());
+
   try {
-    const response = yield call(request, 'get', `/search/multi?query=${query}`);
+    const response = yield call(
+      request,
+      'get',
+      createEndpoint(`/search/multi`, {
+        query,
+        language,
+      }),
+    );
 
     yield put(getMultiResults.success(response));
   } catch ({ message }) {

@@ -1,15 +1,14 @@
 import request from 'api/request';
 import { REQUEST } from 'utils/reduxUtils';
-import { takeLatest, all, call, put, delay } from 'redux-saga/effects';
+import { createEndpoint } from 'utils/apiUtils';
+import { takeLatest, all, call, put, delay, select } from 'redux-saga/effects';
+import { makeSelectLocale } from 'containers/LanguageProvider/selectors';
 import { GET_COLLECTIONS, getCollections } from './actions';
 
 export function* fetchCollecttions() {
-  const getPopularInTheaters = '/movie/popular';
-  const getPopularOnTv = '/tv/popular';
-  const getTrendingToday = '/trending/all/day';
-  const getTrendingThisWeek = '/trending/all/week';
-
   yield delay(2000);
+
+  const language = yield select(makeSelectLocale());
 
   try {
     const [
@@ -18,10 +17,10 @@ export function* fetchCollecttions() {
       trendingToday,
       trendingThisWeek,
     ] = yield all([
-      call(request, 'get', getPopularInTheaters),
-      call(request, 'get', getPopularOnTv),
-      call(request, 'get', getTrendingToday),
-      call(request, 'get', getTrendingThisWeek),
+      call(request, 'get', createEndpoint('/movie/popular', { language })),
+      call(request, 'get', createEndpoint('/tv/popular', { language })),
+      call(request, 'get', createEndpoint('/trending/all/day', { language })),
+      call(request, 'get', createEndpoint('/trending/all/week', { language })),
     ]);
 
     yield put(
