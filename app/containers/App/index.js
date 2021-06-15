@@ -27,7 +27,11 @@ export default function App() {
         {/* Published User Routes */}
         {/* Protected Routes */}
         <Route exact path={ROUTES.HOME} component={BrowseModule} />
-        <Route exact path={ROUTES.SEARCH} component={SearchModule} />
+        <Route
+          exact
+          path={ROUTES.SEARCH}
+          render={routeProps => <SearchModule {...routeProps} />}
+        />
         <Route
           path={ROUTES.PERSON}
           render={routeProps => <PeopleModule {...routeProps} />}

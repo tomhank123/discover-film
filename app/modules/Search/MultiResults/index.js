@@ -13,7 +13,37 @@ import PersonItem from 'components/PersonItem';
 
 function MultiResults({ loading, error, items }) {
   if (loading) {
-    return <p>Loading...</p>;
+    return (
+      <React.Fragment>
+        <Row xs={3} sm={4} md={5} lg={6} className="gx-3 gy-5">
+          {Array.from({ length: 6 })
+            .map((_, index) => ({ id: index }))
+            .map(person => (
+              <Col key={person.id}>
+                <PersonItem loading />
+              </Col>
+            ))}
+        </Row>
+        <Row xs={3} sm={4} md={5} lg={6} className="g-3 mt-5">
+          {Array.from({ length: 6 })
+            .map((_, index) => ({ id: index }))
+            .map(tvItem => (
+              <Col key={tvItem.id}>
+                <Titles loading />
+              </Col>
+            ))}
+        </Row>
+        <Row xs={3} sm={4} md={5} lg={6} className="g-3 mt-5">
+          {Array.from({ length: 6 })
+            .map((_, index) => ({ id: index }))
+            .map(movie => (
+              <Col key={movie.id}>
+                <Titles loading />
+              </Col>
+            ))}
+        </Row>
+      </React.Fragment>
+    );
   }
 
   if (error) {

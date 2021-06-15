@@ -13,11 +13,13 @@ import { bindActionCreators, compose } from 'redux';
 
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
+import * as searchUtils from 'utils/searchUtils';
+
 import { Container } from 'react-bootstrap';
 import Header from 'components/Header';
 import MultiResults from './MultiResults';
-
 import KeywordResults from './KeywordResults';
+
 import * as actions from './actions';
 import { makeSelectKeywords, makeSelectMultiResults } from './selectors';
 import reducer from './reducer';
@@ -28,11 +30,14 @@ export function Search({
   multiResults,
   onLoadKeywords,
   onLoadMultiResults,
+  ...routeProps
 }) {
   useInjectReducer({ key: 'search', reducer });
   useInjectSaga({ key: 'search', saga });
 
-  const [query] = useState('Bo');
+  const { location } = routeProps;
+  const initQuery = searchUtils.getQueryFromRoute(location.search);
+  const [query, setQuery] = useState(initQuery);
 
   useEffect(() => {
     if (query) {
@@ -41,7 +46,11 @@ export function Search({
     }
   }, [query]);
 
-  if (!query) return null;
+  useEffect(() => {
+    const newQuery = searchUtils.getQueryFromRoute(location.search);
+
+    setQuery(newQuery);
+  }, [location]);
 
   return (
     <div>
@@ -51,9 +60,15 @@ export function Search({
       </Helmet>
       <Header />
       <Container className="py-5">
-        <h1>{`Results for "${query}"`}</h1>
-        <KeywordResults {...keywords} />
-        <MultiResults {...multiResults} />
+        {query ? (
+          <React.Fragment>
+            <h1>{`Results for "${query}"`}</h1>
+            <KeywordResults {...keywords} />
+            <MultiResults {...multiResults} />
+          </React.Fragment>
+        ) : (
+          <p className="display-4">Please enter the keyword.</p>
+        )}
       </Container>
     </div>
   );
