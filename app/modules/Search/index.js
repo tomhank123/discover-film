@@ -4,25 +4,44 @@
  *
  */
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
-import { FormattedMessage } from 'react-intl';
 import { createStructuredSelector } from 'reselect';
-import { compose } from 'redux';
+import { bindActionCreators, compose } from 'redux';
 
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
+import { Container } from 'react-bootstrap';
 import Header from 'components/Header';
-import makeSelectSearch from './selectors';
+import MultiResults from './MultiResults';
+
+import KeywordResults from './KeywordResults';
+import * as actions from './actions';
+import { makeSelectKeywords, makeSelectMultiResults } from './selectors';
 import reducer from './reducer';
 import saga from './saga';
-import messages from './messages';
 
-export function Search() {
+export function Search({
+  keywords,
+  multiResults,
+  onLoadKeywords,
+  onLoadMultiResults,
+}) {
   useInjectReducer({ key: 'search', reducer });
   useInjectSaga({ key: 'search', saga });
+
+  const [query] = useState('Bo');
+
+  useEffect(() => {
+    if (query) {
+      onLoadKeywords({ query });
+      onLoadMultiResults({ query });
+    }
+  }, [query]);
+
+  if (!query) return null;
 
   return (
     <div>
@@ -31,22 +50,33 @@ export function Search() {
         <meta name="description" content="Description of Search" />
       </Helmet>
       <Header />
-      <FormattedMessage {...messages.header} />
+      <Container className="py-5">
+        <h1>{`Results for "${query}"`}</h1>
+        <KeywordResults {...keywords} />
+        <MultiResults {...multiResults} />
+      </Container>
     </div>
   );
 }
 
 Search.propTypes = {
-  dispatch: PropTypes.func.isRequired,
+  keywords: PropTypes.object,
+  multiResults: PropTypes.object,
+  onLoadKeywords: PropTypes.func,
+  onLoadMultiResults: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
-  search: makeSelectSearch(),
+  keywords: makeSelectKeywords(),
+  multiResults: makeSelectMultiResults(),
 });
 
 function mapDispatchToProps(dispatch) {
+  const onLoadKeywords = actions.getKeywords.request;
+  const onLoadMultiResults = actions.getMultiResults.request;
+
   return {
-    dispatch,
+    ...bindActionCreators({ onLoadKeywords, onLoadMultiResults }, dispatch),
   };
 }
 

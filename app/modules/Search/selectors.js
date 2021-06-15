@@ -21,5 +21,17 @@ const makeSelectSearch = () =>
     substate => substate,
   );
 
+const makeSelectMultiResults = () =>
+  createSelector(
+    selectSearchDomain,
+    substate => substate.multiResults,
+  );
+
+const makeSelectKeywords = () =>
+  createSelector(
+    selectSearchDomain,
+    substate => substate.keywords,
+  );
+
 export default makeSelectSearch;
-export { selectSearchDomain };
+export { makeSelectMultiResults, makeSelectKeywords };
