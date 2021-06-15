@@ -6,7 +6,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Col, Row, Button } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 
 function KeywordResults({ loading, error, items }) {
   if (loading) {
