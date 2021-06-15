@@ -15,7 +15,7 @@ function MultiResults({ loading, error, items }) {
   if (loading) {
     return (
       <React.Fragment>
-        <Row xs={3} sm={4} md={5} lg={6} className="gx-3 gy-5">
+        <Row xs={2} sm={3} md={4} lg={5} xl={6} className="gx-3 gy-5">
           {Array.from({ length: 6 })
             .map((_, index) => ({ id: index }))
             .map(person => (
@@ -24,7 +24,7 @@ function MultiResults({ loading, error, items }) {
               </Col>
             ))}
         </Row>
-        <Row xs={3} sm={4} md={5} lg={6} className="g-3 mt-5">
+        <Row xs={2} sm={3} md={4} lg={5} xl={6} className="g-3 mt-5">
           {Array.from({ length: 6 })
             .map((_, index) => ({ id: index }))
             .map(tvItem => (
@@ -33,7 +33,7 @@ function MultiResults({ loading, error, items }) {
               </Col>
             ))}
         </Row>
-        <Row xs={3} sm={4} md={5} lg={6} className="g-3 mt-5">
+        <Row xs={2} sm={3} md={4} lg={5} xl={6} className="g-3 mt-5">
           {Array.from({ length: 6 })
             .map((_, index) => ({ id: index }))
             .map(movie => (
@@ -55,21 +55,21 @@ function MultiResults({ loading, error, items }) {
 
     return (
       <React.Fragment>
-        <Row xs={3} sm={4} md={5} lg={6} className="gx-3 gy-5">
+        <Row xs={2} sm={3} md={4} lg={5} xl={6} className="gx-3 gy-5">
           {people.map(person => (
             <Col key={person.id}>
               <PersonItem item={person} />
             </Col>
           ))}
         </Row>
-        <Row xs={3} sm={4} md={5} lg={6} className="g-3 mt-5">
+        <Row xs={2} sm={3} md={4} lg={5} xl={6} className="g-3 mt-5">
           {tv.map(tvItem => (
             <Col key={tvItem.id}>
               <Titles item={tvItem} />
             </Col>
           ))}
         </Row>
-        <Row xs={3} sm={4} md={5} lg={6} className="g-3 mt-5">
+        <Row xs={2} sm={3} md={4} lg={5} xl={6} className="g-3 mt-5">
           {movies.map(movie => (
             <Col key={movie.id}>
               <Titles item={movie} />
