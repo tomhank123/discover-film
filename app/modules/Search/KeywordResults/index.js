@@ -15,12 +15,19 @@ function KeywordResults({ loading, error, items }) {
   if (loading) {
     return (
       <div className="d-flex gap-1 flex-wrap mb-5">
-        {[1, 2].map(keyword => (
-          <Button size="sm" variant="outline-secondary" disabled key={keyword}>
-            <Spinner as="span" animation="border" size="sm" />
-            <span className="sr-only"> Loading...</span>
-          </Button>
-        ))}
+        {Array.from({ length: 4 })
+          .map((_, index) => ({ id: index }))
+          .map(keyword => (
+            <Button
+              size="sm"
+              variant="outline-secondary"
+              disabled
+              key={keyword.id}
+            >
+              <Spinner as="span" animation="border" size="sm" />
+              <span className="sr-only"> Loading...</span>
+            </Button>
+          ))}
       </div>
     );
   }
