@@ -7,8 +7,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { Card, Image, Figure } from 'react-bootstrap';
+import { Card } from 'react-bootstrap';
 import * as personUtils from 'utils/personUtils';
+import StyledPoster from './StyledPoster';
 
 function PersonItem({ item }) {
   const poster = personUtils.getPoster(item.profile_path);
@@ -16,10 +17,8 @@ function PersonItem({ item }) {
 
   return (
     <Card className="border-0 text-decoration-none" as={Link} to={url}>
+      <StyledPoster poster={poster} className="mb-2" />
       <Card.Body className="p-0">
-        <Figure className="mb-2">
-          <Image src={poster} alt={item.name} fluid />
-        </Figure>
         <Card.Title
           className="text-truncate text-success mb-0 fs-6"
           title={item.name}

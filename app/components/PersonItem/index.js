@@ -8,8 +8,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import Skeleton from 'react-loading-skeleton';
-import { Card, Button, Image, Figure } from 'react-bootstrap';
+import { Card, Button, Figure } from 'react-bootstrap';
 import * as personUtils from 'utils/personUtils';
+import StyledPoster from './StyledPoster';
 
 function PersonItem({ loading, item }) {
   if (loading) {
@@ -19,8 +20,8 @@ function PersonItem({ loading, item }) {
           <Figure className="w-75">
             <Skeleton width={120} height={120} circle />
           </Figure>
-          <Skeleton wrapper="h5" width={150} />
-          <Skeleton wrapper="p" width={80} />
+          <Skeleton wrapper="h5" />
+          <Skeleton wrapper="p" width="75%" />
           <div className="d-grid gap-2">
             <Button variant="outline-secondary" size="sm">
               More Info
@@ -38,15 +39,8 @@ function PersonItem({ loading, item }) {
     return (
       <Card className="border-0 shadow">
         <Card.Body className="text-center">
-          <Figure className="w-75">
-            <Image
-              src={poster}
-              alt={item.name}
-              thumbnail
-              roundedCircle
-              fluid
-              className="shadow-sm"
-            />
+          <Figure className="w-75 img-thumbnail rounded-circle">
+            <StyledPoster poster={poster} />
           </Figure>
           <Card.Title
             className="text-truncate text-success mb-0"

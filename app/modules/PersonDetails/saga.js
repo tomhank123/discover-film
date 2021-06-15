@@ -14,9 +14,7 @@ export function* fetchDetails({ request: { personId } }) {
     yield put(
       getDetails.success({
         ...details,
-        known_for: [
-          ...details.combined_credits.cast.filter(item => item.poster_path),
-        ],
+        known_for: [...details.combined_credits.cast],
       }),
     );
   } catch ({ message }) {

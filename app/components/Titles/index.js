@@ -11,6 +11,7 @@ import Skeleton from 'react-loading-skeleton';
 import { Card, Button } from 'react-bootstrap';
 import * as movieUtils from 'utils/movieUtils';
 import * as tvUtils from 'utils/tvUtils';
+import StyledPoster from './StyledPoster';
 
 function Titles({ loading, item }) {
   if (loading) {
@@ -44,7 +45,7 @@ function Titles({ loading, item }) {
 
     return (
       <Card className="border-0 shadow-sm h-100">
-        <Card.Img variant="top" src={poster} alt={title} />
+        <StyledPoster poster={poster} fallback={title} />
         <Card.Body>
           <div className="d-grid gap-2">
             <Button variant="secondary" size="sm" as={Link} to={url}>
