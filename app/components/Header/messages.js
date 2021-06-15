@@ -13,4 +13,16 @@ export default defineMessages({
     id: `${scope}.header`,
     defaultMessage: 'This is the Header component!',
   },
+  movies: {
+    id: `${scope}.movies`,
+    defaultMessage: 'Movies',
+  },
+  tvShow: {
+    id: `${scope}.tv_show`,
+    defaultMessage: 'TV Shows',
+  },
+  people: {
+    id: `${scope}.people`,
+    defaultMessage: 'People',
+  },
 });

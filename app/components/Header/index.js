@@ -6,10 +6,13 @@
 
 import Logo from 'images/logo.svg';
 import React from 'react';
+import { FormattedMessage } from 'react-intl';
 import { Container, Image, Nav, Navbar, NavDropdown } from 'react-bootstrap';
 import { NavLink as RouteLink } from 'react-router-dom';
 import * as ROUTES from 'routes/constants';
 import SearchBar from 'containers/SearchBar';
+import LocaleToggle from 'containers/LocaleToggle';
+import messages from './messages';
 
 function Header() {
   return (
@@ -23,13 +26,13 @@ function Header() {
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto">
               <Nav.Link as={RouteLink} to={ROUTES.TV}>
-                TV Shows
+                <FormattedMessage {...messages.tvShow} />
               </Nav.Link>
               <Nav.Link as={RouteLink} to={ROUTES.MOVIE}>
-                Movies
+                <FormattedMessage {...messages.movies} />
               </Nav.Link>
               <Nav.Link as={RouteLink} to={ROUTES.PERSON}>
-                People
+                <FormattedMessage {...messages.people} />
               </Nav.Link>
               <NavDropdown title="More">
                 <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
@@ -49,7 +52,9 @@ function Header() {
               <Nav.Item hidden>
                 <SearchBar />
               </Nav.Item>
-              <Nav.Link href="#deets">Language Toggle</Nav.Link>
+              <Nav.Item>
+                <LocaleToggle />
+              </Nav.Item>
               <Nav.Link
                 exact
                 as={RouteLink}
