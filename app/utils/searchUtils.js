@@ -7,8 +7,6 @@ export const selectionFilter = data => ({
 });
 
 export const getQueryFromRoute = search => {
-  if (!search) return null;
-
   const { q } = queryString.parse(search);
 
   return q;

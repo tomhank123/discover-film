@@ -6,10 +6,10 @@
 
 import Logo from 'images/logo.svg';
 import React from 'react';
-// import PropTypes from 'prop-types';
 import { Container, Image, Nav, Navbar, NavDropdown } from 'react-bootstrap';
 import { NavLink as RouteLink } from 'react-router-dom';
 import * as ROUTES from 'routes/constants';
+import SearchBar from 'containers/SearchBar';
 
 function Header() {
   return (
@@ -46,6 +46,9 @@ function Header() {
               </NavDropdown>
             </Nav>
             <Nav>
+              <Nav.Item hidden>
+                <SearchBar />
+              </Nav.Item>
               <Nav.Link href="#deets">Language Toggle</Nav.Link>
               <Nav.Link
                 exact

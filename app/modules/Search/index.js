@@ -17,6 +17,7 @@ import * as searchUtils from 'utils/searchUtils';
 
 import { Container } from 'react-bootstrap';
 import Header from 'components/Header';
+import SearchBar from 'containers/SearchBar';
 import MultiResults from './MultiResults';
 import KeywordResults from './KeywordResults';
 
@@ -60,6 +61,7 @@ export function Search({
       </Helmet>
       <Header />
       <Container className="py-5">
+        <SearchBar />
         {query ? (
           <React.Fragment>
             <h1>{`Results for "${query}"`}</h1>
