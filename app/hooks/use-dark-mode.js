@@ -1,8 +1,9 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import useLocalStorage from './use-local-storage';
 import useMedia from './use-media';
 
 export default function useDarkMode() {
+  const [componentMounted, setComponentMounted] = useState(false);
   const [enabledState, setEnabledState] = useLocalStorage('dark-mode-enabled');
   const prefersDarkMode = usePrefersDarkMode();
   const enabled =
@@ -17,9 +18,11 @@ export default function useDarkMode() {
     } else {
       element.classList.remove(className);
     }
+
+    setComponentMounted(true);
   }, [enabled]);
 
-  return [enabled, setEnabledState];
+  return [enabled, setEnabledState, componentMounted];
 }
 
 function usePrefersDarkMode() {

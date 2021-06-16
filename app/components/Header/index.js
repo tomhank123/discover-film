@@ -5,19 +5,25 @@
  */
 
 import Logo from 'images/logo.svg';
-import React from 'react';
+import React, { useContext } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { Container, Image, Nav, Navbar, NavDropdown } from 'react-bootstrap';
 import { NavLink as RouteLink } from 'react-router-dom';
+import { ThemeContext } from 'context/theme-context';
 import * as ROUTES from 'routes/constants';
 import SearchBar from 'containers/SearchBar';
 import LocaleToggle from 'containers/LocaleToggle';
+import DarkModeToggle from 'components/DarkModeToggle';
 import messages from './messages';
 
 function Header() {
+  const { darkMode } = useContext(ThemeContext);
+  const theme = darkMode ? 'dark' : 'light';
+  // const theme = 'light';
+
   return (
     <header>
-      <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+      <Navbar collapseOnSelect expand="lg" bg={theme} variant={theme}>
         <Container>
           <Navbar.Brand as={RouteLink} to={ROUTES.HOME}>
             <Image src={Logo} alt="Movie Discovery" height="20" />
@@ -52,9 +58,12 @@ function Header() {
               <Nav.Item hidden>
                 <SearchBar />
               </Nav.Item>
-              <Nav.Item>
+              <Nav.Link as={Nav.Item}>
+                <DarkModeToggle />
+              </Nav.Link>
+              <Nav.Link as={Nav.Item}>
                 <LocaleToggle />
-              </Nav.Item>
+              </Nav.Link>
               <Nav.Link
                 exact
                 as={RouteLink}

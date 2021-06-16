@@ -4,16 +4,15 @@
  *
  */
 
-import React from 'react';
+import React, { useContext } from 'react';
 import { Form } from 'react-bootstrap';
-import { useDarkMode } from 'hooks';
-
+import { ThemeContext } from 'context/theme-context';
 // import { FormattedMessage } from 'react-intl';
 // import messages from './messages';
 // <FormattedMessage {...messages.header} />
 
 function DarkModeToggle() {
-  const [darkMode, setDarkMode] = useDarkMode();
+  const { darkMode, setDarkMode } = useContext(ThemeContext);
 
   return (
     <Form inline>
