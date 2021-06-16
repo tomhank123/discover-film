@@ -9,6 +9,13 @@ const GlobalStyle = createGlobalStyle`
 
   body {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    background-color: var(--bs-light);
+    color: var(--bs-dark);
+  }
+
+  body.dark-mode {
+    background-color: var(--bs-dark);
+    color: var(--bs-light);
   }
 
   body.fontLoaded {
@@ -16,7 +23,6 @@ const GlobalStyle = createGlobalStyle`
   }
 
   #app {
-    background-color: var(--light);
     min-height: 100%;
     min-width: 100%;
   }
