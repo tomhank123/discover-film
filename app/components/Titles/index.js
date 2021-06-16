@@ -8,11 +8,13 @@ import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import Skeleton from 'react-loading-skeleton';
+import { FormattedMessage } from 'react-intl';
 import { Card, Button } from 'react-bootstrap';
 import * as movieUtils from 'utils/movieUtils';
 import * as tvUtils from 'utils/tvUtils';
 import { ThemeContext } from 'context/theme-context';
 import StyledPoster from './StyledPoster';
+import messages from './messages';
 
 function Titles({ loading, item }) {
   const { darkMode } = useContext(ThemeContext);
@@ -32,13 +34,13 @@ function Titles({ loading, item }) {
         <Card.Body>
           <div className="d-grid gap-2">
             <Button variant={darkMode ? 'dark' : 'secondary'} size="sm">
-              Watch Now
+              <FormattedMessage {...messages.watchNow} />
             </Button>
             <Button
               variant={darkMode ? 'outline-dark' : 'outline-secondary'}
               size="sm"
             >
-              Watch List
+              <FormattedMessage {...messages.watchList} />
             </Button>
           </div>
         </Card.Body>
@@ -66,7 +68,7 @@ function Titles({ loading, item }) {
               as={Link}
               to={url}
             >
-              Watch Now
+              <FormattedMessage {...messages.watchNow} />
             </Button>
             <Button
               variant={darkMode ? 'outline-dark' : 'outline-secondary'}
@@ -74,7 +76,7 @@ function Titles({ loading, item }) {
               as={Link}
               to={url}
             >
-              Watch List
+              <FormattedMessage {...messages.watchList} />
             </Button>
           </div>
         </Card.Body>

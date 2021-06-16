@@ -22,7 +22,7 @@ function Toggle(props) {
 
   return (
     <Select
-      className="form-select form-select-sm border-o"
+      className="form-select form-select-sm border-0 margin-0"
       value={props.value}
       onChange={props.onToggle}
     >

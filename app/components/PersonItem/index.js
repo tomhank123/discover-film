@@ -8,10 +8,12 @@ import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import Skeleton from 'react-loading-skeleton';
+import { FormattedMessage } from 'react-intl';
 import { Card, Button, Figure } from 'react-bootstrap';
 import * as personUtils from 'utils/personUtils';
 import { ThemeContext } from 'context/theme-context';
 import StyledPoster from './StyledPoster';
+import messages from './messages';
 
 function PersonItem({ loading, item }) {
   const { darkMode } = useContext(ThemeContext);
@@ -30,7 +32,7 @@ function PersonItem({ loading, item }) {
               variant={darkMode ? 'outline-light' : 'outline-secondary'}
               size="sm"
             >
-              More Info
+              <FormattedMessage {...messages.moreInfo} />
             </Button>
           </div>
         </Card.Body>
@@ -73,7 +75,7 @@ function PersonItem({ loading, item }) {
               as={Link}
               to={url}
             >
-              More Info
+              <FormattedMessage {...messages.moreInfo} />
             </Button>
           </div>
         </Card.Body>

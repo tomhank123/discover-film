@@ -25,4 +25,12 @@ export default defineMessages({
     id: `${scope}.people`,
     defaultMessage: 'People',
   },
+  login: {
+    id: `${scope}.login`,
+    defaultMessage: 'Login',
+  },
+  search: {
+    id: `${scope}.search`,
+    defaultMessage: 'Search',
+  },
 });

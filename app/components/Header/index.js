@@ -70,14 +70,14 @@ function Header() {
                 to={ROUTES.LOGIN}
                 activeClassName="d-none"
               >
-                Login
+                <FormattedMessage {...messages.login} />
               </Nav.Link>
               <Nav.Link
                 as={RouteLink}
                 to={ROUTES.SEARCH}
                 activeClassName="d-none"
               >
-                Search
+                <FormattedMessage {...messages.search} />
               </Nav.Link>
             </Nav>
           </Navbar.Collapse>
