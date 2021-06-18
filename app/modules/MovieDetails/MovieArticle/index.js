@@ -10,9 +10,9 @@ import PropTypes from 'prop-types';
 import Skeleton from 'react-loading-skeleton';
 import { Button, Col, Card, Row } from 'react-bootstrap';
 import * as movieUtils from 'utils/movieUtils';
-import Titles from 'components/Titles';
 import Player from 'components/Player';
 import Reviews from 'components/CombinedArticle/Reviews';
+import SimilarItems from 'components/CombinedArticle/SimilarItems';
 import PersonItem from '../PersonItem';
 
 function MovieArticle({ loading, error, item }) {
@@ -38,6 +38,11 @@ function MovieArticle({ loading, error, item }) {
       loading,
       error,
       items: item.reviews.results,
+    };
+    const similarItems = {
+      loading,
+      error,
+      items: item.similar.results,
     };
 
     return (
@@ -124,15 +129,7 @@ function MovieArticle({ loading, error, item }) {
                 </Row>
               </Card.Body>
             </Card>
-            <h5 className="fw-bold mt-4">More Like This</h5>
-            <Row xs={3} lg={4} xl={5} className="g-3">
-              {item.similar.results.map((titles, index) => (
-                // eslint-disable-next-line react/no-array-index-key
-                <Col key={`${titles.id}-${index}`}>
-                  <Titles item={titles} />
-                </Col>
-              ))}
-            </Row>
+            <SimilarItems {...similarItems} />
           </Col>
           <Col lg={4}>
             <Reviews {...reviews} />

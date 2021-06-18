@@ -15,7 +15,6 @@ import { createStructuredSelector } from 'reselect';
 import { useInjectReducer } from 'utils/injectReducer';
 import { useInjectSaga } from 'utils/injectSaga';
 import * as tvUtils from 'utils/tvUtils';
-import CombinedArticle from 'components/CombinedArticle';
 import * as actions from './actions';
 import TvArticle from './TvArticle';
 import reducer from './reducer';
@@ -45,7 +44,6 @@ export function TvDetails({ details, onLoadDetails, ...restProps }) {
       </Helmet>
       <Header />
       <Container>
-        <CombinedArticle {...details} />
         <TvArticle {...details} />
       </Container>
     </React.Fragment>

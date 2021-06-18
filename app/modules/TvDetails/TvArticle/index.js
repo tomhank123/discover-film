@@ -5,15 +5,14 @@
  *
  */
 
-import Titles from 'components/Titles';
-import PropTypes from 'prop-types';
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Button, Card, Col, Row } from 'react-bootstrap';
 import Skeleton from 'react-loading-skeleton';
 import Player from 'components/Player';
 import Reviews from 'components/CombinedArticle/Reviews';
+import SimilarItems from 'components/CombinedArticle/SimilarItems';
 import * as tvUtils from 'utils/tvUtils';
-import PersonItem from '../PersonItem';
 
 function TvArticle({ loading, error, item }) {
   if (loading) {
@@ -38,6 +37,11 @@ function TvArticle({ loading, error, item }) {
       loading,
       error,
       items: item.reviews.results,
+    };
+    const similarItems = {
+      loading,
+      error,
+      items: item.similar.results,
     };
 
     return (
@@ -109,16 +113,7 @@ function TvArticle({ loading, error, item }) {
                 </ul>
               </Card.Body>
             </Card>
-            <Row xs={3} md={4} xl={5} className="g-3 mt-4">
-              {item.similar.results
-                .filter((_, index) => index < 10)
-                .map((titles, index) => (
-                  // eslint-disable-next-line react/no-array-index-key
-                  <Col key={`${titles.id}-${index}`}>
-                    <Titles item={titles} />
-                  </Col>
-                ))}
-            </Row>
+            <SimilarItems {...similarItems} />
           </Col>
           <Col lg={4}>
             <Reviews {...reviews} />

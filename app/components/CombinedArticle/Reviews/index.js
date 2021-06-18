@@ -37,15 +37,15 @@ function Reviews({ loading, error, items }) {
         </Form>
         {reviewsToShow.map(review => (
           <div className="d-flex" key={review.id}>
-            <div className="flex-shrink-0">
+            <div className="flex-shrink-0 d-none">
               <img
                 src={reviewUtils.getAvatar(review.author_details.avatar_path)}
                 alt={review.author}
                 width={50}
               />
             </div>
-            <div className="flex-grow-1 ms-3">
-              <h5 className="font-monospace mt-0 mb-1">{review.author}</h5>
+            <div className="flex-grow-1">
+              <h5 className="font-monospace mt-0 mb-1">@{review.author}</h5>
               <p
                 dangerouslySetInnerHTML={{
                   __html: reviewUtils.getContent(review.content),
