@@ -8,9 +8,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Skeleton from 'react-loading-skeleton';
-import ReactPlayer from 'react-player';
 import { Button, Col, Card, Row } from 'react-bootstrap';
 import Titles from 'components/Titles';
+import Player from 'components/Player';
 import {
   getBackdrop,
   getPoster,
@@ -46,19 +46,7 @@ function MovieArticle({ loading, error, item }) {
       <article className="d-grid gap-4">
         <Row>
           <Col md={12} lg={8}>
-            <div className="ratio ratio-16x9">
-              <ReactPlayer
-                width="100%"
-                height="100%"
-                controls
-                url={[
-                  ...videoUrls,
-                  'https://www.youtube.com/watch?v=ysz5S6PUM-U',
-                  'https://www.youtube.com/watch?v=oUFJJNQGwhk',
-                  'https://www.youtube.com/watch?v=jNgP6d9HraI',
-                ]}
-              />
-            </div>
+            <Player urls={videoUrls} />
             <Card
               body
               className="border-0 shadow-sm mt-4"

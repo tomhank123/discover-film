@@ -52,7 +52,7 @@ function Collections({ loading, error, items, isSwiper = false }) {
       <Wrapper>
         {items.map(({ title, data }) => (
           <section key={title}>
-            <h5 className="font-weight-bold">{title}</h5>
+            <h5 className="fw-bold">{title}</h5>
             {isSwiper ? (
               <Swiper {...swiperOptions}>
                 {data &&

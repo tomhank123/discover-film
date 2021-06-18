@@ -4,6 +4,7 @@ const StyledPoster = styled.div`
   width: 100%;
   padding-top: 150%;
   background-color: var(--bs-secondary);
+  border-radius: ${({ theme }) => theme.shape.borderRadiusLg};
 
   ${props =>
     props.poster &&

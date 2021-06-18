@@ -31,7 +31,7 @@ function Titles({ loading, item }) {
             paddingTop: '150%',
           }}
         />
-        <Card.Body>
+        <Card.Body hidden>
           <div className="d-grid gap-2">
             <Button variant={darkMode ? 'dark' : 'secondary'} size="sm">
               <FormattedMessage {...messages.watchNow} />
@@ -56,11 +56,11 @@ function Titles({ loading, item }) {
 
     return (
       <Card
-        className="border-0 shadow-sm h-100"
+        className="border-0 shadow-sm h-100 rounded-3"
         bg={darkMode ? 'secondary' : 'light'}
       >
         <StyledPoster poster={poster} fallback={title} />
-        <Card.Body>
+        <Card.Body hidden>
           <div className="d-grid gap-2">
             <Button
               variant={darkMode ? 'dark' : 'secondary'}
