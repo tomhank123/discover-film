@@ -16,6 +16,7 @@ import { useInjectReducer } from 'utils/injectReducer';
 import * as movieUtils from 'utils/movieUtils';
 import { Container } from 'react-bootstrap';
 import Header from 'components/Header';
+import CombinedArticle from 'components/CombinedArticle';
 import MovieArticle from './MovieArticle';
 import * as actions from './actions';
 import { makeSelectDetails } from './selectors';
@@ -45,6 +46,7 @@ export function MovieDetails({ details, onLoadDetails, ...restProps }) {
       </Helmet>
       <Header />
       <Container>
+        <CombinedArticle {...details} />
         <MovieArticle {...details} />
       </Container>
     </div>

@@ -11,6 +11,7 @@ import React from 'react';
 import { Button, Card, Col, Row } from 'react-bootstrap';
 import Skeleton from 'react-loading-skeleton';
 import Player from 'components/Player';
+import Reviews from 'components/CombinedArticle/Reviews';
 import * as tvUtils from 'utils/tvUtils';
 import PersonItem from '../PersonItem';
 
@@ -31,57 +32,20 @@ function TvArticle({ loading, error, item }) {
   }
 
   if (item) {
-    const backdrop = tvUtils.getBackdrop(item.backdrop_path);
     const overview = tvUtils.getOverview(item.overview);
     const videoUrls = tvUtils.getVideoUrls(item.videos.results);
+    const reviews = {
+      loading,
+      error,
+      items: item.reviews.results,
+    };
 
     return (
       <article className="d-grid gap-4">
         <Row>
           <Col md={12} lg={8}>
             <Player url={videoUrls} />
-            <Card
-              body
-              className="border-0 shadow-sm mt-4"
-              bg="secondary"
-              text="light"
-              hidden
-            >
-              Comments
-            </Card>
-            <Row xs={3} md={4} xl={5} className="g-3 mt-4">
-              {item.similar.results
-                .filter((_, index) => index < 10)
-                .map((titles, index) => (
-                  // eslint-disable-next-line react/no-array-index-key
-                  <Col key={`${titles.id}-${index}`}>
-                    <Titles item={titles} />
-                  </Col>
-                ))}
-            </Row>
-          </Col>
-          <Col lg={4}>
-            <Card className="border-0 shadow-sm">
-              <Card.Img
-                src={backdrop}
-                alt={item.title || item.name}
-                className="rounded-0"
-              />
-              <Card.Body hidden>
-                {item.images.posters
-                  .filter((_, index) => index < 8)
-                  .map((image, index) => (
-                    // eslint-disable-next-line react/no-array-index-key
-                    <Col key={`${image.id}-${index}`}>
-                      <Card className="border-0 rounded-0">
-                        <Card.Img
-                          src={tvUtils.getPoster(image.file_path)}
-                          className="rounded-0"
-                        />
-                      </Card>
-                    </Col>
-                  ))}
-              </Card.Body>
+            <Card className="border-0 rounded-0">
               <Card.Body>
                 <Card.Title
                   className="text-truncate text-success mb-0"
@@ -143,21 +107,21 @@ function TvArticle({ loading, error, item }) {
                     {item.revenue}
                   </li>
                 </ul>
-                <Card.Title className="fs-6 fw-bold">
-                  Top Billed Cast
-                </Card.Title>
-                <Row xs={3} className="gx-2 gy-3">
-                  {item.credits.cast
-                    .filter((_, index) => index < 6)
-                    .map((cast, index) => (
-                      // eslint-disable-next-line react/no-array-index-key
-                      <Col key={`${cast.id}-${index}`}>
-                        <PersonItem item={cast} />
-                      </Col>
-                    ))}
-                </Row>
               </Card.Body>
             </Card>
+            <Row xs={3} md={4} xl={5} className="g-3 mt-4">
+              {item.similar.results
+                .filter((_, index) => index < 10)
+                .map((titles, index) => (
+                  // eslint-disable-next-line react/no-array-index-key
+                  <Col key={`${titles.id}-${index}`}>
+                    <Titles item={titles} />
+                  </Col>
+                ))}
+            </Row>
+          </Col>
+          <Col lg={4}>
+            <Reviews {...reviews} />
           </Col>
         </Row>
       </article>

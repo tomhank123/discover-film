@@ -9,16 +9,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Skeleton from 'react-loading-skeleton';
 import { Button, Col, Card, Row } from 'react-bootstrap';
+import * as movieUtils from 'utils/movieUtils';
 import Titles from 'components/Titles';
 import Player from 'components/Player';
-import {
-  getBackdrop,
-  getPoster,
-  getOverview,
-  getReleasedYear,
-  convertRuntime,
-  getVideoUrls,
-} from 'utils/movieUtils';
+import Reviews from 'components/CombinedArticle/Reviews';
 import PersonItem from '../PersonItem';
 
 function MovieArticle({ loading, error, item }) {
@@ -38,57 +32,20 @@ function MovieArticle({ loading, error, item }) {
   }
 
   if (item) {
-    const backdrop = getBackdrop(item.backdrop_path);
-    const overview = getOverview(item.overview);
-    const videoUrls = getVideoUrls(item.videos.results);
+    const overview = movieUtils.getOverview(item.overview);
+    const videoUrls = movieUtils.getVideoUrls(item.videos.results);
+    const reviews = {
+      loading,
+      error,
+      items: item.reviews.results,
+    };
 
     return (
-      <article className="d-grid gap-4">
-        <Row>
+      <article>
+        <Row className="g-3">
           <Col md={12} lg={8}>
             <Player urls={videoUrls} />
-            <Card
-              body
-              className="border-0 shadow-sm mt-4"
-              bg="secondary"
-              text="light"
-              hidden
-            >
-              Comments
-            </Card>
-            <Row xs={3} md={4} xl={5} className="g-3 mt-4">
-              {item.similar.results
-                .filter((_, index) => index < 10)
-                .map((titles, index) => (
-                  // eslint-disable-next-line react/no-array-index-key
-                  <Col key={`${titles.id}-${index}`}>
-                    <Titles item={titles} />
-                  </Col>
-                ))}
-            </Row>
-          </Col>
-          <Col lg={4}>
-            <Card className="border-0 shadow-sm">
-              <Card.Img
-                src={backdrop}
-                alt={item.title || item.name}
-                className="rounded-0"
-              />
-              <Card.Body hidden>
-                {item.images.posters
-                  .filter((_, index) => index < 8)
-                  .map((image, index) => (
-                    // eslint-disable-next-line react/no-array-index-key
-                    <Col key={`${image.id}-${index}`}>
-                      <Card className="border-0 rounded-0">
-                        <Card.Img
-                          src={getPoster(image.file_path)}
-                          className="rounded-0"
-                        />
-                      </Card>
-                    </Col>
-                  ))}
-              </Card.Body>
+            <Card className="border-0 shadow-sm rounded-0">
               <Card.Body>
                 <Card.Title
                   className="text-truncate text-success mb-0"
@@ -97,12 +54,12 @@ function MovieArticle({ loading, error, item }) {
                   {item.title || item.name}
                 </Card.Title>
                 <Card.Text className="text-muted font-monospace">
-                  {getReleasedYear(item.release_date)} -{' '}
+                  {movieUtils.getReleasedYear(item.release_date)} -{' '}
                   {item.genres
                     .filter((_, index) => index < 2)
                     .map(genre => genre.name)
                     .join('/')}{' '}
-                  - {convertRuntime(item.runtime)}
+                  - {movieUtils.convertRuntime(item.runtime)}
                 </Card.Text>
               </Card.Body>
               <Card.Body className="border-top">
@@ -152,12 +109,12 @@ function MovieArticle({ loading, error, item }) {
                     {item.revenue}
                   </li>
                 </ul>
-                <Card.Title className="fs-6 fw-bold">
+                <Card.Title className="fw-bold" hidden>
                   Top Billed Cast
                 </Card.Title>
-                <Row xs={3} className="gx-2 gy-3">
+                <Row xs={5} className="gx-2 gy-3" hidden>
                   {item.credits.cast
-                    .filter((_, index) => index < 6)
+                    .filter((_, index) => index < 10)
                     .map((cast, index) => (
                       // eslint-disable-next-line react/no-array-index-key
                       <Col key={`${cast.id}-${index}`}>
@@ -167,6 +124,18 @@ function MovieArticle({ loading, error, item }) {
                 </Row>
               </Card.Body>
             </Card>
+            <h5 className="fw-bold mt-4">More Like This</h5>
+            <Row xs={3} lg={4} xl={5} className="g-3">
+              {item.similar.results.map((titles, index) => (
+                // eslint-disable-next-line react/no-array-index-key
+                <Col key={`${titles.id}-${index}`}>
+                  <Titles item={titles} />
+                </Col>
+              ))}
+            </Row>
+          </Col>
+          <Col lg={4}>
+            <Reviews {...reviews} />
           </Col>
         </Row>
       </article>

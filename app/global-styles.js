@@ -11,6 +11,7 @@ const GlobalStyle = createGlobalStyle`
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     background-color: var(--bs-light);
     color: var(--bs-dark);
+    font-size: 14px;
   }
 
   body.dark-mode {

@@ -4,17 +4,17 @@
  *
  */
 
-import React, { useContext } from 'react';
+import { ThemeContext } from 'context/theme-context';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
-import Skeleton from 'react-loading-skeleton';
+import React, { useContext } from 'react';
+import { Button, Card } from 'react-bootstrap';
 import { FormattedMessage } from 'react-intl';
-import { Card, Button } from 'react-bootstrap';
+import Skeleton from 'react-loading-skeleton';
+import { Link } from 'react-router-dom';
 import * as movieUtils from 'utils/movieUtils';
 import * as tvUtils from 'utils/tvUtils';
-import { ThemeContext } from 'context/theme-context';
-import StyledPoster from './StyledPoster';
 import messages from './messages';
+import StyledPoster from './StyledPoster';
 
 function Titles({ loading, item }) {
   const { darkMode } = useContext(ThemeContext);
@@ -58,28 +58,11 @@ function Titles({ loading, item }) {
       <Card
         className="border-0 shadow-sm h-100 rounded-3"
         bg={darkMode ? 'secondary' : 'light'}
+        as={Link}
+        to={url}
       >
         <StyledPoster poster={poster} fallback={title} />
-        <Card.Body hidden>
-          <div className="d-grid gap-2">
-            <Button
-              variant={darkMode ? 'dark' : 'secondary'}
-              size="sm"
-              as={Link}
-              to={url}
-            >
-              <FormattedMessage {...messages.watchNow} />
-            </Button>
-            <Button
-              variant={darkMode ? 'outline-dark' : 'outline-secondary'}
-              size="sm"
-              as={Link}
-              to={url}
-            >
-              <FormattedMessage {...messages.watchList} />
-            </Button>
-          </div>
-        </Card.Body>
+        <Card.Body hidden>Body</Card.Body>
       </Card>
     );
   }
