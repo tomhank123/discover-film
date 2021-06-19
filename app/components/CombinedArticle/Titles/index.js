@@ -8,12 +8,13 @@
 import { ThemeContext } from 'context/theme-context';
 import PropTypes from 'prop-types';
 import React, { useContext } from 'react';
-import { Button, Card, Image } from 'react-bootstrap';
+import { Button, Card } from 'react-bootstrap';
 import { FormattedMessage } from 'react-intl';
 import Skeleton from 'react-loading-skeleton';
 import { Link } from 'react-router-dom';
 import * as movieUtils from 'utils/movieUtils';
 import * as tvUtils from 'utils/tvUtils';
+import RatioImage from 'components/RatioImage';
 import messages from './messages';
 
 function Titles({ loading, item }) {
@@ -25,12 +26,7 @@ function Titles({ loading, item }) {
         className="border-0 shadow-sm h-100"
         bg={darkMode ? 'secondary' : 'light'}
       >
-        <Skeleton
-          wrapper="div"
-          style={{
-            paddingTop: '150%',
-          }}
-        />
+        <RatioImage loading width={16} height={9} className="rounded-3" />
         <Card.Body hidden>
           <div className="d-grid gap-2">
             <Button variant={darkMode ? 'dark' : 'secondary'} size="sm">
@@ -63,7 +59,14 @@ function Titles({ loading, item }) {
         as={Link}
         to={url}
       >
-        <Image src={backdrop} alt={title} fluid className="rounded-3" />
+        <RatioImage
+          src={backdrop}
+          alt={title}
+          width={16}
+          height={9}
+          fluid
+          className="rounded-3"
+        />
         <Card.Body className="d-flex flex-column">
           <h5 className="text-success mb-0">{title}</h5>
           <p className="text-muted font-monospace">{year}</p>

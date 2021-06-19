@@ -9,7 +9,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { Card } from 'react-bootstrap';
 import * as personUtils from 'utils/personUtils';
-import StyledPoster from './StyledPoster';
+import RatioImage from 'components/RatioImage';
 
 function PersonItem({ item }) {
   const poster = personUtils.getPoster(item.profile_path);
@@ -17,7 +17,7 @@ function PersonItem({ item }) {
 
   return (
     <Card className="border-0 text-decoration-none" as={Link} to={url}>
-      <StyledPoster poster={poster} className="mb-2" />
+      <RatioImage src={poster} alt={item.name} className="mb-2" />
       <Card.Body className="p-0">
         <Card.Title
           className="text-truncate text-success mb-0 fs-6"

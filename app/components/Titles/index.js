@@ -13,8 +13,8 @@ import Skeleton from 'react-loading-skeleton';
 import { Link } from 'react-router-dom';
 import * as movieUtils from 'utils/movieUtils';
 import * as tvUtils from 'utils/tvUtils';
+import RatioImage from 'components/RatioImage';
 import messages from './messages';
-import StyledPoster from './StyledPoster';
 
 function Titles({ loading, item }) {
   const { darkMode } = useContext(ThemeContext);
@@ -25,12 +25,7 @@ function Titles({ loading, item }) {
         className="border-0 shadow-sm h-100"
         bg={darkMode ? 'secondary' : 'light'}
       >
-        <Skeleton
-          wrapper="div"
-          style={{
-            paddingTop: '150%',
-          }}
-        />
+        <RatioImage height={3} width={2} loading className="rounded-3" />
         <Card.Body hidden>
           <div className="d-grid gap-2">
             <Button variant={darkMode ? 'dark' : 'secondary'} size="sm">
@@ -61,7 +56,13 @@ function Titles({ loading, item }) {
         as={Link}
         to={url}
       >
-        <StyledPoster poster={poster} fallback={title} />
+        <RatioImage
+          src={poster}
+          alt={title}
+          height={3}
+          width={2}
+          className="rounded-3"
+        />
         <Card.Body hidden>Body</Card.Body>
       </Card>
     );

@@ -12,7 +12,7 @@ import { FormattedMessage } from 'react-intl';
 import { Card, Button, Figure } from 'react-bootstrap';
 import * as personUtils from 'utils/personUtils';
 import { ThemeContext } from 'context/theme-context';
-import StyledPoster from './StyledPoster';
+import RatioImage from 'components/RatioImage';
 import messages from './messages';
 
 function PersonItem({ loading, item }) {
@@ -22,8 +22,8 @@ function PersonItem({ loading, item }) {
     return (
       <Card className="border-0 shadow" bg={darkMode ? 'secondary' : 'light'}>
         <Card.Body className="text-center">
-          <Figure className="w-75">
-            <Skeleton width={120} height={120} circle />
+          <Figure className="w-75 rounded-circle">
+            <RatioImage loading className="rounded-circle" />
           </Figure>
           <Skeleton wrapper="h5" />
           <Skeleton wrapper="p" width="75%" />
@@ -47,8 +47,13 @@ function PersonItem({ loading, item }) {
     return (
       <Card className="border-0 shadow" bg={darkMode ? 'secondary' : 'light'}>
         <Card.Body className="text-center">
-          <Figure className="w-75 img-thumbnail rounded-circle">
-            <StyledPoster poster={poster} />
+          <Figure className="w-75 rounded-circle">
+            <RatioImage
+              src={poster}
+              alt={item.name}
+              className="rounded-circle"
+              thumbnail
+            />
           </Figure>
           <Card.Title
             className={`text-truncate mb-0 ${
