@@ -12,6 +12,7 @@ import { FormattedMessage } from 'react-intl';
 import { Link } from 'react-router-dom';
 import * as movieUtils from 'utils/movieUtils';
 import * as tvUtils from 'utils/tvUtils';
+import * as commonUtils from 'utils/commonUtils';
 import RatioImage from 'components/RatioImage';
 import messages from '../messages';
 
@@ -74,7 +75,7 @@ function BackdropCard({ loading, model, details = false }) {
             <h5 className="text-success mb-0">{title}</h5>
             <p className="text-muted font-monospace">{year}</p>
             {/* eslint-disable react/no-danger */}
-            <p dangerouslySetInnerHTML={{ __html: overview }} />
+            <p dangerouslySetInnerHTML={commonUtils.createMarkup(overview)} />
             <div className="d-grid mt-auto">
               <Button
                 size="sm"

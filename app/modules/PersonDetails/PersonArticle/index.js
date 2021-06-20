@@ -1,4 +1,3 @@
-/* eslint-disable react/no-danger */
 /**
  *
  * PersonArticle
@@ -11,6 +10,7 @@ import Skeleton from 'react-loading-skeleton';
 import { Row, Col, Card, Button } from 'react-bootstrap';
 import MovieCard from 'components/MovieCard';
 import * as personUtils from 'utils/personUtils';
+import * as commonUtils from 'utils/commonUtils';
 
 function PersonArticle({ loading, error, item }) {
   if (loading) {
@@ -92,7 +92,10 @@ function PersonArticle({ loading, error, item }) {
                 </div>
               </Card.Body>
               <Card.Body className="border-top">
-                <p dangerouslySetInnerHTML={{ __html: biography }} />
+                {/* eslint-disable react/no-danger */}
+                <p
+                  dangerouslySetInnerHTML={commonUtils.createMarkup(biography)}
+                />
                 <ul className="list-unstyled">
                   <li>
                     <span className="fw-bold text-muted">Known Credits: </span>

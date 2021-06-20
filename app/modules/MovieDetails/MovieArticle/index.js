@@ -1,4 +1,3 @@
-/* eslint-disable react/no-danger */
 /**
  *
  * MovieArticle
@@ -10,8 +9,9 @@ import PropTypes from 'prop-types';
 import Skeleton from 'react-loading-skeleton';
 import { Button, Col, Card, Row } from 'react-bootstrap';
 import * as movieUtils from 'utils/movieUtils';
+import * as commonUtils from 'utils/commonUtils';
 import Player from 'components/Player';
-import Reviews from 'components/CombinedArticle/Reviews';
+import Reviews from 'components/Reviews';
 import SimilarItems from 'components/CombinedArticle/SimilarItems';
 import PersonItem from '../PersonItem';
 
@@ -95,7 +95,10 @@ function MovieArticle({ loading, error, item }) {
                 </div>
               </Card.Body>
               <Card.Body className="border-top">
-                <p dangerouslySetInnerHTML={{ __html: overview }} />
+                {/* eslint-disable react/no-danger */}
+                <p
+                  dangerouslySetInnerHTML={commonUtils.createMarkup(overview)}
+                />
                 <ul className="list-unstyled">
                   <li>
                     <span className="fw-bold text-muted">Release Date: </span>

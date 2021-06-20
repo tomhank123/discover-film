@@ -1,4 +1,3 @@
-/* eslint-disable react/no-danger */
 /**
  *
  * TvArticle
@@ -10,9 +9,10 @@ import PropTypes from 'prop-types';
 import { Button, Card, Col, Row } from 'react-bootstrap';
 import Skeleton from 'react-loading-skeleton';
 import Player from 'components/Player';
-import Reviews from 'components/CombinedArticle/Reviews';
+import Reviews from 'components/Reviews';
 import SimilarItems from 'components/CombinedArticle/SimilarItems';
 import * as tvUtils from 'utils/tvUtils';
+import * as commonUtils from 'utils/commonUtils';
 
 function TvArticle({ loading, error, item }) {
   if (loading) {
@@ -92,7 +92,10 @@ function TvArticle({ loading, error, item }) {
                 </div>
               </Card.Body>
               <Card.Body className="border-top">
-                <p dangerouslySetInnerHTML={{ __html: overview }} />
+                {/* eslint-disable react/no-danger */}
+                <p
+                  dangerouslySetInnerHTML={commonUtils.createMarkup(overview)}
+                />
                 <ul className="list-unstyled">
                   <li>
                     <span className="fw-bold text-muted">Release Date: </span>
