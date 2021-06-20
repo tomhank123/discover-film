@@ -11,7 +11,7 @@ import { createSelector } from 'reselect';
 
 import { changeLocale } from 'containers/LanguageProvider/actions';
 import { makeSelectLocale } from 'containers/LanguageProvider/selectors';
-import Toggle from 'components/Toggle';
+import Toggle from './Toggle';
 import Wrapper from './Wrapper';
 import messages from './messages';
 import { appLocales } from '../../i18n';
