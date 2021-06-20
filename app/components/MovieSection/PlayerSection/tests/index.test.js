@@ -1,6 +1,6 @@
 /**
  *
- * Tests for PersonItem
+ * Tests for PlayerSection
  *
  * @see https://github.com/react-boilerplate/react-boilerplate/tree/master/docs/testing
  *
@@ -8,14 +8,20 @@
 
 import React from 'react';
 import { render } from 'react-testing-library';
+import { IntlProvider } from 'react-intl';
 // import 'jest-dom/extend-expect'; // add some helpful assertions
 
-import PersonItem from '../index';
+import PlayerSection from '../index';
+import { DEFAULT_LOCALE } from '../../../i18n';
 
-describe('<PersonItem />', () => {
+describe('<PlayerSection />', () => {
   it('Expect to not log errors in console', () => {
     const spy = jest.spyOn(global.console, 'error');
-    render(<PersonItem />);
+    render(
+      <IntlProvider locale={DEFAULT_LOCALE}>
+        <PlayerSection />
+      </IntlProvider>,
+    );
     expect(spy).not.toHaveBeenCalled();
   });
 
@@ -31,7 +37,11 @@ describe('<PersonItem />', () => {
   it.skip('Should render and match the snapshot', () => {
     const {
       container: { firstChild },
-    } = render(<PersonItem />);
+    } = render(
+      <IntlProvider locale={DEFAULT_LOCALE}>
+        <PlayerSection />
+      </IntlProvider>,
+    );
     expect(firstChild).toMatchSnapshot();
   });
 });
