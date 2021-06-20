@@ -1,6 +1,6 @@
 /**
  *
- * Tests for Titles
+ * Tests for BackdropCard
  *
  * @see https://github.com/react-boilerplate/react-boilerplate/tree/master/docs/testing
  *
@@ -10,12 +10,12 @@ import React from 'react';
 import { render } from 'react-testing-library';
 // import 'jest-dom/extend-expect'; // add some helpful assertions
 
-import Titles from '../index';
+import BackdropCard from '../index';
 
-describe('<Titles />', () => {
+describe('<BackdropCard />', () => {
   it('Expect to not log errors in console', () => {
     const spy = jest.spyOn(global.console, 'error');
-    render(<Titles />);
+    render(<BackdropCard />);
     expect(spy).not.toHaveBeenCalled();
   });
 
@@ -31,7 +31,7 @@ describe('<Titles />', () => {
   it.skip('Should render and match the snapshot', () => {
     const {
       container: { firstChild },
-    } = render(<Titles />);
+    } = render(<BackdropCard />);
     expect(firstChild).toMatchSnapshot();
   });
 });

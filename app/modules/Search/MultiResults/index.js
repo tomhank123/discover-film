@@ -8,7 +8,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Col, Row } from 'react-bootstrap';
 import * as searchUtils from 'utils/searchUtils';
-import Titles from 'components/Titles';
+import MovieCard from 'components/MovieCard';
 import PersonItem from 'components/PersonItem';
 
 function MultiResults({ loading, error, items }) {
@@ -29,7 +29,7 @@ function MultiResults({ loading, error, items }) {
             .map((_, index) => ({ id: index }))
             .map(tvItem => (
               <Col key={tvItem.id}>
-                <Titles loading />
+                <MovieCard loading />
               </Col>
             ))}
         </Row>
@@ -38,7 +38,7 @@ function MultiResults({ loading, error, items }) {
             .map((_, index) => ({ id: index }))
             .map(movie => (
               <Col key={movie.id}>
-                <Titles loading />
+                <MovieCard loading />
               </Col>
             ))}
         </Row>
@@ -65,14 +65,14 @@ function MultiResults({ loading, error, items }) {
         <Row xs={2} sm={3} md={4} lg={5} xl={6} className="g-3 mt-5">
           {tv.map(tvItem => (
             <Col key={tvItem.id}>
-              <Titles item={tvItem} />
+              <MovieCard model={tvItem} />
             </Col>
           ))}
         </Row>
         <Row xs={2} sm={3} md={4} lg={5} xl={6} className="g-3 mt-5">
           {movies.map(movie => (
             <Col key={movie.id}>
-              <Titles item={movie} />
+              <MovieCard model={movie} />
             </Col>
           ))}
         </Row>

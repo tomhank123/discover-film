@@ -8,7 +8,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Button, Row, Col } from 'react-bootstrap';
-import Titles from '../Titles';
+import MovieCard from 'components/MovieCard';
 
 function Reviews({ loading, error, items }) {
   const [showMore, setShowMore] = useState(false);
@@ -32,7 +32,7 @@ function Reviews({ loading, error, items }) {
           {itemsToShow.map((titles, index) => (
             // eslint-disable-next-line react/no-array-index-key
             <Col key={`${titles.id}-${index}`}>
-              <Titles item={titles} />
+              <MovieCard whoami="backdrop" model={titles} details />
             </Col>
           ))}
         </Row>

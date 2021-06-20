@@ -9,7 +9,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Skeleton from 'react-loading-skeleton';
 import { Row, Col, Card, Button } from 'react-bootstrap';
-import Titles from 'components/Titles';
+import MovieCard from 'components/MovieCard';
 import * as personUtils from 'utils/personUtils';
 
 function PersonArticle({ loading, error, item }) {
@@ -44,7 +44,7 @@ function PersonArticle({ loading, error, item }) {
               {item.known_for.map((titles, index) => (
                 // eslint-disable-next-line react/no-array-index-key
                 <Col key={`${titles.id}-${index}`}>
-                  <Titles item={titles} />
+                  <MovieCard item={titles} />
                 </Col>
               ))}
             </Row>

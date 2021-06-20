@@ -1,6 +1,6 @@
 /**
  *
- * Titles
+ * PosterCard
  *
  */
 
@@ -9,14 +9,13 @@ import PropTypes from 'prop-types';
 import React, { useContext } from 'react';
 import { Button, Card } from 'react-bootstrap';
 import { FormattedMessage } from 'react-intl';
-import Skeleton from 'react-loading-skeleton';
 import { Link } from 'react-router-dom';
 import * as movieUtils from 'utils/movieUtils';
 import * as tvUtils from 'utils/tvUtils';
 import RatioImage from 'components/RatioImage';
-import messages from './messages';
+import messages from '../messages';
 
-function Titles({ loading, item }) {
+function PosterCard({ loading, model, details = false }) {
   const { darkMode } = useContext(ThemeContext);
 
   if (loading) {
@@ -26,7 +25,7 @@ function Titles({ loading, item }) {
         bg={darkMode ? 'secondary' : 'light'}
       >
         <RatioImage height={3} width={2} loading className="rounded-3" />
-        <Card.Body hidden>
+        <Card.Body hidden={!details}>
           <div className="d-grid gap-2">
             <Button variant={darkMode ? 'dark' : 'secondary'} size="sm">
               <FormattedMessage {...messages.watchNow} />
@@ -43,11 +42,13 @@ function Titles({ loading, item }) {
     );
   }
 
-  if (item) {
-    const isMovie = item.title;
-    const poster = movieUtils.getPoster(item.poster_path);
-    const url = isMovie ? movieUtils.getUrl(item.id) : tvUtils.getUrl(item.id);
-    const title = item.title || item.name;
+  if (model) {
+    const isMovie = model.title;
+    const poster = movieUtils.getPoster(model.poster_path);
+    const url = isMovie
+      ? movieUtils.getUrl(model.id)
+      : tvUtils.getUrl(model.id);
+    const title = model.title || model.name;
 
     return (
       <Card
@@ -63,7 +64,7 @@ function Titles({ loading, item }) {
           width={2}
           className="rounded-3"
         />
-        <Card.Body hidden>Body</Card.Body>
+        {details && <Card.Body>Body</Card.Body>}
       </Card>
     );
   }
@@ -71,9 +72,10 @@ function Titles({ loading, item }) {
   return null;
 }
 
-Titles.propTypes = {
+PosterCard.propTypes = {
   loading: PropTypes.bool,
-  item: PropTypes.object,
+  model: PropTypes.object,
+  details: PropTypes.bool,
 };
 
-export default Titles;
+export default PosterCard;
