@@ -1,6 +1,6 @@
 /**
  *
- * Tests for PersonItem
+ * Tests for AvatarCard
  *
  * @see https://github.com/react-boilerplate/react-boilerplate/tree/master/docs/testing
  *
@@ -10,12 +10,12 @@ import React from 'react';
 import { render } from 'react-testing-library';
 // import 'jest-dom/extend-expect'; // add some helpful assertions
 
-import PersonItem from '../index';
+import AvatarCard from '../index';
 
-describe('<PersonItem />', () => {
+describe('<AvatarCard />', () => {
   it('Expect to not log errors in console', () => {
     const spy = jest.spyOn(global.console, 'error');
-    render(<PersonItem />);
+    render(<AvatarCard />);
     expect(spy).not.toHaveBeenCalled();
   });
 
@@ -31,7 +31,7 @@ describe('<PersonItem />', () => {
   it.skip('Should render and match the snapshot', () => {
     const {
       container: { firstChild },
-    } = render(<PersonItem />);
+    } = render(<AvatarCard />);
     expect(firstChild).toMatchSnapshot();
   });
 });

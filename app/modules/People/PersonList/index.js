@@ -4,7 +4,7 @@
  *
  */
 
-import PersonItem from 'components/PersonItem';
+import PersonCard from 'components/PersonCard';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { Col, Row } from 'react-bootstrap';
@@ -15,7 +15,7 @@ function PersonList({ loading, error, items }) {
       <Row sm={2} md={3} lg={4} xl={5} className="g-3">
         {Array.from({ length: 20 }, (_, i) => i).map(item => (
           <Col key={item}>
-            <PersonItem loading={loading} />
+            <PersonCard whoami="avatar" loading />
           </Col>
         ))}
       </Row>
@@ -31,7 +31,7 @@ function PersonList({ loading, error, items }) {
       <Row sm={2} md={3} lg={4} xl={5} className="g-3">
         {items.map(item => (
           <Col key={item.id}>
-            <PersonItem item={item} />
+            <PersonCard whoami="avatar" item={item} />
           </Col>
         ))}
       </Row>

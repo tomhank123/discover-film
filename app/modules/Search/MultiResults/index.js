@@ -9,7 +9,7 @@ import PropTypes from 'prop-types';
 import { Col, Row } from 'react-bootstrap';
 import * as searchUtils from 'utils/searchUtils';
 import MovieCard from 'components/MovieCard';
-import PersonItem from 'components/PersonItem';
+import PersonCard from 'components/PersonCard';
 
 function MultiResults({ loading, error, items }) {
   if (loading) {
@@ -20,7 +20,7 @@ function MultiResults({ loading, error, items }) {
             .map((_, index) => ({ id: index }))
             .map(person => (
               <Col key={person.id}>
-                <PersonItem loading />
+                <PersonCard whoami="avatar" loading />
               </Col>
             ))}
         </Row>
@@ -58,7 +58,7 @@ function MultiResults({ loading, error, items }) {
         <Row xs={2} sm={3} md={4} lg={5} xl={6} className="gx-3 gy-5">
           {people.map(person => (
             <Col key={person.id}>
-              <PersonItem item={person} />
+              <PersonCard whoami="avatar" item={person} />
             </Col>
           ))}
         </Row>

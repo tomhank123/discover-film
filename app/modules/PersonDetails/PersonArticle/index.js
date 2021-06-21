@@ -44,7 +44,7 @@ function PersonArticle({ loading, error, item }) {
               {item.known_for.map((titles, index) => (
                 // eslint-disable-next-line react/no-array-index-key
                 <Col key={`${titles.id}-${index}`}>
-                  <MovieCard item={titles} />
+                  <MovieCard whoami="poster" model={titles} />
                 </Col>
               ))}
             </Row>

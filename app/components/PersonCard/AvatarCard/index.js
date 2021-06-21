@@ -1,6 +1,6 @@
 /**
  *
- * PersonItem
+ * AvatarCard
  *
  */
 
@@ -13,9 +13,9 @@ import { Card, Button, Figure } from 'react-bootstrap';
 import * as personUtils from 'utils/personUtils';
 import { ThemeContext } from 'context/theme-context';
 import RatioImage from 'components/RatioImage';
-import messages from './messages';
+import messages from '../messages';
 
-function PersonItem({ loading, item }) {
+function AvatarCard({ loading, item }) {
   const { darkMode } = useContext(ThemeContext);
 
   if (loading) {
@@ -91,9 +91,9 @@ function PersonItem({ loading, item }) {
   return null;
 }
 
-PersonItem.propTypes = {
+AvatarCard.propTypes = {
   loading: PropTypes.bool,
   item: PropTypes.object,
 };
 
-export default PersonItem;
+export default AvatarCard;
