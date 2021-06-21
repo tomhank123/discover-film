@@ -14,9 +14,8 @@ import { bindActionCreators, compose } from 'redux';
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
 import { Container } from 'react-bootstrap';
-import Collections from 'components/Collections';
 import Header from 'components/Header';
-import Jumbotron from './Jumbotron';
+import BrowseFrame from './Frame';
 
 import * as actions from './actions';
 import { makeSelectCollections } from './selectors';
@@ -38,9 +37,9 @@ export function Browse({ collections, onLoadCollections }) {
         <meta name="description" content="Description of Browse" />
       </Helmet>
       <Header />
-      <Jumbotron />
+      <BrowseFrame whoami="Jumbotron" />
       <Container className="py-5">
-        <Collections isSwiper {...collections} />
+        <BrowseFrame whoami="Collections" isSwiper {...collections} />
       </Container>
     </div>
   );

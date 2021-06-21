@@ -16,8 +16,8 @@ import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
 import { Container } from 'react-bootstrap';
 import MovieDetails from 'modules/MovieDetails';
-import Collections from 'components/Collections';
 import Header from 'components/Header';
+import MovieFrame from './Frame';
 
 import * as actions from './actions';
 import { makeSelectCollections } from './selectors';
@@ -47,7 +47,7 @@ export function Movies({ collections, onLoadCollections, ...routeProps }) {
             </Helmet>
             <Header />
             <Container className="py-5">
-              <Collections isSwiper {...collections} />
+              <MovieFrame whoami="Collections" isSwiper {...collections} />
             </Container>
           </React.Fragment>
         )}

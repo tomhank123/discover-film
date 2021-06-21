@@ -17,8 +17,8 @@ import { useInjectReducer } from 'utils/injectReducer';
 
 import { Container } from 'react-bootstrap';
 import TvDetails from 'modules/TvDetails';
-import Collections from 'components/Collections';
 import Header from 'components/Header';
+import TvFrame from './Frame';
 import * as actions from './actions';
 import { makeSelectCollections } from './selectors';
 import reducer from './reducer';
@@ -47,7 +47,7 @@ export function Tv({ collections, onLoadCollections, ...routeProps }) {
             </Helmet>
             <Header />
             <Container className="py-5">
-              <Collections isSwiper {...collections} />
+              <TvFrame whoami="Collections" isSwiper {...collections} />
             </Container>
           </React.Fragment>
         )}
