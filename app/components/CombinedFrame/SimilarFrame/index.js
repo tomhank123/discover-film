@@ -32,7 +32,7 @@ function SimilarFrame({ loading, items }) {
           {itemsToShow.map((titles, index) => (
             // eslint-disable-next-line react/no-array-index-key
             <Col key={`${titles.id}-${index}`}>
-              <MovieCard whoami="backdrop" model={titles} details />
+              <MovieCard whoami="Backdrop" model={titles} details />
             </Col>
           ))}
         </Row>

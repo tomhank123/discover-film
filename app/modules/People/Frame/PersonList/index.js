@@ -15,7 +15,7 @@ function PersonList({ loading, error, items }) {
       <Row sm={2} md={3} lg={4} xl={5} className="g-3">
         {Array.from({ length: 20 }, (_, i) => i).map(item => (
           <Col key={item}>
-            <PersonCard whoami="avatar" loading />
+            <PersonCard whoami="Avatar" loading />
           </Col>
         ))}
       </Row>
@@ -31,7 +31,7 @@ function PersonList({ loading, error, items }) {
       <Row sm={2} md={3} lg={4} xl={5} className="g-3">
         {items.map(item => (
           <Col key={item.id}>
-            <PersonCard whoami="avatar" item={item} />
+            <PersonCard whoami="Avatar" item={item} />
           </Col>
         ))}
       </Row>

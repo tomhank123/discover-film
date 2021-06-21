@@ -20,7 +20,7 @@ function MultiResults({ loading, error, items }) {
             .map((_, index) => ({ id: index }))
             .map(person => (
               <Col key={person.id}>
-                <PersonCard whoami="avatar" loading />
+                <PersonCard whoami="Avatar" loading />
               </Col>
             ))}
         </Row>
@@ -58,7 +58,7 @@ function MultiResults({ loading, error, items }) {
         <Row xs={2} sm={3} md={4} lg={5} xl={6} className="gx-3 gy-5">
           {people.map(person => (
             <Col key={person.id}>
-              <PersonCard whoami="avatar" item={person} />
+              <PersonCard whoami="Avatar" item={person} />
             </Col>
           ))}
         </Row>

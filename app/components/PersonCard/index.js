@@ -11,9 +11,9 @@ import SimpleCard from './SimpleCard';
 
 function PersonCard({ whoami, ...restProps }) {
   switch (whoami) {
-    case 'simple':
+    case 'Simple':
       return <SimpleCard {...restProps} />;
-    case 'avatar':
+    case 'Avatar':
       return <AvatarCard {...restProps} />;
     default:
       return null;
@@ -21,7 +21,7 @@ function PersonCard({ whoami, ...restProps }) {
 }
 
 PersonCard.propTypes = {
-  whoami: PropTypes.oneOf(['avatar', 'simple']),
+  whoami: PropTypes.oneOf(['Avatar', 'Simple']),
 };
 
 export default PersonCard;

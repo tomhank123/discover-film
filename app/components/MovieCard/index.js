@@ -9,11 +9,11 @@ import PropTypes from 'prop-types';
 import PosterCard from './PosterCard';
 import BackdropCard from './BackdropCard';
 
-function MovieCard({ whoami = 'poster', ...restProps }) {
+function MovieCard({ whoami = 'Poster', ...restProps }) {
   switch (whoami) {
-    case 'poster':
+    case 'Poster':
       return <PosterCard {...restProps} />;
-    case 'backdrop':
+    case 'Backdrop':
       return <BackdropCard {...restProps} />;
     default:
       return null;
@@ -21,7 +21,7 @@ function MovieCard({ whoami = 'poster', ...restProps }) {
 }
 
 MovieCard.propTypes = {
-  whoami: PropTypes.oneOf(['poster', 'backdrop']),
+  whoami: PropTypes.oneOf(['Poster', 'Backdrop']),
 };
 
 export default MovieCard;
