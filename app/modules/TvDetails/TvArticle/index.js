@@ -8,7 +8,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Col, Row } from 'react-bootstrap';
 import Skeleton from 'react-loading-skeleton';
-import Section from '../Section';
+import TvDetailFrame from '../Frame';
 
 function TvArticle({ loading, error, item }) {
   if (loading) {
@@ -41,12 +41,12 @@ function TvArticle({ loading, error, item }) {
     return (
       <Row className="g-3" as="article">
         <Col md={12} lg={8}>
-          <Section whoami="player" {...playerModel} />
-          <Section whoami="info" model={model} />
-          <Section whoami="similar" {...similarModel} />
+          <TvDetailFrame whoami="Player" {...playerModel} />
+          <TvDetailFrame whoami="Info" model={model} />
+          <TvDetailFrame whoami="Similar" {...similarModel} />
         </Col>
         <Col lg={4}>
-          <Section whoami="review" {...reviewModel} />
+          <TvDetailFrame whoami="Review" {...reviewModel} />
         </Col>
       </Row>
     );
