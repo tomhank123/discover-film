@@ -8,9 +8,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Button, Card, Col, Row } from 'react-bootstrap';
 import Skeleton from 'react-loading-skeleton';
-import Player from 'components/Player';
-import Reviews from 'components/Reviews';
-import SimilarItems from 'components/CombinedArticle/SimilarItems';
+import MovieSection from 'components/MovieSection';
 import * as tvUtils from 'utils/tvUtils';
 import * as commonUtils from 'utils/commonUtils';
 
@@ -31,24 +29,23 @@ function TvArticle({ loading, error, item }) {
   }
 
   if (item) {
-    const overview = tvUtils.getOverview(item.overview);
-    const videoUrls = tvUtils.getVideoUrls(item.videos.results);
-    const reviews = {
-      loading,
-      error,
-      items: item.reviews.results,
+    const { videos, reviews, similar, ...model } = item;
+    const overview = tvUtils.getOverview(model.overview);
+    const playerModel = {
+      items: videos.results,
     };
-    const similarItems = {
-      loading,
-      error,
-      items: item.similar.results,
+    const reviewModel = {
+      items: reviews.results,
+    };
+    const similarModel = {
+      items: similar.results,
     };
 
     return (
       <article className="d-grid gap-4">
         <Row>
           <Col md={12} lg={8}>
-            <Player url={videoUrls} />
+            <MovieSection whoami="player" {...playerModel} />
             <Card className="border-0 rounded-0">
               <Card.Body>
                 <Card.Title
@@ -116,10 +113,10 @@ function TvArticle({ loading, error, item }) {
                 </ul>
               </Card.Body>
             </Card>
-            <SimilarItems {...similarItems} />
+            <MovieSection whoami="similar" {...similarModel} />
           </Col>
           <Col lg={4}>
-            <Reviews {...reviews} />
+            <MovieSection whoami="review" {...reviewModel} />
           </Col>
         </Row>
       </article>

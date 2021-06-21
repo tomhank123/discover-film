@@ -13,7 +13,7 @@ function Player({ urls = [] }) {
 
   useEffect(() => {
     const timeout = setTimeout(() => {
-      setPlaying(true);
+      setPlaying(false);
 
       clearTimeout(timeout);
     }, 5000);
