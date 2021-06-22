@@ -7,12 +7,11 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import CombinedFrame from 'components/CombinedFrame';
-import InfoFrame from './InfoFrame';
 
 function Frame({ whoami, ...restProps }) {
   switch (whoami) {
     case 'Info':
-      return <InfoFrame {...restProps} />;
+      return <CombinedFrame whoami="Info" {...restProps} />;
     case 'Review':
       return <CombinedFrame whoami="Review" {...restProps} />;
     case 'Similar':
