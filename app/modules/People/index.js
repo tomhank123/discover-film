@@ -18,7 +18,7 @@ import { useInjectReducer } from 'utils/injectReducer';
 import { Container } from 'react-bootstrap';
 import PersonDetails from 'modules/PersonDetails';
 import Header from 'components/Header';
-import PersonList from './PersonList';
+import PeopleFrame from './Frame';
 import * as actions from './actions';
 import { makeSelectPopularPeople } from './selectors';
 import reducer from './reducer';
@@ -47,7 +47,7 @@ export function People({ people, onLoadPeople, ...routeProps }) {
             </Helmet>
             <Header />
             <Container className="py-5">
-              <PersonList {...people} />
+              <PeopleFrame whoami="PersonList" {...people} />
             </Container>
           </div>
         )}

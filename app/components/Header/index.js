@@ -13,7 +13,7 @@ import { ThemeContext } from 'context/theme-context';
 import * as ROUTES from 'routes/constants';
 import SearchBar from 'containers/SearchBar';
 import LocaleToggle from 'containers/LocaleToggle';
-import DarkModeToggle from 'components/DarkModeToggle';
+import DarkModeToggle from 'containers/DarkModeToggle';
 import messages from './messages';
 
 function Header() {

@@ -1,10 +1,13 @@
 import truncate from 'lodash/truncate';
 
-export const getContent = content =>
+export const getItemsPerPage = () => 2;
+
+export const getBrief = content =>
   truncate(content, {
     length: 120,
-    omission: ' ...<a href="/" class="text-success">More</a>',
-  }).replace(/\n/g, '<br />');
+  });
+
+export const getContent = content => content.replace(/\n/g, '<br />');
 
 export const getAvatar = avatarPath => {
   if (!avatarPath) return null;

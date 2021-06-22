@@ -1,4 +1,3 @@
-/* eslint-disable react/no-danger */
 /**
  *
  * PersonArticle
@@ -9,8 +8,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Skeleton from 'react-loading-skeleton';
 import { Row, Col, Card, Button } from 'react-bootstrap';
-import Titles from 'components/Titles';
+import MovieCard from 'components/MovieCard';
 import * as personUtils from 'utils/personUtils';
+import * as commonUtils from 'utils/commonUtils';
 
 function PersonArticle({ loading, error, item }) {
   if (loading) {
@@ -44,7 +44,7 @@ function PersonArticle({ loading, error, item }) {
               {item.known_for.map((titles, index) => (
                 // eslint-disable-next-line react/no-array-index-key
                 <Col key={`${titles.id}-${index}`}>
-                  <Titles item={titles} />
+                  <MovieCard model={titles} />
                 </Col>
               ))}
             </Row>
@@ -92,7 +92,10 @@ function PersonArticle({ loading, error, item }) {
                 </div>
               </Card.Body>
               <Card.Body className="border-top">
-                <p dangerouslySetInnerHTML={{ __html: biography }} />
+                {/* eslint-disable react/no-danger */}
+                <p
+                  dangerouslySetInnerHTML={commonUtils.createMarkup(biography)}
+                />
                 <ul className="list-unstyled">
                   <li>
                     <span className="fw-bold text-muted">Known Credits: </span>

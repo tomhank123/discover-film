@@ -18,8 +18,7 @@ import * as searchUtils from 'utils/searchUtils';
 import { Container } from 'react-bootstrap';
 import Header from 'components/Header';
 import SearchBar from 'containers/SearchBar';
-import MultiResults from './MultiResults';
-import KeywordResults from './KeywordResults';
+import SearchFrame from './Frame';
 
 import * as actions from './actions';
 import { makeSelectKeywords, makeSelectMultiResults } from './selectors';
@@ -65,8 +64,8 @@ export function Search({
         {query ? (
           <React.Fragment>
             <h1>{`Results for "${query}"`}</h1>
-            <KeywordResults {...keywords} />
-            <MultiResults {...multiResults} />
+            <SearchFrame whoami="KeywordResults" {...keywords} />
+            <SearchFrame whoami="MultiResults" {...multiResults} />
           </React.Fragment>
         ) : (
           <p className="display-4">Please enter the keyword.</p>
