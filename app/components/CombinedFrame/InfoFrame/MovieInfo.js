@@ -8,11 +8,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Card } from 'react-bootstrap';
 import * as movieUtils from 'utils/movieUtils';
-import * as commonUtils from 'utils/commonUtils';
+import ContentTruncator from 'components/ContentTruncator';
 import Wrapper from './Wrapper';
 
 function MovieInfo({ model }) {
-  const overview = movieUtils.getOverview(model.overview);
   return (
     <Wrapper>
       <Card className="border-0 shadow-sm rounded-0">
@@ -38,9 +37,7 @@ function MovieInfo({ model }) {
           </a>
         </Card.Body>
         <Card.Body className="border-top">
-          {/* eslint-disable react/no-danger */}
-          <p dangerouslySetInnerHTML={commonUtils.createMarkup(overview)} />
-
+          <ContentTruncator content={model.overview} maxLength={300} />
           <ul className="list-unstyled">
             <li>
               <span className="fw-bold text-muted">Release Date: </span>

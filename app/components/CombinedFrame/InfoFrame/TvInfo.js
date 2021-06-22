@@ -7,12 +7,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Card } from 'react-bootstrap';
-import * as tvUtils from 'utils/tvUtils';
-import * as commonUtils from 'utils/commonUtils';
+// import * as tvUtils from 'utils/tvUtils';
+import ContentTruncator from 'components/ContentTruncator';
 import Wrapper from './Wrapper';
 
 function TvInfo({ model }) {
-  const overview = tvUtils.getOverview(model.overview);
   return (
     <Wrapper>
       <Card className="border-0 shadow-sm rounded-0">
@@ -36,9 +35,7 @@ function TvInfo({ model }) {
           </a>
         </Card.Body>
         <Card.Body className="border-top">
-          {/* eslint-disable react/no-danger */}
-          <p dangerouslySetInnerHTML={commonUtils.createMarkup(overview)} />
-
+          <ContentTruncator content={model.overview} maxLength={300} />
           <ul className="list-unstyled">
             <li>
               <span className="fw-bold text-muted">Status: </span>
