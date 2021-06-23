@@ -10,7 +10,7 @@ import truncate from 'lodash/truncate';
 import { Button } from 'react-bootstrap';
 import * as commonUtils from 'utils/commonUtils';
 
-function ContentTruncator({ content, maxLength }) {
+function ContentTruncator({ content, maxLength, omission }) {
   const [showMore, setShowMore] = useState(false);
   const brief = truncate(content, {
     length: maxLength,
@@ -23,13 +23,13 @@ function ContentTruncator({ content, maxLength }) {
         <p>
           {brief}
           <Button
-            hidden={isEqual}
+            hidden={isEqual || !omission}
             variant="link"
             size="sm"
             className="p-0 text-reset"
             onClick={() => setShowMore(!showMore)}
           >
-            More
+            {omission}
           </Button>
         </p>
       ) : (
@@ -43,6 +43,7 @@ function ContentTruncator({ content, maxLength }) {
 ContentTruncator.propTypes = {
   content: PropTypes.string.isRequired,
   maxLength: PropTypes.number.isRequired,
+  omission: PropTypes.string,
 };
 
 export default ContentTruncator;

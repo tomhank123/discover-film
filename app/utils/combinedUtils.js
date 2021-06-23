@@ -16,7 +16,7 @@ export const getBrief = overview =>
 export const getOverview = overview =>
   truncate(overview, {
     length: 300,
-    omission: ' ...<a href="/" class="text-success">More</a>',
+    omission: ' ...<a href="/" class="text-warning">More</a>',
   }).replace(/\n/g, '<br />');
 
 export const getVideoUrls = videos => {

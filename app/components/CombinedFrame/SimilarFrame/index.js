@@ -27,7 +27,7 @@ function SimilarFrame({ loading, items }) {
 
     return (
       <Wrapper>
-        <h5 className="fw-bold mt-4">More Like This</h5>
+        <h5 className="fw-bold mb-3">More Like This</h5>
         <Row xs={1} sm={2} lg={3} className="g-3">
           {itemsToShow.map((titles, index) => (
             // eslint-disable-next-line react/no-array-index-key

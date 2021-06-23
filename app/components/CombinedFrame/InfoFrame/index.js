@@ -4,13 +4,20 @@
  *
  */
 
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
+import { Card } from 'react-bootstrap';
+import { ThemeContext } from 'context/theme-context';
 import Wrapper from './Wrapper';
 import MovieInfo from './MovieInfo';
 import TvInfo from './TvInfo';
 
 function InfoFrame({ loading, model }) {
+  const { darkMode } = useContext(ThemeContext);
+  const makeStyles = {
+    bg: darkMode ? 'dark' : 'white',
+  };
+
   if (loading) {
     return (
       <Wrapper>
@@ -24,7 +31,9 @@ function InfoFrame({ loading, model }) {
 
     return (
       <Wrapper>
-        {isMovie ? <MovieInfo model={model} /> : <TvInfo model={model} />}
+        <Card className="border-0 shadow-sm rounded-0" bg={makeStyles.bg}>
+          {isMovie ? <MovieInfo model={model} /> : <TvInfo model={model} />}
+        </Card>
       </Wrapper>
     );
   }

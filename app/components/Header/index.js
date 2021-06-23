@@ -18,12 +18,20 @@ import messages from './messages';
 
 function Header() {
   const { darkMode } = useContext(ThemeContext);
-  const theme = darkMode ? 'dark' : 'light';
-  // const theme = 'light';
+  const makeStyles = {
+    bg: darkMode ? 'dark' : 'white',
+    variant: darkMode ? 'dark' : 'light',
+  };
 
   return (
     <header>
-      <Navbar collapseOnSelect expand="lg" bg={theme} variant={theme}>
+      <Navbar
+        collapseOnSelect
+        expand="lg"
+        bg={makeStyles.bg}
+        variant={makeStyles.variant}
+        className="shadow-sm"
+      >
         <Container>
           <Navbar.Brand as={RouteLink} to={ROUTES.HOME}>
             <Image src={Logo} alt="Movie Discovery" height="20" />

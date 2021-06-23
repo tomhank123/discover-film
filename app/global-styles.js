@@ -8,15 +8,21 @@ const GlobalStyle = createGlobalStyle`
   }
 
   body {
+    --bs-body: var(--bs-light); 
+    --bs-color: #141414; 
+
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    background-color: var(--bs-light);
-    color: var(--bs-dark);
+    background-color: var(--bs-body);
+    color: var(--bs-color);
     font-size: 14px;
   }
 
   body.dark-mode {
-    background-color: var(--bs-dark);
-    color: var(--bs-light);
+    --bs-body: #141414; 
+    --bs-color: #d2d2d2;
+  
+    background-color: var(--bs-body);
+    color: var(--bs-color);
   }
 
   body.fontLoaded {

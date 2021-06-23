@@ -12,19 +12,19 @@ import { FormattedMessage } from 'react-intl';
 import { Link } from 'react-router-dom';
 import * as movieUtils from 'utils/movieUtils';
 import * as tvUtils from 'utils/tvUtils';
-import * as commonUtils from 'utils/commonUtils';
 import RatioImage from 'components/RatioImage';
+import ContentTruncator from 'components/ContentTruncator';
 import messages from '../messages';
 
 function BackdropCard({ loading, model, details = false }) {
   const { darkMode } = useContext(ThemeContext);
+  const makeStyles = {
+    bg: darkMode ? 'dark' : 'white',
+  };
 
   if (loading) {
     return (
-      <Card
-        className="border-0 shadow-sm h-100"
-        bg={darkMode ? 'secondary' : 'light'}
-      >
+      <Card className="border-0 shadow-sm h-100" bg={makeStyles.bg}>
         <RatioImage loading width={16} height={9} className="rounded-3" />
         <Card.Body hidden>
           <div className="d-grid gap-2">
@@ -52,13 +52,12 @@ function BackdropCard({ loading, model, details = false }) {
     const year = isMovie
       ? movieUtils.getReleasedYear(model.release_date)
       : null;
-    const overview = movieUtils.getOverview(model.overview);
     const title = model.title || model.name;
 
     return (
       <Card
         className="border-0 shadow-sm h-100 rounded-3 text-decoration-none text-reset"
-        bg={darkMode ? 'secondary' : 'light'}
+        bg={makeStyles.bg}
         as={Link}
         to={url}
       >
@@ -72,10 +71,11 @@ function BackdropCard({ loading, model, details = false }) {
         />
         {details && (
           <Card.Body className="d-flex flex-column">
-            <h5 className="text-success mb-0">{title}</h5>
-            <p className="text-muted font-monospace">{year}</p>
-            {/* eslint-disable react/no-danger */}
-            <p dangerouslySetInnerHTML={commonUtils.createMarkup(overview)} />
+            <h5 className="text-warning mb-1">{title}</h5>
+            <p className="text-secondary font-monospace" hidden={!year}>
+              {year}
+            </p>
+            <ContentTruncator content={model.overview} maxLength={180} />
             <div className="d-grid mt-auto">
               <Button
                 size="sm"

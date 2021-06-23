@@ -32,7 +32,7 @@ function ReviewCard({ loading, model }) {
           />
         </div>
         <div className="flex-grow-1">
-          <h6 className="font-monospace text-success mb-0">{model.author}</h6>
+          <h6 className="font-monospace text-warning mb-0">{model.author}</h6>
           {showMore ? (
             /* eslint-disable react/no-danger */
             <p dangerouslySetInnerHTML={commonUtils.createMarkup(content)} />
