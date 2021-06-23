@@ -17,13 +17,13 @@ import messages from '../messages';
 
 function PosterCard({ loading, model, details = false }) {
   const { darkMode } = useContext(ThemeContext);
+  const makeStyles = {
+    bg: darkMode ? 'dark' : 'white',
+  };
 
   if (loading) {
     return (
-      <Card
-        className="border-0 shadow-sm h-100"
-        bg={darkMode ? 'secondary' : 'light'}
-      >
+      <Card className="border-0 shadow-sm h-100 rounded-3" bg={makeStyles.bg}>
         <RatioImage height={3} width={2} loading className="rounded-3" />
         <Card.Body hidden={!details}>
           <div className="d-grid gap-2">
@@ -53,7 +53,7 @@ function PosterCard({ loading, model, details = false }) {
     return (
       <Card
         className="border-0 shadow-sm h-100 rounded-3"
-        bg={darkMode ? 'secondary' : 'light'}
+        bg={makeStyles.bg}
         as={Link}
         to={url}
       >
