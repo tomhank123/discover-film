@@ -4,24 +4,27 @@
  *
  */
 
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import { Button } from 'react-bootstrap';
+import Skeleton from 'react-loading-skeleton';
+import ContentTruncator from 'components/ContentTruncator';
 import * as reviewUtils from 'utils/reviewUtils';
-import * as commonUtils from 'utils/commonUtils';
 
 function ReviewCard({ loading, model }) {
-  const [showMore, setShowMore] = useState(false);
-
   if (loading) {
-    return null;
+    return (
+      <div className="d-flex">
+        <div className="flex-shrink-0 d-none" />
+        <div className="flex-grow-1">
+          <Skeleton className="h6 mb-0" />
+          <Skeleton count={3} />
+          <Skeleton wrapper="p" width="70%" />
+        </div>
+      </div>
+    );
   }
 
   if (model) {
-    const brief = reviewUtils.getBrief(model.content);
-    const content = reviewUtils.getContent(model.content);
-    const isEqual = brief.length === content.length;
-
     return (
       <div className="d-flex">
         <div className="flex-shrink-0 d-none">
@@ -33,23 +36,11 @@ function ReviewCard({ loading, model }) {
         </div>
         <div className="flex-grow-1">
           <h6 className="font-monospace text-warning mb-0">{model.author}</h6>
-          {showMore ? (
-            /* eslint-disable react/no-danger */
-            <p dangerouslySetInnerHTML={commonUtils.createMarkup(content)} />
-          ) : (
-            <p>
-              {brief}
-              <Button
-                hidden={isEqual}
-                variant="link"
-                size="sm"
-                className="p-0 text-reset"
-                onClick={() => setShowMore(!showMore)}
-              >
-                More
-              </Button>
-            </p>
-          )}
+          <ContentTruncator
+            content={model.content}
+            maxLength={180}
+            omission="More"
+          />
         </div>
       </div>
     );
