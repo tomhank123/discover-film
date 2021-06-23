@@ -17,10 +17,13 @@ import messages from '../messages';
 
 function AvatarCard({ loading, item }) {
   const { darkMode } = useContext(ThemeContext);
+  const makeStyles = {
+    bg: darkMode ? 'dark' : 'light',
+  };
 
   if (loading) {
     return (
-      <Card className="border-0 shadow" bg={darkMode ? 'secondary' : 'light'}>
+      <Card className="border-0 shadow" bg={makeStyles.bg}>
         <Card.Body className="text-center">
           <Figure className="w-75 rounded-circle">
             <RatioImage loading className="rounded-circle" />
@@ -28,10 +31,7 @@ function AvatarCard({ loading, item }) {
           <Skeleton wrapper="h5" />
           <Skeleton wrapper="p" width="75%" />
           <div className="d-grid gap-2">
-            <Button
-              variant={darkMode ? 'outline-light' : 'outline-secondary'}
-              size="sm"
-            >
+            <Button variant="outline-secondary" size="sm">
               <FormattedMessage {...messages.moreInfo} />
             </Button>
           </div>
@@ -45,7 +45,7 @@ function AvatarCard({ loading, item }) {
     const url = personUtils.getUrl(item.id);
 
     return (
-      <Card className="border-0 shadow" bg={darkMode ? 'secondary' : 'light'}>
+      <Card className="border-0 shadow" bg={makeStyles.bg}>
         <Card.Body className="text-center">
           <Figure className="w-75 rounded-circle">
             <RatioImage
@@ -56,30 +56,19 @@ function AvatarCard({ loading, item }) {
             />
           </Figure>
           <Card.Title
-            className={`text-truncate mb-0 ${
-              darkMode ? 'text-warning' : 'text-success'
-            }`}
+            className="text-truncate mb-0 text-warning"
             title={item.name}
           >
             {item.name}
           </Card.Title>
-          <Card.Text
-            className={`font-monospace ${
-              darkMode ? 'text-light' : 'text-muted'
-            }`}
-          >
+          <Card.Text className="font-monospace text-secondary">
             {item.known_for_department}
           </Card.Text>
           <Card.Text className="small m-0" hidden>
             {item.popularity}
           </Card.Text>
           <div className="d-grid gap-2">
-            <Button
-              variant={darkMode ? 'outline-light' : 'outline-secondary'}
-              size="sm"
-              as={Link}
-              to={url}
-            >
+            <Button variant="outline-secondary" size="sm" as={Link} to={url}>
               <FormattedMessage {...messages.moreInfo} />
             </Button>
           </div>

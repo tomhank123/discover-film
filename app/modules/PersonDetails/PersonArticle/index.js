@@ -4,15 +4,22 @@
  *
  */
 
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import Skeleton from 'react-loading-skeleton';
 import { Row, Col, Card, Button } from 'react-bootstrap';
+import { ThemeContext } from 'context/theme-context';
 import MovieCard from 'components/MovieCard';
+import ContentTruncator from 'components/ContentTruncator';
 import * as personUtils from 'utils/personUtils';
-import * as commonUtils from 'utils/commonUtils';
 
 function PersonArticle({ loading, error, item }) {
+  const { darkMode } = useContext(ThemeContext);
+  const makeStyles = {
+    bg: darkMode ? 'dark' : 'white',
+    borderTop: darkMode ? 'border-top border-secondary' : 'border-top',
+  };
+
   if (loading) {
     return (
       <article className="d-grid gap-4">
@@ -34,8 +41,6 @@ function PersonArticle({ loading, error, item }) {
   }
 
   if (item) {
-    const biography = personUtils.getBio(item.biography);
-
     return (
       <article className="d-grid gap-4">
         <Row>
@@ -50,7 +55,7 @@ function PersonArticle({ loading, error, item }) {
             </Row>
           </Col>
           <Col>
-            <Card className="border-0 shadow-sm">
+            <Card className="border-0 shadow-sm" bg={makeStyles.bg}>
               <Card.Body>
                 <Row xs={4} className="g-1">
                   {item.images.profiles
@@ -70,12 +75,12 @@ function PersonArticle({ loading, error, item }) {
               </Card.Body>
               <Card.Body>
                 <Card.Title
-                  className="text-truncate text-success mb-0"
+                  className="text-truncate text-warning mb-0"
                   title={item.name}
                 >
                   {item.name}
                 </Card.Title>
-                <Card.Text className="text-muted font-monospace">
+                <Card.Text className="text-secondary font-monospace">
                   {item.known_for_department}
                 </Card.Text>
                 <div>
@@ -86,35 +91,42 @@ function PersonArticle({ loading, error, item }) {
                   >
                     Share
                   </Button>
-                  <Button variant="success" size="sm" className="mx-1">
+                  <Button variant="warning" size="sm" className="mx-1">
                     + Follow me
                   </Button>
                 </div>
               </Card.Body>
-              <Card.Body className="border-top">
-                {/* eslint-disable react/no-danger */}
-                <p
-                  dangerouslySetInnerHTML={commonUtils.createMarkup(biography)}
+              <Card.Body className={makeStyles.borderTop}>
+                <ContentTruncator
+                  content={item.biography}
+                  maxLength={200}
+                  omission="More"
                 />
                 <ul className="list-unstyled">
                   <li>
-                    <span className="fw-bold text-muted">Known Credits: </span>
+                    <span className="fw-bold text-secondary">
+                      Known Credits:{' '}
+                    </span>
                     {item.known_for.length}
                   </li>
                   <li>
-                    <span className="fw-bold text-muted">Gender: </span>
+                    <span className="fw-bold text-secondary">Gender: </span>
                     {item.gender === 2 ? 'Male' : 'Female'}
                   </li>
                   <li>
-                    <span className="fw-bold text-muted">Birthday: </span>
+                    <span className="fw-bold text-secondary">Birthday: </span>
                     {item.birthday}
                   </li>
                   <li>
-                    <span className="fw-bold text-muted">Place of birth: </span>
+                    <span className="fw-bold text-secondary">
+                      Place of birth:{' '}
+                    </span>
                     {item.place_of_birth}
                   </li>
                   <li>
-                    <span className="fw-bold text-muted">Also known as: </span>
+                    <span className="fw-bold text-secondary">
+                      Also known as:{' '}
+                    </span>
                     {item.also_known_as.join(', ')}
                   </li>
                 </ul>

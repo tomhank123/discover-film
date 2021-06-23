@@ -4,16 +4,21 @@
  *
  */
 
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { Button, Card } from 'react-bootstrap';
+import { ThemeContext } from 'context/theme-context';
 import * as reviewUtils from 'utils/reviewUtils';
 import ReviewCard from 'components/ReviewCard';
 import Wrapper from './Wrapper';
 
 function ReviewFrame({ loading, items }) {
-  const itemsPerPage = reviewUtils.getItemsPerPage();
   const [showMore, setShowMore] = useState(false);
+  const { darkMode } = useContext(ThemeContext);
+  const itemsPerPage = reviewUtils.getItemsPerPage();
+  const makeStyles = {
+    bg: darkMode ? 'dark' : 'white',
+  };
 
   if (loading) {
     return (
@@ -29,8 +34,8 @@ function ReviewFrame({ loading, items }) {
 
     return (
       <Wrapper>
-        <Card className="border-0 shadow-sm">
-          <Card.Header className="bg-white">
+        <Card className="border-0 shadow-sm" bg={makeStyles.bg}>
+          <Card.Header bg={makeStyles.bg}>
             {items.length} Comment(s)
           </Card.Header>
           <Card.Body>
@@ -54,8 +59,8 @@ function ReviewFrame({ loading, items }) {
 
   return (
     <Wrapper>
-      <Card className="border-0 shadow-sm">
-        <Card.Header className="bg-white">0 Comment(s)</Card.Header>
+      <Card className="border-0 shadow-sm" bg={makeStyles.bg}>
+        <Card.Header bg={makeStyles.bg}>0 Comment(s)</Card.Header>
         <Card.Body>No comment yet!</Card.Body>
       </Card>
     </Wrapper>

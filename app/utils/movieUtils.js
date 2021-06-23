@@ -1,6 +1,14 @@
 import { matchPath } from 'react-router';
-import truncate from 'lodash/truncate';
 import * as ROUTES from 'routes/constants';
+import * as combinedUtils from './combinedUtils';
+
+export {
+  getPoster,
+  getBackdrop,
+  getVideoUrls,
+  getOverview,
+  getBrief,
+} from './combinedUtils';
 
 export const getIdFromRoute = location => {
   const match = matchPath(location.pathname, {
@@ -13,33 +21,16 @@ export const getIdFromRoute = location => {
   return movieId;
 };
 
-export const getPoster = poster =>
-  poster ? `https://www.themoviedb.org/t/p/original/${poster}` : poster;
+export const getUrl = id => combinedUtils.getUrl(ROUTES.MOVIE, id);
 
-export const getBackdrop = backdrop =>
-  backdrop ? `https://www.themoviedb.org/t/p/original/${backdrop}` : backdrop;
-
-export const getUrl = id => `${ROUTES.MOVIE}/${id}`;
-
-export const getOverview = overview =>
-  truncate(overview, {
-    length: 180,
-    omission: ' ...<a href="/" class="text-success">Wikipedia</a>',
-  }).replace(/\n/g, '<br />');
-
-export const getReleasedYear = releaseDate => releaseDate.slice(0, 4);
+export const getReleasedYear = releaseDate =>
+  releaseDate ? releaseDate.slice(0, 4) : null;
 
 export const convertRuntime = runtime => {
+  if (!runtime) return null;
+
   const hours = Math.floor(runtime / 60);
   const minutes = runtime % 60;
 
   return `${hours}h ${minutes}m`;
-};
-
-export const getVideoUrls = videos => {
-  const baseUrl = 'https://www.youtube.com/watch?v=';
-  const youtubeUrls = videos
-    .filter(({ site }) => site === 'YouTube')
-    .map(({ key }) => `${baseUrl}${key}`);
-  return [...youtubeUrls];
 };

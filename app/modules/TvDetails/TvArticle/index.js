@@ -39,7 +39,7 @@ function TvArticle({ loading, error, item }) {
     };
 
     return (
-      <Row className="g-3" as="article">
+      <Row className="g-3 py-3" as="article">
         <Col md={12} lg={8}>
           <TvDetailFrame whoami="Player" {...playerModel} />
           <TvDetailFrame whoami="Info" model={model} />

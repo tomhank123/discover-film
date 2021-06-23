@@ -39,7 +39,7 @@ function MovieArticle({ loading, error, item }) {
     };
 
     return (
-      <Row className="g-3" as="article">
+      <Row className="g-3 py-3" as="article">
         <Col md={12} lg={8}>
           <MovieDetailFrame whoami="Player" {...playerModel} />
           <MovieDetailFrame whoami="Info" model={model} />
