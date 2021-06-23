@@ -6,6 +6,7 @@
 
 import React, { useState, useContext } from 'react';
 import PropTypes from 'prop-types';
+import Skeleton from 'react-loading-skeleton';
 import { Button, Card } from 'react-bootstrap';
 import { ThemeContext } from 'context/theme-context';
 import * as reviewUtils from 'utils/reviewUtils';
@@ -23,7 +24,18 @@ function ReviewFrame({ loading, items }) {
   if (loading) {
     return (
       <Wrapper>
-        <p>Loading...</p>
+        <Card className="border-0 shadow-sm" bg={makeStyles.bg}>
+          <Card.Header bg={makeStyles.bg}>
+            <Skeleton width={32} /> Comment(s)
+          </Card.Header>
+          <Card.Body>
+            {Array.from({ length: 2 })
+              .map((_, index) => index)
+              .map(review => (
+                <ReviewCard key={review} loading={loading} />
+              ))}
+          </Card.Body>
+        </Card>
       </Wrapper>
     );
   }

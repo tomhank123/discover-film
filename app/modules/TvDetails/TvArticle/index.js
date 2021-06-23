@@ -7,18 +7,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Col, Row } from 'react-bootstrap';
-import Skeleton from 'react-loading-skeleton';
 import TvDetailFrame from '../Frame';
 
 function TvArticle({ loading, error, item }) {
   if (loading) {
     return (
-      <React.Fragment>
-        <Skeleton />
-        <Skeleton />
-        <Skeleton />
-        <Skeleton />
-      </React.Fragment>
+      <Row className="g-3 py-3" as="article">
+        <Col md={12} lg={8}>
+          <TvDetailFrame whoami="Player" loading />
+          <TvDetailFrame whoami="Info" loading />
+          <TvDetailFrame whoami="Similar" loading />
+        </Col>
+        <Col lg={4}>
+          <TvDetailFrame whoami="Review" loading />
+        </Col>
+      </Row>
     );
   }
 

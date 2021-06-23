@@ -11,8 +11,8 @@ export default function ThemeContextProvider({ children }) {
   const [darkMode, setDarkMode] = useDarkMode();
   const theme = darkMode ? darkTheme : lightTheme;
   const makeStyles = {
-    color: darkMode ? '#212529' : '#d2d2d2',
-    highlightColor: darkMode ? '#141414' : '#f8f9fa',
+    highlightColor: darkMode ? '#212529' : '#d2d2d2',
+    color: darkMode ? '#141414' : '#f8f9fa',
   };
 
   return (

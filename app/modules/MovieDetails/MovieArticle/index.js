@@ -6,19 +6,22 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import Skeleton from 'react-loading-skeleton';
 import { Col, Row } from 'react-bootstrap';
 import MovieDetailFrame from '../Frame';
 
 function MovieArticle({ loading, error, item }) {
   if (loading) {
     return (
-      <React.Fragment>
-        <Skeleton />
-        <Skeleton />
-        <Skeleton />
-        <Skeleton />
-      </React.Fragment>
+      <Row className="g-3 py-3" as="article">
+        <Col md={12} lg={8}>
+          <MovieDetailFrame whoami="Player" loading />
+          <MovieDetailFrame whoami="Info" loading />
+          <MovieDetailFrame whoami="Similar" loading />
+        </Col>
+        <Col lg={4}>
+          <MovieDetailFrame whoami="Review" loading />
+        </Col>
+      </Row>
     );
   }
 
