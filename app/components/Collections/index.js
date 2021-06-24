@@ -10,7 +10,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import Skeleton from 'react-loading-skeleton';
 
 import { Alert } from 'react-bootstrap';
-import MovieCard from 'components/MovieCard';
+import MovieCard from 'containers/MovieCard';
 import swiperOptions from './config';
 import MovieList from './MovieList';
 import Wrapper from './Wrapper';

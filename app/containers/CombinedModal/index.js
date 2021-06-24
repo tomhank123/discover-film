@@ -4,7 +4,7 @@
  *
  */
 
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { FormattedMessage } from 'react-intl';
@@ -34,22 +34,12 @@ export function CombinedModal({ modalIsOpened, onCloseModal }) {
       backdrop="static"
       className="text-dark"
     >
-      <Modal.Header closeButton>
-        <Modal.Title>Modal heading</Modal.Title>
-      </Modal.Header>
       <Modal.Body>
-        <div>
-          <FormattedMessage {...messages.header} />
-        </div>
-      </Modal.Body>
-      <Modal.Footer>
         <Button variant="secondary" onClick={onCloseModal}>
           Close
         </Button>
-        <Button variant="primary" onClick={onCloseModal}>
-          Save Changes
-        </Button>
-      </Modal.Footer>
+        <FormattedMessage {...messages.header} />
+      </Modal.Body>
     </Modal>
   );
 }

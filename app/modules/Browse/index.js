@@ -13,17 +13,16 @@ import { bindActionCreators, compose } from 'redux';
 
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
-import { Button, Container } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
 import Header from 'components/Header';
 import CombinedModal from 'containers/CombinedModal';
-import * as combinedModalActions from 'containers/CombinedModal/actions';
 import * as actions from './actions';
 import { makeSelectCollections } from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import BrowseFrame from './Frame';
 
-export function Browse({ collections, onLoadCollections, onOpenModel }) {
+export function Browse({ collections, onLoadCollections }) {
   useInjectReducer({ key: 'browse', reducer });
   useInjectSaga({ key: 'browse', saga });
 
@@ -40,7 +39,6 @@ export function Browse({ collections, onLoadCollections, onOpenModel }) {
       <Header />
       <BrowseFrame whoami="Jumbotron" />
       <Container className="py-5">
-        <Button onClick={() => onOpenModel(123)}>Open</Button>
         <BrowseFrame whoami="Collections" isSwiper {...collections} />
       </Container>
       <CombinedModal />
@@ -60,10 +58,9 @@ const mapStateToProps = createStructuredSelector({
 
 function mapDispatchToProps(dispatch) {
   const onLoadCollections = actions.getCollections.request;
-  const onOpenModel = combinedModalActions.openModal;
 
   return {
-    ...bindActionCreators({ onLoadCollections, onOpenModel }, dispatch),
+    ...bindActionCreators({ onLoadCollections }, dispatch),
   };
 }
 
