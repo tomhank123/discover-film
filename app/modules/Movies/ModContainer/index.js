@@ -14,6 +14,7 @@ import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
 
 import { Container } from 'react-bootstrap';
+import CombinedModal from 'containers/CombinedModal';
 import Header from 'components/Header';
 import MovieFrame from '../Frame';
 
@@ -40,6 +41,7 @@ function ModContainer({ collections, onLoadCollections }) {
       <Container className="py-5">
         <MovieFrame whoami="Collections" isSwiper {...collections} />
       </Container>
+      <CombinedModal />
     </React.Fragment>
   );
 }

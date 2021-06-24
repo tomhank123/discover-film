@@ -15,6 +15,7 @@ import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
 import * as movieUtils from 'utils/movieUtils';
 import { Container } from 'react-bootstrap';
+import CombinedModal from 'containers/CombinedModal';
 import Header from 'components/Header';
 import MovieArticle from './MovieArticle';
 import * as actions from './actions';
@@ -38,7 +39,7 @@ export function MovieDetails({ details, onLoadDetails, ...restProps }) {
   if (!movieId) return null;
 
   return (
-    <div>
+    <React.Fragment>
       <Helmet>
         <title>MovieDetails</title>
         <meta name="description" content="Description of MovieDetails" />
@@ -47,7 +48,8 @@ export function MovieDetails({ details, onLoadDetails, ...restProps }) {
       <Container>
         <MovieArticle {...details} />
       </Container>
-    </div>
+      <CombinedModal />
+    </React.Fragment>
   );
 }
 
