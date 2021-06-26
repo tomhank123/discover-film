@@ -9,7 +9,7 @@ import PropTypes from 'prop-types';
 import React, { useContext } from 'react';
 import { Button, Card } from 'react-bootstrap';
 import { FormattedMessage } from 'react-intl';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import * as mediaUtils from 'utils/mediaUtils';
 import RatioImage from 'components/RatioImage';
 import messages from '../messages';
@@ -42,15 +42,15 @@ function Poster({ loading, model, details = false, onOpenModal }) {
   }
 
   if (model) {
-    const { poster, url, title } = mediaUtils.renderedMedia(model);
+    const { id, poster, title, mediaType } = mediaUtils.renderedMedia(model);
 
     return (
       <Card
         className="border-0 shadow-sm h-100 rounded-3"
         bg={makeStyles.bg}
-        as={Link}
-        to={url}
-        onClick={() => onOpenModal(model.id)}
+        // as={Link}
+        // to={url}
+        onClick={() => onOpenModal({ id, mediaType })}
       >
         <RatioImage
           src={poster}

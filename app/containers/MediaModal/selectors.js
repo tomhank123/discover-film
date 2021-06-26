@@ -27,5 +27,11 @@ const makeSelectModalStatus = () =>
     substate => substate.isOpen,
   );
 
+const makeSelectMedia = () =>
+  createSelector(
+    selectMediaModalDomain,
+    substate => substate.selectedMedia,
+  );
+
 export default makeSelectMediaModal;
-export { makeSelectModalStatus };
+export { makeSelectModalStatus, makeSelectMedia };

@@ -6,10 +6,10 @@
 
 import { OPEN_MODAL, CLOSE_MODAL } from './constants';
 
-export function openModal(id) {
+export function openModal(selectedMedia) {
   return {
     type: OPEN_MODAL,
-    id,
+    selectedMedia,
   };
 }
 

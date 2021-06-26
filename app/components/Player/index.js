@@ -13,10 +13,10 @@ function Player({ urls = [] }) {
 
   useEffect(() => {
     const timeout = setTimeout(() => {
-      setPlaying(false);
+      setPlaying(true);
 
       clearTimeout(timeout);
-    }, 5000);
+    }, 3000);
   }, []);
 
   return (
