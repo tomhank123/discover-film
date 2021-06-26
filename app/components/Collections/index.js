@@ -10,7 +10,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import Skeleton from 'react-loading-skeleton';
 
 import { Alert } from 'react-bootstrap';
-import MovieCard from 'containers/MovieCard';
+import MediaCard from 'containers/MediaCard';
 import swiperOptions from './config';
 import MovieList from './MovieList';
 import Wrapper from './Wrapper';
@@ -26,14 +26,14 @@ function Collections({ loading, error, items, isSwiper = false }) {
               <Swiper {...swiperOptions}>
                 {[7, 8, 9, 10, 11, 12, 13, 14, 15].map(childId => (
                   <SwiperSlide key={childId}>
-                    <MovieCard loading={loading} />
+                    <MediaCard loading={loading} />
                   </SwiperSlide>
                 ))}
               </Swiper>
             ) : (
               <MovieList>
                 {[7, 8, 9, 10, 11, 12, 13, 14, 15].map(childId => (
-                  <MovieCard key={childId} loading />
+                  <MediaCard key={childId} loading />
                 ))}
               </MovieList>
             )}
@@ -58,14 +58,14 @@ function Collections({ loading, error, items, isSwiper = false }) {
                 {data &&
                   data.map(movie => (
                     <SwiperSlide key={movie.id}>
-                      <MovieCard model={movie} />
+                      <MediaCard model={movie} />
                     </SwiperSlide>
                   ))}
               </Swiper>
             ) : (
               <MovieList>
                 {data &&
-                  data.map(movie => <MovieCard key={movie.id} model={movie} />)}
+                  data.map(movie => <MediaCard key={movie.id} model={movie} />)}
               </MovieList>
             )}
           </section>
