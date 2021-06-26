@@ -1,6 +1,6 @@
 /*
  *
- * CombinedModal actions
+ * MediaModal actions
  *
  */
 

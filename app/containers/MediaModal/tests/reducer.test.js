@@ -1,9 +1,9 @@
 // import produce from 'immer';
-import combinedModalReducer from '../reducer';
+import mediaModalReducer from '../reducer';
 // import { someAction } from '../actions';
 
 /* eslint-disable default-case, no-param-reassign */
-describe('combinedModalReducer', () => {
+describe('mediaModalReducer', () => {
   let state;
   beforeEach(() => {
     state = {
@@ -13,7 +13,7 @@ describe('combinedModalReducer', () => {
 
   it('returns the initial state', () => {
     const expectedResult = state;
-    expect(combinedModalReducer(undefined, {})).toEqual(expectedResult);
+    expect(mediaModalReducer(undefined, {})).toEqual(expectedResult);
   });
 
   /**

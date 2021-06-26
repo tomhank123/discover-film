@@ -8,7 +8,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators, compose } from 'redux';
-import * as actions from 'containers/CombinedModal/actions';
+import * as actions from 'containers/MediaModal/actions';
 import Poster from './Poster';
 import Backdrop from './Backdrop';
 

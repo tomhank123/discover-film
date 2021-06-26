@@ -1,6 +1,6 @@
 /**
  *
- * Tests for CombinedModal
+ * Tests for MediaModal
  *
  * @see https://github.com/react-boilerplate/react-boilerplate/tree/master/docs/testing
  *
@@ -11,16 +11,16 @@ import { render } from 'react-testing-library';
 import { IntlProvider } from 'react-intl';
 // import 'jest-dom/extend-expect'; // add some helpful assertions
 
-import { CombinedModal } from '../index';
+import { MediaModal } from '../index';
 import { DEFAULT_LOCALE } from '../../../i18n';
 
-describe('<CombinedModal />', () => {
+describe('<MediaModal />', () => {
   it('Expect to not log errors in console', () => {
     const spy = jest.spyOn(global.console, 'error');
     const dispatch = jest.fn();
     render(
       <IntlProvider locale={DEFAULT_LOCALE}>
-        <CombinedModal dispatch={dispatch} />
+        <MediaModal dispatch={dispatch} />
       </IntlProvider>,
     );
     expect(spy).not.toHaveBeenCalled();
@@ -40,7 +40,7 @@ describe('<CombinedModal />', () => {
       container: { firstChild },
     } = render(
       <IntlProvider locale={DEFAULT_LOCALE}>
-        <CombinedModal />
+        <MediaModal />
       </IntlProvider>,
     );
     expect(firstChild).toMatchSnapshot();

@@ -15,7 +15,7 @@ import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
 import { Container } from 'react-bootstrap';
 import Header from 'components/Header';
-import CombinedModal from 'containers/CombinedModal';
+import MediaModal from 'containers/MediaModal';
 import * as actions from './actions';
 import { makeSelectCollections } from './selectors';
 import reducer from './reducer';
@@ -41,7 +41,7 @@ export function Browse({ collections, onLoadCollections }) {
       <Container className="py-5">
         <BrowseFrame whoami="Collections" isSwiper {...collections} />
       </Container>
-      <CombinedModal />
+      <MediaModal />
     </React.Fragment>
   );
 }

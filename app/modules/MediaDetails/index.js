@@ -16,7 +16,7 @@ import { useInjectReducer } from 'utils/injectReducer';
 
 import * as mediaUtils from 'utils/mediaUtils';
 import { Container } from 'react-bootstrap';
-import CombinedModal from 'containers/CombinedModal';
+import MediaModal from 'containers/MediaModal';
 import Header from 'components/Header';
 import MediaArticle from 'components/MediaArticle';
 
@@ -53,7 +53,7 @@ export function MediaDetails({ details, onLoadDetails, ...restProps }) {
       <Container>
         <MediaArticle {...details} />
       </Container>
-      <CombinedModal />
+      <MediaModal />
     </React.Fragment>
   );
 }

@@ -1,6 +1,6 @@
 /**
  *
- * CombinedModal
+ * MediaModal
  *
  */
 
@@ -21,9 +21,9 @@ import reducer from './reducer';
 import saga from './saga';
 import messages from './messages';
 
-export function CombinedModal({ modalIsOpened, onCloseModal }) {
-  useInjectReducer({ key: 'combinedModal', reducer });
-  useInjectSaga({ key: 'combinedModal', saga });
+export function MediaModal({ modalIsOpened, onCloseModal }) {
+  useInjectReducer({ key: 'mediaModal', reducer });
+  useInjectSaga({ key: 'mediaModal', saga });
 
   return (
     <Modal
@@ -44,7 +44,7 @@ export function CombinedModal({ modalIsOpened, onCloseModal }) {
   );
 }
 
-CombinedModal.propTypes = {
+MediaModal.propTypes = {
   modalIsOpened: PropTypes.bool.isRequired,
   onCloseModal: PropTypes.func.isRequired,
 };
@@ -66,4 +66,4 @@ const withConnect = connect(
   mapDispatchToProps,
 );
 
-export default compose(withConnect)(CombinedModal);
+export default compose(withConnect)(MediaModal);

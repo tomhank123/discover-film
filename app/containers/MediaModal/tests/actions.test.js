@@ -1,3 +1,3 @@
-describe('CombinedModal actions', () => {
+describe('MediaModal actions', () => {
   describe('Default Action', () => {});
 });

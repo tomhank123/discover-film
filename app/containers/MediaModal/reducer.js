@@ -1,6 +1,6 @@
 /*
  *
- * CombinedModal reducer
+ * MediaModal reducer
  *
  */
 import produce from 'immer';
@@ -11,7 +11,7 @@ export const initialState = {
 };
 
 /* eslint-disable default-case, no-param-reassign */
-const combinedModalReducer = (state = initialState, action) =>
+const mediaModalReducer = (state = initialState, action) =>
   produce(state, draft => {
     switch (action.type) {
       case OPEN_MODAL:
@@ -24,4 +24,4 @@ const combinedModalReducer = (state = initialState, action) =>
     }
   });
 
-export default combinedModalReducer;
+export default mediaModalReducer;
