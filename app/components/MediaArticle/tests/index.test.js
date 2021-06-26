@@ -1,6 +1,6 @@
 /**
  *
- * Tests for MovieDetails
+ * Tests for MediaArticle
  *
  * @see https://github.com/react-boilerplate/react-boilerplate/tree/master/docs/testing
  *
@@ -8,21 +8,14 @@
 
 import React from 'react';
 import { render } from 'react-testing-library';
-import { IntlProvider } from 'react-intl';
 // import 'jest-dom/extend-expect'; // add some helpful assertions
 
-import { MovieDetails } from '../index';
-import { DEFAULT_LOCALE } from '../../../i18n';
+import MediaArticle from '../index';
 
-describe('<MovieDetails />', () => {
+describe('<MediaArticle />', () => {
   it('Expect to not log errors in console', () => {
     const spy = jest.spyOn(global.console, 'error');
-    const dispatch = jest.fn();
-    render(
-      <IntlProvider locale={DEFAULT_LOCALE}>
-        <MovieDetails dispatch={dispatch} />
-      </IntlProvider>,
-    );
+    render(<MediaArticle />);
     expect(spy).not.toHaveBeenCalled();
   });
 
@@ -38,11 +31,7 @@ describe('<MovieDetails />', () => {
   it.skip('Should render and match the snapshot', () => {
     const {
       container: { firstChild },
-    } = render(
-      <IntlProvider locale={DEFAULT_LOCALE}>
-        <MovieDetails />
-      </IntlProvider>,
-    );
+    } = render(<MediaArticle />);
     expect(firstChild).toMatchSnapshot();
   });
 });

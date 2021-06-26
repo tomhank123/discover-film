@@ -1,6 +1,6 @@
 /**
  *
- * MediaDetails
+ * MediaArticle
  *
  */
 
@@ -12,7 +12,7 @@ import PlayerFrame from './PlayerFrame';
 import SimilarFrame from './SimilarFrame';
 import ReviewFrame from './ReviewFrame';
 
-function MediaDetails({ loading, error, item }) {
+function MediaArticle({ loading, error, item }) {
   if (loading) {
     return (
       <Row className="g-3 py-3" as="article">
@@ -61,10 +61,10 @@ function MediaDetails({ loading, error, item }) {
   return <h1>No data yet!</h1>;
 }
 
-MediaDetails.propTypes = {
+MediaArticle.propTypes = {
   item: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   error: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
   loading: PropTypes.bool,
 };
 
-export default MediaDetails;
+export default MediaArticle;

@@ -1,6 +1,6 @@
 /**
  *
- * MovieDetails
+ * MediaDetails
  *
  */
 
@@ -13,57 +13,62 @@ import { bindActionCreators, compose } from 'redux';
 
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
-import * as movieUtils from 'utils/movieUtils';
+
+import * as mediaUtils from 'utils/mediaUtils';
 import { Container } from 'react-bootstrap';
 import CombinedModal from 'containers/CombinedModal';
 import Header from 'components/Header';
-import MediaDetails from 'components/MediaDetails';
-import * as actions from './actions';
-import { makeSelectDetails } from './selectors';
+import MediaArticle from 'components/MediaArticle';
+
+import { makeSelectMediaDetails } from 'containers/App/selectors';
+import { getMediaDetails } from 'containers/App/actions';
 import reducer from './reducer';
 import saga from './saga';
 
-export function MovieDetails({ details, onLoadDetails, ...restProps }) {
-  useInjectReducer({ key: 'movieDetails', reducer });
-  useInjectSaga({ key: 'movieDetails', saga });
+export function MediaDetails({ details, onLoadDetails, ...restProps }) {
+  useInjectReducer({ key: 'mediaDetails', reducer });
+  useInjectSaga({ key: 'mediaDetails', saga });
 
   const { location } = restProps;
-  const movieId = movieUtils.getIdFromRoute(location);
+  const { id, mediaType } = mediaUtils.getMediaFromRoute(location);
 
   useEffect(() => {
-    if (movieId) {
-      onLoadDetails({ movieId });
+    if (id) {
+      onLoadDetails({ id, mediaType });
     }
-  }, [movieId]);
+  }, [id]);
 
-  if (!movieId) return null;
+  if (!id) return null;
 
   return (
     <React.Fragment>
       <Helmet>
-        <title>MovieDetails</title>
-        <meta name="description" content="Description of MovieDetails" />
+        <title>MediaDetails</title>
+        <meta name="description" content="Description of MediaDetails" />
       </Helmet>
+      {/**
+        <FormattedMessage {...messages.header} />
+       */}
       <Header />
       <Container>
-        <MediaDetails {...details} />
+        <MediaArticle {...details} />
       </Container>
       <CombinedModal />
     </React.Fragment>
   );
 }
 
-MovieDetails.propTypes = {
+MediaDetails.propTypes = {
   details: PropTypes.object,
   onLoadDetails: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
-  details: makeSelectDetails(),
+  details: makeSelectMediaDetails(),
 });
 
 function mapDispatchToProps(dispatch) {
-  const onLoadDetails = actions.getDetails.request;
+  const onLoadDetails = getMediaDetails.request;
 
   return {
     ...bindActionCreators({ onLoadDetails }, dispatch),
@@ -75,4 +80,4 @@ const withConnect = connect(
   mapDispatchToProps,
 );
 
-export default compose(withConnect)(MovieDetails);
+export default compose(withConnect)(MediaDetails);

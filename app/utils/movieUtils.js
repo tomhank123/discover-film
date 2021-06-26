@@ -10,15 +10,15 @@ export {
   getBrief,
 } from './combinedUtils';
 
-export const getIdFromRoute = location => {
-  const match = matchPath(location.pathname, {
-    path: '/movie/:movieId',
+export const getIdFromRoute = ({ pathname }) => {
+  const match = matchPath(pathname, {
+    path: '/movie/:id',
     exact: true,
     strict: true,
   });
-  const movieId = +match.params.movieId;
+  const id = +match.params.id;
 
-  return movieId;
+  return id;
 };
 
 export const getUrl = id => combinedUtils.getUrl(ROUTES.MOVIE, id);

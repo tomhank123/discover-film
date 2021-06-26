@@ -42,6 +42,7 @@ export function* createAsyncActionCreator(
 ) {
   try {
     const response = yield call(request, method, url);
+
     yield put(entity.success(response, ...args));
   } catch (error) {
     yield put(entity.failure(error, ...args));

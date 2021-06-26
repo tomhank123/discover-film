@@ -1,5 +1,0 @@
-/*
- *
- * MovieDetails constants
- *
- */

@@ -1,9 +1,9 @@
 // import produce from 'immer';
-import tvDetailsReducer from '../reducer';
+import MediaDetailsReducer from '../reducer';
 // import { someAction } from '../actions';
 
 /* eslint-disable default-case, no-param-reassign */
-describe('tvDetailsReducer', () => {
+describe('MediaDetailsReducer', () => {
   let state;
   beforeEach(() => {
     state = {
@@ -13,7 +13,7 @@ describe('tvDetailsReducer', () => {
 
   it('returns the initial state', () => {
     const expectedResult = state;
-    expect(tvDetailsReducer(undefined, {})).toEqual(expectedResult);
+    expect(MediaDetailsReducer(undefined, {})).toEqual(expectedResult);
   });
 
   /**

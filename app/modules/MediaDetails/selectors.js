@@ -2,30 +2,30 @@ import { createSelector } from 'reselect';
 import { initialState } from './reducer';
 
 /**
- * Direct selector to the movieDetails state domain
+ * Direct selector to the MediaDetails state domain
  */
 
-const selectMovieDetailsDomain = state => state.movieDetails || initialState;
+const selectMediaDetailsDomain = state => state.MediaDetails || initialState;
 
 /**
  * Other specific selectors
  */
 
 /**
- * Default selector used by MovieDetails
+ * Default selector used by MediaDetails
  */
 
-const makeSelectMovieDetails = () =>
+const makeSelectMediaDetails = () =>
   createSelector(
-    selectMovieDetailsDomain,
+    selectMediaDetailsDomain,
     substate => substate,
   );
 
 const makeSelectDetails = () =>
   createSelector(
-    selectMovieDetailsDomain,
+    selectMediaDetailsDomain,
     substate => substate.details,
   );
 
-export default makeSelectMovieDetails;
+export default makeSelectMediaDetails;
 export { makeSelectDetails };

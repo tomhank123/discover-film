@@ -6,7 +6,7 @@
 
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import MovieDetails from 'modules/MovieDetails';
+import MediaDetails from 'modules/MediaDetails';
 import Container from './ModContainer';
 
 export function Movies({ ...routeProps }) {
@@ -17,7 +17,7 @@ export function Movies({ ...routeProps }) {
       <Route exact path={match.path} render={() => <Container />} />
       <Route
         path={`${match.path}/:personId`}
-        render={() => <MovieDetails {...routeProps} />}
+        render={() => <MediaDetails {...routeProps} />}
       />
     </Switch>
   );

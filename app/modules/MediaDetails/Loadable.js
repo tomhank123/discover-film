@@ -1,6 +1,6 @@
 /**
  *
- * Asynchronously loads the component for TvDetails
+ * Asynchronously loads the component for MediaDetails
  *
  */
 

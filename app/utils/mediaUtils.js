@@ -1,5 +1,14 @@
 import * as ROUTES from 'routes/constants';
 
+export const getMediaFromRoute = ({ pathname }) => {
+  const [mediaType, id] = pathname.split('/').filter(Boolean);
+
+  return {
+    id: +id,
+    mediaType,
+  };
+};
+
 const getPoster = poster =>
   poster ? `https://www.themoviedb.org/t/p/original/${poster}` : poster;
 

@@ -8,7 +8,7 @@ import React from 'react';
 // import PropTypes from 'prop-types';
 import { Switch, Route } from 'react-router-dom';
 
-import TvDetails from 'modules/TvDetails';
+import MediaDetails from 'modules/MediaDetails';
 import Container from './ModContainer';
 export function Tv({ ...routeProps }) {
   const { match } = routeProps;
@@ -18,7 +18,7 @@ export function Tv({ ...routeProps }) {
       <Route exact path={match.path} render={() => <Container />} />
       <Route
         path={`${match.path}/:personId`}
-        render={() => <TvDetails {...routeProps} />}
+        render={() => <MediaDetails {...routeProps} />}
       />
     </Switch>
   );
