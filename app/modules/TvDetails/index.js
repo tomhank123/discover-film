@@ -16,8 +16,8 @@ import { useInjectReducer } from 'utils/injectReducer';
 import { useInjectSaga } from 'utils/injectSaga';
 import * as tvUtils from 'utils/tvUtils';
 import CombinedModal from 'containers/CombinedModal';
+import MediaDetails from 'components/MediaDetails';
 import * as actions from './actions';
-import TvArticle from './TvArticle';
 import reducer from './reducer';
 import saga from './saga';
 import { makeSelectDetails } from './selectors';
@@ -45,7 +45,7 @@ export function TvDetails({ details, onLoadDetails, ...restProps }) {
       </Helmet>
       <Header />
       <Container>
-        <TvArticle {...details} />
+        <MediaDetails {...details} />
       </Container>
       <CombinedModal />
     </React.Fragment>

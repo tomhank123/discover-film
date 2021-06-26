@@ -17,7 +17,7 @@ import * as movieUtils from 'utils/movieUtils';
 import { Container } from 'react-bootstrap';
 import CombinedModal from 'containers/CombinedModal';
 import Header from 'components/Header';
-import MovieArticle from './MovieArticle';
+import MediaDetails from 'components/MediaDetails';
 import * as actions from './actions';
 import { makeSelectDetails } from './selectors';
 import reducer from './reducer';
@@ -46,7 +46,7 @@ export function MovieDetails({ details, onLoadDetails, ...restProps }) {
       </Helmet>
       <Header />
       <Container>
-        <MovieArticle {...details} />
+        <MediaDetails {...details} />
       </Container>
       <CombinedModal />
     </React.Fragment>
