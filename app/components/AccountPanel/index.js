@@ -100,9 +100,7 @@ function AccountPanel() {
           </ul>
         </div>
         <div hidden={!toggle}>
-          <Dropdown.Header className="fs-4 p-0 mb-3">
-            Màn hình và trợ năng
-          </Dropdown.Header>
+          <h5 className="mb-3">Màn hình và trợ năng</h5>
           <div className="d-flex">
             <div className="flex-shrink-0 me-3">
               <FontAwesomeIcon
