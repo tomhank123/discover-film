@@ -15,6 +15,7 @@ import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
 import * as personUtils from 'utils/personUtils';
 import { Container } from 'react-bootstrap';
+import MediaModal from 'containers/MediaModal';
 import Header from 'components/Header';
 import PersonArticle from './PersonArticle';
 
@@ -39,7 +40,7 @@ export function PersonDetails({ details, onLoadDetails, ...restProps }) {
   if (!personId) return null;
 
   return (
-    <div>
+    <React.Fragment>
       <Helmet>
         <title>PersonDetails</title>
         <meta name="description" content="Description of PersonDetails" />
@@ -48,7 +49,8 @@ export function PersonDetails({ details, onLoadDetails, ...restProps }) {
       <Container className="py-5">
         <PersonArticle {...details} />
       </Container>
-    </div>
+      <MediaModal />
+    </React.Fragment>
   );
 }
 

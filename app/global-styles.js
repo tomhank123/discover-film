@@ -23,6 +23,11 @@ const GlobalStyle = createGlobalStyle`
   
     background-color: var(--bs-body);
     color: var(--bs-color);
+
+    .modal-content {
+      background-color: var(--bs-body);
+      color: var(--bs-color);
+    }
   }
 
   body.fontLoaded {

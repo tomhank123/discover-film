@@ -14,6 +14,7 @@ import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
 
 import { Container } from 'react-bootstrap';
+import MediaModal from 'containers/MediaModal';
 import Header from 'components/Header';
 import TvFrame from '../Frame';
 
@@ -40,6 +41,7 @@ function ModContainer({ collections, onLoadCollections }) {
       <Container className="py-5">
         <TvFrame whoami="Collections" isSwiper {...collections} />
       </Container>
+      <MediaModal />
     </React.Fragment>
   );
 }

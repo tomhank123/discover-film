@@ -15,12 +15,12 @@ import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
 import { Container } from 'react-bootstrap';
 import Header from 'components/Header';
-import BrowseFrame from './Frame';
-
+import MediaModal from 'containers/MediaModal';
 import * as actions from './actions';
 import { makeSelectCollections } from './selectors';
 import reducer from './reducer';
 import saga from './saga';
+import BrowseFrame from './Frame';
 
 export function Browse({ collections, onLoadCollections }) {
   useInjectReducer({ key: 'browse', reducer });
@@ -31,7 +31,7 @@ export function Browse({ collections, onLoadCollections }) {
   }, []);
 
   return (
-    <div>
+    <React.Fragment>
       <Helmet>
         <title>Browse</title>
         <meta name="description" content="Description of Browse" />
@@ -41,12 +41,14 @@ export function Browse({ collections, onLoadCollections }) {
       <Container className="py-5">
         <BrowseFrame whoami="Collections" isSwiper {...collections} />
       </Container>
-    </div>
+      <MediaModal />
+    </React.Fragment>
   );
 }
 
 Browse.propTypes = {
   collections: PropTypes.object,
+  onOpenModel: PropTypes.func,
   onLoadCollections: PropTypes.func,
 };
 
