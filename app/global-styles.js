@@ -66,6 +66,15 @@ const GlobalStyle = createGlobalStyle`
       background-color: var(--bs-secondary);
       border-color: var(--bs-secondary);
     }
+
+    .list-group-item {
+      background-color: transparent;
+      color: var(--bs-color);
+
+      &:hover {
+        background-color: var(--bs-gray);
+      }
+    }
   }
 `;
 
