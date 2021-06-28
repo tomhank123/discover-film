@@ -7,17 +7,17 @@
 import MediaArticle from 'components/MediaArticle';
 import { getMediaDetails } from 'containers/App/actions';
 import { makeSelectMediaDetails } from 'containers/App/selectors';
+import { useDarkMode } from 'hooks';
 import PropTypes from 'prop-types';
 import React, { useEffect } from 'react';
-import { Button, Modal } from 'react-bootstrap';
-import { FormattedMessage } from 'react-intl';
+import { Modal } from 'react-bootstrap';
+import { SkeletonTheme } from 'react-loading-skeleton';
 import { connect } from 'react-redux';
 import { bindActionCreators, compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
 import { useInjectReducer } from 'utils/injectReducer';
 import { useInjectSaga } from 'utils/injectSaga';
 import * as actions from './actions';
-import messages from './messages';
 import reducer from './reducer';
 import saga from './saga';
 import { makeSelectMedia, makeSelectModalStatus } from './selectors';
@@ -31,6 +31,12 @@ export function MediaModal({
 }) {
   useInjectReducer({ key: 'mediaModal', reducer });
   useInjectSaga({ key: 'mediaModal', saga });
+
+  const [darkMode] = useDarkMode();
+  const makeStyles = {
+    highlightColor: darkMode ? '#212529' : '#d2d2d2',
+    color: darkMode ? '#141414' : '#f8f9fa',
+  };
 
   const { id, mediaType } = selectedMedia;
 
@@ -46,16 +52,17 @@ export function MediaModal({
       onHide={onCloseModal}
       autoFocus
       centered
-      backdrop="static"
+      // backdrop="static"
       size="lg"
       bg="dark"
     >
-      <Modal.Body style={{ backgroundColor: '#141414' }}>
-        <Button variant="secondary" onClick={onCloseModal}>
-          Close
-        </Button>
-        <FormattedMessage {...messages.header} />
-        <MediaArticle {...details} />
+      <Modal.Body style={{ backgroundColor: '#141414' }} className="px-5">
+        <SkeletonTheme
+          color={makeStyles.color}
+          highlightColor={makeStyles.highlightColor}
+        >
+          <MediaArticle {...details} />
+        </SkeletonTheme>
       </Modal.Body>
     </Modal>
   );

@@ -9,7 +9,7 @@ import PropTypes from 'prop-types';
 import React, { useContext } from 'react';
 import { Button, Card } from 'react-bootstrap';
 import { FormattedMessage } from 'react-intl';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import * as mediaUtils from 'utils/mediaUtils';
 import RatioImage from 'components/RatioImage';
 import messages from '../messages';
@@ -48,8 +48,7 @@ function Poster({ loading, model, details = false, onOpenModal }) {
       <Card
         className="border-0 shadow-sm h-100 rounded-3"
         bg={makeStyles.bg}
-        // as={Link}
-        // to={url}
+        as={Link}
         onClick={() => onOpenModal({ id, mediaType })}
       >
         <RatioImage

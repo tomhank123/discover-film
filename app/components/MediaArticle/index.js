@@ -16,12 +16,12 @@ function MediaArticle({ loading, error, item }) {
   if (loading) {
     return (
       <Row className="g-3 py-3" as="article">
-        <Col md={12} lg={8}>
+        <Col md={12} lg={12}>
           <PlayerFrame loading />
           <InfoFrame loading />
           <SimilarFrame loading />
         </Col>
-        <Col lg={4}>
+        <Col lg={12}>
           <ReviewFrame loading />
         </Col>
       </Row>
@@ -46,12 +46,12 @@ function MediaArticle({ loading, error, item }) {
 
     return (
       <Row className="g-3 py-3" as="article">
-        <Col md={12} lg={8}>
+        <Col md={12} lg={12}>
           <PlayerFrame {...playerModel} />
           <InfoFrame model={model} />
           <SimilarFrame {...similarModel} />
         </Col>
-        <Col lg={4}>
+        <Col lg={12}>
           <ReviewFrame {...reviewModel} />
         </Col>
       </Row>

@@ -19,6 +19,10 @@ function AvatarCard({ loading, item }) {
   const { darkMode } = useContext(ThemeContext);
   const makeStyles = {
     bg: darkMode ? 'dark' : 'light',
+    thumb: {
+      bg: darkMode ? 'bg-secondary' : '',
+      borderColor: darkMode ? 'border-secondary' : '',
+    },
   };
 
   if (loading) {
@@ -51,7 +55,9 @@ function AvatarCard({ loading, item }) {
             <RatioImage
               src={poster}
               alt={item.name}
-              className="rounded-circle"
+              className={`rounded-circle ${makeStyles.thumb.bg} ${
+                makeStyles.thumb.borderColor
+              }`}
               thumbnail
             />
           </Figure>
