@@ -4,32 +4,26 @@
  *
  */
 
-import { ThemeContext } from 'context/theme-context';
+import RatioImage from 'components/RatioImage';
 import PropTypes from 'prop-types';
-import React, { useContext } from 'react';
+import React from 'react';
 import { Button, Card } from 'react-bootstrap';
 import { FormattedMessage } from 'react-intl';
 import { Link } from 'react-router-dom';
 import * as mediaUtils from 'utils/mediaUtils';
-import RatioImage from 'components/RatioImage';
 import messages from '../messages';
 
 function Poster({ loading, model, details = false, onOpenModal }) {
-  const { darkMode } = useContext(ThemeContext);
-
   if (loading) {
     return (
       <Card className="border-0 shadow-sm h-100 rounded-3">
         <RatioImage height={3} width={2} loading className="rounded-3" />
         <Card.Body hidden={!details}>
           <div className="d-grid gap-2">
-            <Button variant={darkMode ? 'dark' : 'secondary'} size="sm">
+            <Button variant="secondary" size="sm">
               <FormattedMessage {...messages.watchNow} />
             </Button>
-            <Button
-              variant={darkMode ? 'outline-dark' : 'outline-secondary'}
-              size="sm"
-            >
+            <Button variant="outline-secondary" size="sm">
               <FormattedMessage {...messages.watchList} />
             </Button>
           </div>
@@ -54,8 +48,8 @@ function Poster({ loading, model, details = false, onOpenModal }) {
           height={3}
           width={2}
           className="rounded-3"
-        />
-        {details && <Card.Body>Body</Card.Body>}
+        />{' '}
+        {details && <Card.Body>Body</Card.Body>}{' '}
       </Card>
     );
   }
