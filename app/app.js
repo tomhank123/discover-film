@@ -17,6 +17,9 @@ import history from 'utils/history';
 import 'sanitize.css/sanitize.css';
 import 'swiper/swiper.min.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { fab } from '@fortawesome/free-brands-svg-icons';
+import { fas } from '@fortawesome/free-solid-svg-icons';
 
 // Import root app
 import App from 'containers/App';
@@ -35,6 +38,8 @@ import configureStore from './configureStore';
 
 // Import i18n messages
 import { translationMessages } from './i18n';
+
+library.add(fab, fas);
 
 // Create redux store with history
 const initialState = {};

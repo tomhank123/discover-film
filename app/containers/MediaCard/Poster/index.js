@@ -49,6 +49,7 @@ function Poster({ loading, model, details = false, onOpenModal }) {
         className="border-0 shadow-sm h-100 rounded-3"
         bg={makeStyles.bg}
         as={Link}
+        to=""
         onClick={() => onOpenModal({ id, mediaType })}
       >
         <RatioImage

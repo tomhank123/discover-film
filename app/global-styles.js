@@ -38,6 +38,16 @@ const GlobalStyle = createGlobalStyle`
     min-height: 100%;
     min-width: 100%;
   }
+
+  .dropdown-toggle {
+    &:after {
+      content: none;
+    }
+  }
+
+  .dropdown-menu-end {
+    right: 0;
+  }
 `;
 
 export default GlobalStyle;
