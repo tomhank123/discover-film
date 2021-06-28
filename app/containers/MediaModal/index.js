@@ -54,9 +54,8 @@ export function MediaModal({
       centered
       // backdrop="static"
       size="lg"
-      bg="dark"
     >
-      <Modal.Body style={{ backgroundColor: '#141414' }} className="px-5">
+      <Modal.Body className="px-5">
         <SkeletonTheme
           color={makeStyles.color}
           highlightColor={makeStyles.highlightColor}

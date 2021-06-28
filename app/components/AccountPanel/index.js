@@ -22,7 +22,7 @@ function AccountPanel() {
       </Dropdown.Toggle>
 
       <Dropdown.Menu
-        className="dropdown-menu-dark dropdown-menu-end p-3"
+        className="dropdown-menu-end p-3"
         align="end"
         style={{ width: 380 }}
         show
@@ -118,7 +118,7 @@ function AccountPanel() {
               <ListGroup variant="flush">
                 <ListGroup.Item
                   as="label"
-                  className="d-flex justify-content-between align-items-center px-0 bg-transparent text-light"
+                  className="d-flex justify-content-between align-items-center px-0 bg-transparent text-secondary"
                 >
                   Tối
                   <Form.Check
@@ -130,7 +130,7 @@ function AccountPanel() {
                 </ListGroup.Item>
                 <ListGroup.Item
                   as="label"
-                  className="d-flex justify-content-between align-items-center px-0 bg-transparent text-light"
+                  className="d-flex justify-content-between align-items-center px-0 bg-transparent text-secondary"
                 >
                   Sáng
                   <Form.Check
@@ -160,14 +160,14 @@ function AccountPanel() {
               <ListGroup variant="flush" hidden>
                 <ListGroup.Item
                   as="label"
-                  className="d-flex justify-content-between align-items-center px-0 bg-transparent text-light"
+                  className="d-flex justify-content-between align-items-center px-0 bg-transparent text-secondary"
                 >
                   Tiếng Anh
                   <Form.Check type="radio" value="en" name="language" />
                 </ListGroup.Item>
                 <ListGroup.Item
                   as="label"
-                  className="d-flex justify-content-between align-items-center px-0 bg-transparent text-light"
+                  className="d-flex justify-content-between align-items-center px-0 bg-transparent text-secondary"
                 >
                   Tiếng Việt
                   <Form.Check type="radio" value="vi" name="language" />

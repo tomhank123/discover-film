@@ -23,11 +23,6 @@ const GlobalStyle = createGlobalStyle`
   
     background-color: var(--bs-body);
     color: var(--bs-color);
-
-    .modal-content {
-      background-color: var(--bs-body);
-      color: var(--bs-color);
-    }
   }
 
   body.fontLoaded {
@@ -47,6 +42,30 @@ const GlobalStyle = createGlobalStyle`
 
   .dropdown-menu-end {
     right: 0;
+  }
+
+  .dark-mode {
+    .dropdown-menu,
+    .card {
+      background-color: var(--bs-dark);
+      color: var(--bs-color);
+    }
+
+    .card-body {
+      &.border-top {
+        border-color: var(--bs-body) !important;
+      }
+    }
+
+    .modal-content {
+      background-color: var(--bs-body);
+      color: var(--bs-color);
+    }
+
+    .img-thumbnail {
+      background-color: var(--bs-secondary);
+      border-color: var(--bs-secondary);
+    }
   }
 `;
 

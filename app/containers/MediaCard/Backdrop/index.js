@@ -17,13 +17,10 @@ import messages from '../messages';
 
 function Backdrop({ loading, model, details = false }) {
   const { darkMode } = useContext(ThemeContext);
-  const makeStyles = {
-    bg: darkMode ? 'dark' : 'white',
-  };
 
   if (loading) {
     return (
-      <Card className="border-0 shadow-sm h-100" bg={makeStyles.bg}>
+      <Card className="border-0 shadow-sm h-100">
         <RatioImage loading width={16} height={9} className="rounded-3" />
         <Card.Body hidden>
           <div className="d-grid gap-2">
@@ -43,18 +40,13 @@ function Backdrop({ loading, model, details = false }) {
   }
 
   if (model) {
-    const {
-      backdrop,
-      url,
-      title,
-      releasedYear,
-      numberOfSeasons,
-    } = mediaUtils.renderedMedia(model);
+    const { backdrop, url, title, releasedYear } = mediaUtils.renderedMedia(
+      model,
+    );
 
     return (
       <Card
         className="border-0 shadow-sm h-100 rounded-3 text-decoration-none text-reset"
-        bg={makeStyles.bg}
         as={Link}
         to={url}
       >

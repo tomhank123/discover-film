@@ -4,25 +4,19 @@
  *
  */
 
-import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
+import React from 'react';
 import { Card } from 'react-bootstrap';
-import { ThemeContext } from 'context/theme-context';
 import Skeleton from 'react-loading-skeleton';
-import Wrapper from './Wrapper';
 import MovieInfo from './MovieInfo';
 import TvInfo from './TvInfo';
+import Wrapper from './Wrapper';
 
 function InfoFrame({ loading, model }) {
-  const { darkMode } = useContext(ThemeContext);
-  const makeStyles = {
-    bg: darkMode ? 'dark' : 'white',
-  };
-
   if (loading) {
     return (
       <Wrapper>
-        <Card className="border-0 shadow-sm rounded-0" bg={makeStyles.bg}>
+        <Card className="border-0 shadow-sm rounded-0">
           <Card.Body>
             <Skeleton wrapper="h5" width="120px" />
             <Skeleton wrapper="p" width="200px" />
@@ -53,7 +47,7 @@ function InfoFrame({ loading, model }) {
 
     return (
       <Wrapper>
-        <Card className="border-0 shadow-sm rounded-0" bg={makeStyles.bg}>
+        <Card className="border-0 shadow-sm rounded-0">
           {isMovie ? <MovieInfo model={model} /> : <TvInfo model={model} />}
         </Card>
       </Wrapper>

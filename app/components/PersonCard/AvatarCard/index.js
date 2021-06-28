@@ -4,30 +4,20 @@
  *
  */
 
-import React, { useContext } from 'react';
-import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
-import Skeleton from 'react-loading-skeleton';
-import { FormattedMessage } from 'react-intl';
-import { Card, Button, Figure } from 'react-bootstrap';
-import * as personUtils from 'utils/personUtils';
-import { ThemeContext } from 'context/theme-context';
 import RatioImage from 'components/RatioImage';
+import PropTypes from 'prop-types';
+import React from 'react';
+import { Button, Card, Figure } from 'react-bootstrap';
+import { FormattedMessage } from 'react-intl';
+import Skeleton from 'react-loading-skeleton';
+import { Link } from 'react-router-dom';
+import * as personUtils from 'utils/personUtils';
 import messages from '../messages';
 
 function AvatarCard({ loading, item }) {
-  const { darkMode } = useContext(ThemeContext);
-  const makeStyles = {
-    bg: darkMode ? 'dark' : 'light',
-    thumb: {
-      bg: darkMode ? 'bg-secondary' : '',
-      borderColor: darkMode ? 'border-secondary' : '',
-    },
-  };
-
   if (loading) {
     return (
-      <Card className="border-0 shadow" bg={makeStyles.bg}>
+      <Card className="border-0 shadow">
         <Card.Body className="text-center">
           <Figure className="w-75 rounded-circle">
             <RatioImage loading className="rounded-circle" />
@@ -49,15 +39,13 @@ function AvatarCard({ loading, item }) {
     const url = personUtils.getUrl(item.id);
 
     return (
-      <Card className="border-0 shadow" bg={makeStyles.bg}>
+      <Card className="border-0 shadow">
         <Card.Body className="text-center">
           <Figure className="w-75 rounded-circle">
             <RatioImage
               src={poster}
               alt={item.name}
-              className={`rounded-circle ${makeStyles.thumb.bg} ${
-                makeStyles.thumb.borderColor
-              }`}
+              className="rounded-circle"
               thumbnail
             />
           </Figure>
