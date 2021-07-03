@@ -8,8 +8,10 @@ import React, { useContext, useState } from 'react';
 // import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Dropdown, ListGroup, Form, Badge, Button } from 'react-bootstrap';
+import { FormattedMessage } from 'react-intl';
 import { ThemeContext } from 'context/theme-context';
 import LocaleToggle from 'containers/LocaleToggle';
+import messages from './messages';
 
 function AccountPanel() {
   const { darkMode, setDarkMode } = useContext(ThemeContext);
@@ -25,7 +27,6 @@ function AccountPanel() {
         className="dropdown-menu-end p-3"
         align="end"
         style={{ width: 380 }}
-        show
       >
         <ListGroup hidden={toggle}>
           <ListGroup.Item
@@ -35,7 +36,7 @@ function AccountPanel() {
             <Badge className="bg-secondary rounded-pill p-2 fs-5">
               <FontAwesomeIcon icon={['fas', 'info-circle']} />
             </Badge>
-            Đóng góp ý kiến
+            <FormattedMessage {...messages.giveFeedback} />
           </ListGroup.Item>
           <Dropdown.Divider />
           <ListGroup.Item
@@ -46,7 +47,7 @@ function AccountPanel() {
             <Badge className="bg-secondary rounded-pill p-2 fs-5">
               <FontAwesomeIcon icon={['fas', 'moon']} />
             </Badge>
-            Màn hình và trợ năng
+            <FormattedMessage {...messages.displayNAccessibility} />
           </ListGroup.Item>
           <ListGroup.Item
             action
@@ -55,7 +56,7 @@ function AccountPanel() {
             <Badge className="bg-secondary rounded-pill p-2 fs-5">
               <FontAwesomeIcon icon={['fas', 'cog']} />
             </Badge>
-            Cài Đặt
+            <FormattedMessage {...messages.setting} />
           </ListGroup.Item>
           <ListGroup.Item
             action
@@ -64,7 +65,7 @@ function AccountPanel() {
             <Badge className="bg-secondary rounded-pill p-2 fs-5">
               <FontAwesomeIcon icon={['fas', 'sign-out-alt']} />
             </Badge>
-            Đăng xuất
+            <FormattedMessage {...messages.signout} />
           </ListGroup.Item>
           <ul className="list-inline mt-3 mb-0 px-2 lh-1">
             <li className="list-inline-item">
@@ -110,7 +111,7 @@ function AccountPanel() {
             >
               <FontAwesomeIcon icon={['fas', 'arrow-left']} />
             </Button>
-            Màn hình và trợ năng
+            <FormattedMessage {...messages.displayNAccessibility} />
           </h5>
           <div className="d-flex">
             <div className="flex-shrink-0 me-3">
@@ -119,15 +120,16 @@ function AccountPanel() {
               </Badge>
             </div>
             <div className="flex-grow-1">
-              <p className="my-0">Chế độ tối</p>
+              <p className="my-0">
+                <FormattedMessage {...messages.darkmodeHeader} />
+              </p>
               <p className="text-secondary small">
-                Điều chỉnh giao diện của Discover Film để giảm độ chói và cho
-                đôi mắt được nghỉ ngơi.
+                <FormattedMessage {...messages.darkmodeMessage} />
               </p>
               <ListGroup>
                 <ListGroup.Item action className="rounded-3 border-0">
                   <Form.Label className="d-flex justify-content-between align-items-center mb-0 pe-auto">
-                    Tối
+                    <FormattedMessage {...messages.darkmodeDark} />
                     <Form.Check
                       type="radio"
                       name="darkmode"
@@ -138,7 +140,7 @@ function AccountPanel() {
                 </ListGroup.Item>
                 <ListGroup.Item action className="rounded-3 border-0">
                   <Form.Label className="d-flex justify-content-between align-items-center mb-0">
-                    Sáng
+                    <FormattedMessage {...messages.darkmodeLight} />
                     <Form.Check
                       type="radio"
                       name="darkmode"
@@ -157,25 +159,12 @@ function AccountPanel() {
               </Badge>
             </div>
             <div className="flex-grow-1">
-              <p className="my-0">Ngôn ngữ hiển thị</p>
-              <p className="text-secondary small">
-                Lựa chọn ngôn ngữ phù hợp sẽ mang lại những trải nghiệm tuyệt
-                vời.
+              <p className="my-0">
+                <FormattedMessage {...messages.displayLanguageHeader} />
               </p>
-              <ListGroup>
-                <ListGroup.Item action className="rounded-3 border-0">
-                  <Form.Label className="d-flex justify-content-between align-items-center mb-0">
-                    Tiếng Anh
-                    <Form.Check type="radio" value="en" name="language" />
-                  </Form.Label>
-                </ListGroup.Item>
-                <ListGroup.Item action className="rounded-3 border-0">
-                  <Form.Label className="d-flex justify-content-between align-items-center mb-0">
-                    Tiếng Việt
-                    <Form.Check type="radio" value="vi" name="language" />
-                  </Form.Label>
-                </ListGroup.Item>
-              </ListGroup>
+              <p className="text-secondary small">
+                <FormattedMessage {...messages.displayLanguageMessage} />
+              </p>
               <LocaleToggle />
             </div>
           </div>

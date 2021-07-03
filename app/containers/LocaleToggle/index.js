@@ -11,20 +11,31 @@ import { createSelector } from 'reselect';
 
 import { changeLocale } from 'containers/LanguageProvider/actions';
 import { makeSelectLocale } from 'containers/LanguageProvider/selectors';
-import Toggle from './Toggle';
+import { ListGroup, Form } from 'react-bootstrap';
 import Wrapper from './Wrapper';
+import Title from './Title';
 import messages from './messages';
 import { appLocales } from '../../i18n';
 
 export function LocaleToggle(props) {
   return (
     <Wrapper>
-      <Toggle
-        value={props.locale}
-        values={appLocales}
-        messages={messages}
-        onToggle={props.onLocaleToggle}
-      />
+      <ListGroup>
+        {appLocales.map(value => (
+          <ListGroup.Item key={value} action className="rounded-3 border-0">
+            <Form.Label className="d-flex justify-content-between align-items-center mb-0">
+              <Title value={value} message={messages[value]} />
+              <Form.Check
+                type="radio"
+                value={value}
+                name="language"
+                checked={props.locale === value}
+                onChange={props.onLocaleToggle}
+              />
+            </Form.Label>
+          </ListGroup.Item>
+        ))}
+      </ListGroup>
     </Wrapper>
   );
 }
