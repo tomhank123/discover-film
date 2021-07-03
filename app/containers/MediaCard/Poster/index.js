@@ -12,8 +12,16 @@ import { FormattedMessage } from 'react-intl';
 import { Link } from 'react-router-dom';
 import * as mediaUtils from 'utils/mediaUtils';
 import messages from '../messages';
+import Counter from './Counter';
 
-function Poster({ loading, model, details = false, onOpenModal }) {
+function Poster({
+  loading,
+  model,
+  rank,
+  details = false,
+  counter = false,
+  onOpenModal,
+}) {
   if (loading) {
     return (
       <Card className="border-0 shadow-sm h-100 rounded-3">
@@ -37,19 +45,24 @@ function Poster({ loading, model, details = false, onOpenModal }) {
 
     return (
       <Card
-        className="border-0 shadow-sm h-100 rounded-3"
+        className="border-0 shadow-sm h-100 rounded-3 flex-row text-decoration-none"
         as={Link}
         to=""
         onClick={() => onOpenModal({ id, mediaType })}
       >
+        {counter && (
+          <Counter className="flex-shrink-0">
+            <span>{rank}</span>
+          </Counter>
+        )}
         <RatioImage
           src={poster}
           alt={title}
           height={3}
           width={2}
-          className="rounded-3"
+          className="rounded-3 flex-grow-1"
         />{' '}
-        {details && <Card.Body>Body</Card.Body>}{' '}
+        {details && <Card.Body>Body</Card.Body>}
       </Card>
     );
   }
@@ -60,7 +73,9 @@ function Poster({ loading, model, details = false, onOpenModal }) {
 Poster.propTypes = {
   loading: PropTypes.bool,
   model: PropTypes.object,
+  rank: PropTypes.number,
   details: PropTypes.bool,
+  counter: PropTypes.bool,
   onOpenModal: PropTypes.func,
 };
 

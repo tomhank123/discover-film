@@ -11,7 +11,7 @@ import Skeleton from 'react-loading-skeleton';
 
 import { Alert } from 'react-bootstrap';
 import MediaCard from 'containers/MediaCard';
-import swiperOptions from './config';
+import swiperOptions, { getSwiperOptions } from './config';
 import MovieList from './MovieList';
 import Wrapper from './Wrapper';
 
@@ -50,23 +50,32 @@ function Collections({ loading, error, items, isSwiper = false }) {
   if (items) {
     return (
       <Wrapper>
-        {items.map(({ title, edges }) => (
+        {items.map(({ title, edges, hasCounter }) => (
           <section key={title}>
             <h5 className="fw-bold">{title}</h5>
             {isSwiper ? (
-              <Swiper {...swiperOptions}>
+              <Swiper {...getSwiperOptions(hasCounter)}>
                 {edges &&
-                  edges.map(movie => (
+                  edges.map((movie, index) => (
                     <SwiperSlide key={movie.id}>
-                      <MediaCard model={movie} />
+                      <MediaCard
+                        model={movie}
+                        counter={hasCounter}
+                        rank={index + 1}
+                      />
                     </SwiperSlide>
                   ))}
               </Swiper>
             ) : (
-              <MovieList>
+              <MovieList counter={hasCounter}>
                 {edges &&
-                  edges.map(movie => (
-                    <MediaCard key={movie.id} model={movie} />
+                  edges.map((movie, index) => (
+                    <MediaCard
+                      key={movie.id}
+                      model={movie}
+                      counter={hasCounter}
+                      rank={index + 1}
+                    />
                   ))}
               </MovieList>
             )}
