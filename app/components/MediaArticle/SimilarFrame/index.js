@@ -23,7 +23,7 @@ function SimilarFrame({ loading, items }) {
             .map((_, index) => index)
             .map(titles => (
               <Col key={titles}>
-                <MediaCard whoami="Backdrop" loading details />
+                <MediaCard variant="Backdrop" loading details />
               </Col>
             ))}
         </Row>
@@ -42,7 +42,7 @@ function SimilarFrame({ loading, items }) {
           {itemsToShow.map((titles, index) => (
             // eslint-disable-next-line react/no-array-index-key
             <Col key={`${titles.id}-${index}`}>
-              <MediaCard whoami="Backdrop" model={titles} details />
+              <MediaCard variant="Backdrop" model={titles} details />
             </Col>
           ))}
         </Row>

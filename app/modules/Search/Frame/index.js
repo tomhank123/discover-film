@@ -9,8 +9,8 @@ import React from 'react';
 import KeywordResults from './KeywordResults';
 import MultiResults from './MultiResults';
 
-function Frame({ whoami, ...restProps }) {
-  switch (whoami) {
+function Frame({ variant, ...restProps }) {
+  switch (variant) {
     case 'KeywordResults':
       return <KeywordResults {...restProps} />;
     case 'MultiResults':
@@ -21,7 +21,7 @@ function Frame({ whoami, ...restProps }) {
 }
 
 Frame.propTypes = {
-  whoami: PropTypes.oneOf(['KeywordResults', 'MultiResults']),
+  variant: PropTypes.oneOf(['KeywordResults', 'MultiResults']),
 };
 
 export default Frame;

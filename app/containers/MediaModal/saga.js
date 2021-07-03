@@ -17,8 +17,6 @@ export function* fetchDetails({ request: { id, mediaType } }) {
   try {
     const details = yield call(request, 'get', requestUrl);
 
-    console.log('details', details);
-
     yield put(getMediaDetails.success(details));
   } catch ({ message }) {
     yield put(getMediaDetails.failure(message));

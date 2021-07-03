@@ -5,5 +5,5 @@
  */
 import { createAsyncAction, createRequestTypes } from 'utils/reduxUtils';
 
-export const GET_COLLECTIONS = createRequestTypes('app/Tv/GET_COLLECTIONS');
-export const getCollections = createAsyncAction(GET_COLLECTIONS);
+export const GET_MEDIA_OBJECT = createRequestTypes('app/Tv/GET_MEDIA_OBJECT');
+export const getMediaObject = createAsyncAction(GET_MEDIA_OBJECT);

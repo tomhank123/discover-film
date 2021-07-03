@@ -11,8 +11,8 @@ import PlayerFrame from './PlayerFrame';
 import ReviewFrame from './ReviewFrame';
 import SimilarFrame from './SimilarFrame';
 
-function CombinedSection({ whoami, ...restProps }) {
-  switch (whoami) {
+function CombinedSection({ variant, ...restProps }) {
+  switch (variant) {
     case 'Info':
       return <InfoFrame {...restProps} />;
     case 'Review':
@@ -27,7 +27,7 @@ function CombinedSection({ whoami, ...restProps }) {
 }
 
 CombinedSection.propTypes = {
-  whoami: PropTypes.oneOf(['Review', 'Similar', 'Player', 'Info']),
+  variant: PropTypes.oneOf(['Review', 'Similar', 'Player', 'Info']),
 };
 
 export default CombinedSection;

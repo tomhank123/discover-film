@@ -5,7 +5,7 @@
  */
 import produce from 'immer';
 import { FAILURE, REQUEST, SUCCESS } from 'utils/reduxUtils';
-import { GET_COLLECTIONS } from './actions';
+import { GET_MEDIA_OBJECT } from './actions';
 
 export const initialState = {
   collections: {
@@ -19,17 +19,17 @@ export const initialState = {
 const tvReducer = (state = initialState, action) =>
   produce(state, draft => {
     switch (action.type) {
-      case GET_COLLECTIONS[REQUEST]:
+      case GET_MEDIA_OBJECT[REQUEST]:
         draft.collections.loading = true;
         break;
 
-      case GET_COLLECTIONS[SUCCESS]:
+      case GET_MEDIA_OBJECT[SUCCESS]:
         draft.collections.loading = false;
         draft.collections.error = false;
         reduceCollections(action.response, draft);
         break;
 
-      case GET_COLLECTIONS[FAILURE]:
+      case GET_MEDIA_OBJECT[FAILURE]:
         draft.collections.loading = false;
         draft.collections.error = action.response;
         break;
@@ -39,8 +39,5 @@ const tvReducer = (state = initialState, action) =>
 export default tvReducer;
 
 function reduceCollections(response, draft) {
-  draft.collections.items = response.map(({ title, data }) => ({
-    title,
-    data: data.results,
-  }));
+  draft.collections.items = response;
 }

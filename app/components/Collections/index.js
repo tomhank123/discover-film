@@ -50,13 +50,13 @@ function Collections({ loading, error, items, isSwiper = false }) {
   if (items) {
     return (
       <Wrapper>
-        {items.map(({ title, data }) => (
+        {items.map(({ title, edges }) => (
           <section key={title}>
             <h5 className="fw-bold">{title}</h5>
             {isSwiper ? (
               <Swiper {...swiperOptions}>
-                {data &&
-                  data.map(movie => (
+                {edges &&
+                  edges.map(movie => (
                     <SwiperSlide key={movie.id}>
                       <MediaCard model={movie} />
                     </SwiperSlide>
@@ -64,8 +64,8 @@ function Collections({ loading, error, items, isSwiper = false }) {
               </Swiper>
             ) : (
               <MovieList>
-                {data &&
-                  data.map(movie => <MediaCard key={movie.id} model={movie} />)}
+                {edges &&
+                  edges.map(movie => <MediaCard key={movie.id} model={movie} />)}
               </MovieList>
             )}
           </section>

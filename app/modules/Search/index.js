@@ -64,8 +64,8 @@ export function Search({
         {query ? (
           <React.Fragment>
             <h1>{`Results for "${query}"`}</h1>
-            <SearchFrame whoami="KeywordResults" {...keywords} />
-            <SearchFrame whoami="MultiResults" {...multiResults} />
+            <SearchFrame variant="KeywordResults" {...keywords} />
+            <SearchFrame variant="MultiResults" {...multiResults} />
           </React.Fragment>
         ) : (
           <p className="display-4">Please enter the keyword.</p>
