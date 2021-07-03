@@ -65,7 +65,9 @@ function Collections({ loading, error, items, isSwiper = false }) {
             ) : (
               <MovieList>
                 {edges &&
-                  edges.map(movie => <MediaCard key={movie.id} model={movie} />)}
+                  edges.map(movie => (
+                    <MediaCard key={movie.id} model={movie} />
+                  ))}
               </MovieList>
             )}
           </section>
