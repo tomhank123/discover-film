@@ -45,15 +45,29 @@ const GlobalStyle = createGlobalStyle`
   }
 
   .dark-mode {
-    .dropdown-menu,
     .card {
       background-color: var(--bs-dark);
       color: var(--bs-color);
+
+      .card-body {
+        &.border-top {
+          border-color: var(--bs-body) !important;
+        }
+      }
     }
 
-    .card-body {
-      &.border-top {
-        border-color: var(--bs-body) !important;
+    .dropdown {
+      .dropdown-menu {
+        background-color: var(--bs-dark);
+        color: var(--bs-color);
+      }
+      
+      .dropdown-item {
+        color: var(--bs-color);
+        
+        &:hover {
+          color: var(--bs-dark);
+        }
       }
     }
 
