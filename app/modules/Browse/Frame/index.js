@@ -9,8 +9,8 @@ import React from 'react';
 import Collections from 'components/Collections';
 import Jumbotron from './Jumbotron';
 
-function Frame({ whoami, ...restProps }) {
-  switch (whoami) {
+function Frame({ variant, ...restProps }) {
+  switch (variant) {
     case 'Jumbotron':
       return <Jumbotron {...restProps} />;
     case 'Collections':
@@ -21,7 +21,7 @@ function Frame({ whoami, ...restProps }) {
 }
 
 Frame.propTypes = {
-  whoami: PropTypes.oneOf(['Jumbotron', 'Collections']),
+  variant: PropTypes.oneOf(['Jumbotron', 'Collections']),
 };
 
 export default Frame;

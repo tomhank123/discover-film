@@ -15,17 +15,13 @@ import Wrapper from './Wrapper';
 
 function ReviewFrame({ loading, items }) {
   const [showMore, setShowMore] = useState(false);
-  const { darkMode } = useContext(ThemeContext);
   const itemsPerPage = reviewUtils.getItemsPerPage();
-  const makeStyles = {
-    bg: darkMode ? 'dark' : 'white',
-  };
 
   if (loading) {
     return (
       <Wrapper>
-        <Card className="border-0 shadow-sm" bg={makeStyles.bg}>
-          <Card.Header bg={makeStyles.bg}>
+        <Card className="border-0 shadow-sm">
+          <Card.Header>
             <Skeleton width={32} /> Comment(s)
           </Card.Header>
           <Card.Body>
@@ -46,10 +42,8 @@ function ReviewFrame({ loading, items }) {
 
     return (
       <Wrapper>
-        <Card className="border-0 shadow-sm" bg={makeStyles.bg}>
-          <Card.Header bg={makeStyles.bg}>
-            {items.length} Comment(s)
-          </Card.Header>
+        <Card className="border-0 shadow-sm">
+          <Card.Header>{items.length} Comment(s)</Card.Header>
           <Card.Body>
             {reviewsToShow.map(review => (
               <ReviewCard key={review.id} loading={loading} model={review} />
@@ -71,8 +65,8 @@ function ReviewFrame({ loading, items }) {
 
   return (
     <Wrapper>
-      <Card className="border-0 shadow-sm" bg={makeStyles.bg}>
-        <Card.Header bg={makeStyles.bg}>0 Comment(s)</Card.Header>
+      <Card className="border-0 shadow-sm">
+        <Card.Header>0 Comment(s)</Card.Header>
         <Card.Body>No comment yet!</Card.Body>
       </Card>
     </Wrapper>

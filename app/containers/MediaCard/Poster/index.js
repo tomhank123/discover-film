@@ -4,35 +4,33 @@
  *
  */
 
-import { ThemeContext } from 'context/theme-context';
+import RatioImage from 'components/RatioImage';
 import PropTypes from 'prop-types';
-import React, { useContext } from 'react';
+import React from 'react';
 import { Button, Card } from 'react-bootstrap';
 import { FormattedMessage } from 'react-intl';
-import { Link } from 'react-router-dom';
 import * as mediaUtils from 'utils/mediaUtils';
-import RatioImage from 'components/RatioImage';
 import messages from '../messages';
+import Counter from './Counter';
 
-function Poster({ loading, model, details = false, onOpenModal }) {
-  const { darkMode } = useContext(ThemeContext);
-  const makeStyles = {
-    bg: darkMode ? 'dark' : 'white',
-  };
-
+function Poster({
+  loading,
+  model,
+  rank,
+  details = false,
+  counter = false,
+  onOpenModal,
+}) {
   if (loading) {
     return (
-      <Card className="border-0 shadow-sm h-100 rounded-3" bg={makeStyles.bg}>
+      <Card className="border-0 shadow-sm h-100 rounded-3">
         <RatioImage height={3} width={2} loading className="rounded-3" />
         <Card.Body hidden={!details}>
           <div className="d-grid gap-2">
-            <Button variant={darkMode ? 'dark' : 'secondary'} size="sm">
+            <Button variant="secondary" size="sm">
               <FormattedMessage {...messages.watchNow} />
             </Button>
-            <Button
-              variant={darkMode ? 'outline-dark' : 'outline-secondary'}
-              size="sm"
-            >
+            <Button variant="outline-secondary" size="sm">
               <FormattedMessage {...messages.watchList} />
             </Button>
           </div>
@@ -46,18 +44,21 @@ function Poster({ loading, model, details = false, onOpenModal }) {
 
     return (
       <Card
-        className="border-0 shadow-sm h-100 rounded-3"
-        bg={makeStyles.bg}
-        as={Link}
+        className="anchor border-0 shadow-sm h-100 rounded-3 flex-row"
         onClick={() => onOpenModal({ id, mediaType })}
       >
+        {counter && (
+          <Counter className="flex-shrink-0">
+            <span>{rank}</span>
+          </Counter>
+        )}
         <RatioImage
           src={poster}
           alt={title}
           height={3}
           width={2}
-          className="rounded-3"
-        />
+          className="rounded-3 flex-grow-1"
+        />{' '}
         {details && <Card.Body>Body</Card.Body>}
       </Card>
     );
@@ -69,7 +70,9 @@ function Poster({ loading, model, details = false, onOpenModal }) {
 Poster.propTypes = {
   loading: PropTypes.bool,
   model: PropTypes.object,
+  rank: PropTypes.number,
   details: PropTypes.bool,
+  counter: PropTypes.bool,
   onOpenModal: PropTypes.func,
 };
 

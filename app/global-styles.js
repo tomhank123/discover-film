@@ -23,11 +23,6 @@ const GlobalStyle = createGlobalStyle`
   
     background-color: var(--bs-body);
     color: var(--bs-color);
-
-    .modal-content {
-      background-color: var(--bs-body);
-      color: var(--bs-color);
-    }
   }
 
   body.fontLoaded {
@@ -37,6 +32,67 @@ const GlobalStyle = createGlobalStyle`
   #app {
     min-height: 100%;
     min-width: 100%;
+  }
+
+  .dropdown-toggle {
+    &:after {
+      content: none;
+    }
+  }
+
+  .dropdown-menu-end {
+    right: 0;
+  }
+
+  .dark-mode {
+    .card {
+      background-color: var(--bs-dark);
+      color: var(--bs-color);
+
+      .card-body {
+        &.border-top {
+          border-color: var(--bs-body) !important;
+        }
+      }
+    }
+
+    .dropdown {
+      .dropdown-menu {
+        background-color: var(--bs-dark);
+        color: var(--bs-color);
+      }
+      
+      .dropdown-item {
+        color: var(--bs-color);
+        
+        &:hover {
+          color: var(--bs-dark);
+        }
+      }
+    }
+
+    .modal-content {
+      background-color: var(--bs-body);
+      color: var(--bs-color);
+    }
+
+    .img-thumbnail {
+      background-color: var(--bs-secondary);
+      border-color: var(--bs-secondary);
+    }
+
+    .list-group-item {
+      background-color: transparent;
+      color: var(--bs-color);
+
+      &:hover {
+        background-color: var(--bs-gray);
+      }
+    }
+  }
+
+  .anchor {
+    cursor: pointer;
   }
 `;
 

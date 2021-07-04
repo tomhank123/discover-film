@@ -1,6 +1,6 @@
 /**
  *
- * ToggleOption
+ * Title
  *
  */
 
@@ -8,14 +8,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { injectIntl, intlShape } from 'react-intl';
 
-const ToggleOption = ({ value, message, intl }) => (
-  <option value={value}>{message ? intl.formatMessage(message) : value}</option>
+const Title = ({ value, message, intl }) => (
+  <span value={value}>{message ? intl.formatMessage(message) : value}</span>
 );
 
-ToggleOption.propTypes = {
+Title.propTypes = {
   value: PropTypes.string.isRequired,
   message: PropTypes.object,
   intl: intlShape.isRequired,
 };
 
-export default injectIntl(ToggleOption);
+export default injectIntl(Title);

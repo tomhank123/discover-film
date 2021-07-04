@@ -22,12 +22,12 @@ import reducer from './reducer';
 import saga from './saga';
 import BrowseFrame from './Frame';
 
-export function Browse({ collections, onLoadCollections }) {
+export function Browse({ collections, onLoadMediaObject }) {
   useInjectReducer({ key: 'browse', reducer });
   useInjectSaga({ key: 'browse', saga });
 
   useEffect(() => {
-    onLoadCollections();
+    onLoadMediaObject();
   }, []);
 
   return (
@@ -37,9 +37,9 @@ export function Browse({ collections, onLoadCollections }) {
         <meta name="description" content="Description of Browse" />
       </Helmet>
       <Header />
-      <BrowseFrame whoami="Jumbotron" />
+      <BrowseFrame variant="Jumbotron" />
       <Container className="py-5">
-        <BrowseFrame whoami="Collections" isSwiper {...collections} />
+        <BrowseFrame variant="Collections" isSwiper {...collections} />
       </Container>
       <MediaModal />
     </React.Fragment>
@@ -49,7 +49,7 @@ export function Browse({ collections, onLoadCollections }) {
 Browse.propTypes = {
   collections: PropTypes.object,
   onOpenModel: PropTypes.func,
-  onLoadCollections: PropTypes.func,
+  onLoadMediaObject: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -57,10 +57,10 @@ const mapStateToProps = createStructuredSelector({
 });
 
 function mapDispatchToProps(dispatch) {
-  const onLoadCollections = actions.getCollections.request;
+  const onLoadMediaObject = actions.getMediaObject.request;
 
   return {
-    ...bindActionCreators({ onLoadCollections }, dispatch),
+    ...bindActionCreators({ onLoadMediaObject }, dispatch),
   };
 }
 

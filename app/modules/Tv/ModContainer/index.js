@@ -23,12 +23,12 @@ import * as actions from '../actions';
 import reducer from '../reducer';
 import saga from '../saga';
 
-function ModContainer({ collections, onLoadCollections }) {
+function ModContainer({ collections, onLoadMediaObject }) {
   useInjectReducer({ key: 'tv', reducer });
   useInjectSaga({ key: 'tv', saga });
 
   useEffect(() => {
-    onLoadCollections();
+    onLoadMediaObject();
   }, []);
 
   return (
@@ -39,7 +39,7 @@ function ModContainer({ collections, onLoadCollections }) {
       </Helmet>
       <Header />
       <Container className="py-5">
-        <TvFrame whoami="Collections" isSwiper {...collections} />
+        <TvFrame variant="Collections" isSwiper {...collections} />
       </Container>
       <MediaModal />
     </React.Fragment>
@@ -48,7 +48,7 @@ function ModContainer({ collections, onLoadCollections }) {
 
 ModContainer.propTypes = {
   collections: PropTypes.object,
-  onLoadCollections: PropTypes.func,
+  onLoadMediaObject: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -56,12 +56,12 @@ const mapStateToProps = createStructuredSelector({
 });
 
 function mapDispatchToProps(dispatch) {
-  const onLoadCollections = actions.getCollections.request;
+  const onLoadMediaObject = actions.getMediaObject.request;
 
   return {
     ...bindActionCreators(
       {
-        onLoadCollections,
+        onLoadMediaObject,
       },
       dispatch,
     ),

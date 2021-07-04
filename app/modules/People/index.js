@@ -47,7 +47,7 @@ export function People({ people, onLoadPeople, ...routeProps }) {
             </Helmet>
             <Header />
             <Container className="py-5">
-              <PeopleFrame whoami="PersonList" {...people} />
+              <PeopleFrame variant="PersonList" {...people} />
             </Container>
           </div>
         )}

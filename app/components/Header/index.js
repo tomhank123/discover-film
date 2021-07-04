@@ -11,9 +11,9 @@ import { Container, Image, Nav, Navbar, NavDropdown } from 'react-bootstrap';
 import { NavLink as RouteLink } from 'react-router-dom';
 import { ThemeContext } from 'context/theme-context';
 import * as ROUTES from 'routes/constants';
+import AccountPanel from 'components/AccountPanel';
 import SearchBar from 'containers/SearchBar';
-import LocaleToggle from 'containers/LocaleToggle';
-import DarkModeToggle from 'containers/DarkModeToggle';
+
 import messages from './messages';
 
 function Header() {
@@ -66,27 +66,7 @@ function Header() {
               <Nav.Item hidden>
                 <SearchBar />
               </Nav.Item>
-              <Nav.Link as={Nav.Item}>
-                <DarkModeToggle />
-              </Nav.Link>
-              <Nav.Link as={Nav.Item}>
-                <LocaleToggle />
-              </Nav.Link>
-              <Nav.Link
-                exact
-                as={RouteLink}
-                to={ROUTES.LOGIN}
-                activeClassName="d-none"
-              >
-                <FormattedMessage {...messages.login} />
-              </Nav.Link>
-              <Nav.Link
-                as={RouteLink}
-                to={ROUTES.SEARCH}
-                activeClassName="d-none"
-              >
-                <FormattedMessage {...messages.search} />
-              </Nav.Link>
+              <AccountPanel />
             </Nav>
           </Navbar.Collapse>
         </Container>

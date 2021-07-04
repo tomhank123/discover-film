@@ -4,36 +4,27 @@
  *
  */
 
-import { ThemeContext } from 'context/theme-context';
+import ContentTruncator from 'components/ContentTruncator';
+import RatioImage from 'components/RatioImage';
 import PropTypes from 'prop-types';
-import React, { useContext } from 'react';
+import React from 'react';
 import { Button, Card } from 'react-bootstrap';
 import { FormattedMessage } from 'react-intl';
 import { Link } from 'react-router-dom';
 import * as mediaUtils from 'utils/mediaUtils';
-import RatioImage from 'components/RatioImage';
-import ContentTruncator from 'components/ContentTruncator';
 import messages from '../messages';
 
 function Backdrop({ loading, model, details = false }) {
-  const { darkMode } = useContext(ThemeContext);
-  const makeStyles = {
-    bg: darkMode ? 'dark' : 'white',
-  };
-
   if (loading) {
     return (
-      <Card className="border-0 shadow-sm h-100" bg={makeStyles.bg}>
+      <Card className="border-0 shadow-sm h-100">
         <RatioImage loading width={16} height={9} className="rounded-3" />
         <Card.Body hidden>
           <div className="d-grid gap-2">
-            <Button variant={darkMode ? 'dark' : 'secondary'} size="sm">
+            <Button variant="secondary" size="sm">
               <FormattedMessage {...messages.watchNow} />
             </Button>
-            <Button
-              variant={darkMode ? 'outline-dark' : 'outline-secondary'}
-              size="sm"
-            >
+            <Button variant="outline-secondary" size="sm">
               <FormattedMessage {...messages.watchList} />
             </Button>
           </div>
@@ -43,18 +34,13 @@ function Backdrop({ loading, model, details = false }) {
   }
 
   if (model) {
-    const {
-      backdrop,
-      url,
-      title,
-      releasedYear,
-      numberOfSeasons,
-    } = mediaUtils.renderedMedia(model);
+    const { backdrop, url, title, releasedYear } = mediaUtils.renderedMedia(
+      model,
+    );
 
     return (
       <Card
         className="border-0 shadow-sm h-100 rounded-3 text-decoration-none text-reset"
-        bg={makeStyles.bg}
         as={Link}
         to={url}
       >

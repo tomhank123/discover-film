@@ -47,3 +47,11 @@ export const renderedMedia = model => {
 
   return renderedModel;
 };
+
+export const createMediaObject = (mediaObjects, options) =>
+  mediaObjects.map(({ results }, index) => ({
+    ...options[index],
+    edges: results.filter(item =>
+      item.media_type ? ['movie', 'tv'].includes(item.media_type) : item,
+    ),
+  }));

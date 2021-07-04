@@ -4,22 +4,15 @@
  *
  */
 
-import React, { useContext } from 'react';
-import PropTypes from 'prop-types';
-import Skeleton from 'react-loading-skeleton';
-import { Row, Col, Card, Button } from 'react-bootstrap';
-import { ThemeContext } from 'context/theme-context';
-import MediaCard from 'containers/MediaCard';
 import ContentTruncator from 'components/ContentTruncator';
+import MediaCard from 'containers/MediaCard';
+import PropTypes from 'prop-types';
+import React from 'react';
+import { Button, Card, Col, Row } from 'react-bootstrap';
+import Skeleton from 'react-loading-skeleton';
 import * as personUtils from 'utils/personUtils';
 
 function PersonArticle({ loading, error, item }) {
-  const { darkMode } = useContext(ThemeContext);
-  const makeStyles = {
-    bg: darkMode ? 'dark' : 'white',
-    borderTop: darkMode ? 'border-top border-secondary' : 'border-top',
-  };
-
   if (loading) {
     return (
       <article className="d-grid gap-4">
@@ -55,7 +48,7 @@ function PersonArticle({ loading, error, item }) {
             </Row>
           </Col>
           <Col>
-            <Card className="border-0 shadow-sm" bg={makeStyles.bg}>
+            <Card className="border-0 shadow-sm">
               <Card.Body>
                 <Row xs={4} className="g-1">
                   {item.images.profiles
@@ -96,7 +89,7 @@ function PersonArticle({ loading, error, item }) {
                   </Button>
                 </div>
               </Card.Body>
-              <Card.Body className={makeStyles.borderTop}>
+              <Card.Body className="border-top">
                 <ContentTruncator
                   content={item.biography}
                   maxLength={200}

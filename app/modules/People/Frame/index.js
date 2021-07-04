@@ -8,8 +8,8 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import PersonList from './PersonList';
 
-function Frame({ whoami, ...restProps }) {
-  switch (whoami) {
+function Frame({ variant, ...restProps }) {
+  switch (variant) {
     case 'PersonList':
       return <PersonList {...restProps} />;
     default:
@@ -18,7 +18,7 @@ function Frame({ whoami, ...restProps }) {
 }
 
 Frame.propTypes = {
-  whoami: PropTypes.oneOf(['PersonList']),
+  variant: PropTypes.oneOf(['PersonList']),
 };
 
 export default Frame;

@@ -12,8 +12,8 @@ import * as actions from 'containers/MediaModal/actions';
 import Poster from './Poster';
 import Backdrop from './Backdrop';
 
-function MediaCard({ whoami = 'Poster', ...restProps }) {
-  switch (whoami) {
+function MediaCard({ variant = 'Poster', ...restProps }) {
+  switch (variant) {
     case 'Poster':
       return <Poster {...restProps} />;
     case 'Backdrop':
@@ -24,7 +24,7 @@ function MediaCard({ whoami = 'Poster', ...restProps }) {
 }
 
 MediaCard.propTypes = {
-  whoami: PropTypes.oneOf(['Poster', 'Backdrop']),
+  variant: PropTypes.oneOf(['Poster', 'Backdrop']),
   onOpenModal: PropTypes.func,
 };
 

@@ -9,8 +9,8 @@ import PropTypes from 'prop-types';
 import AvatarCard from './AvatarCard';
 import SimpleCard from './SimpleCard';
 
-function PersonCard({ whoami, ...restProps }) {
-  switch (whoami) {
+function PersonCard({ variant, ...restProps }) {
+  switch (variant) {
     case 'Simple':
       return <SimpleCard {...restProps} />;
     case 'Avatar':
@@ -21,7 +21,7 @@ function PersonCard({ whoami, ...restProps }) {
 }
 
 PersonCard.propTypes = {
-  whoami: PropTypes.oneOf(['Avatar', 'Simple']),
+  variant: PropTypes.oneOf(['Avatar', 'Simple']),
 };
 
 export default PersonCard;

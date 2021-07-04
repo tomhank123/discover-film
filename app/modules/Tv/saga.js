@@ -1,56 +1,41 @@
 import { all, call, delay, put, takeLatest, select } from 'redux-saga/effects';
 import { REQUEST } from 'utils/reduxUtils';
 import { createEndpoint } from 'utils/apiUtils';
+import { createMediaObject } from 'utils/mediaUtils';
 import request from 'api/request';
 import { makeSelectLocale } from 'containers/LanguageProvider/selectors';
-import { getCollections, GET_COLLECTIONS } from './actions';
+import { getMediaObject, GET_MEDIA_OBJECT } from './actions';
 
-export function* fetchCollecttions() {
+export function* fetchMediaObject() {
   yield delay(2000);
 
   const language = yield select(makeSelectLocale());
 
   try {
-    const [popular, nowPlaying, upcoming, topRated] = yield all([
-      call(request, 'get', createEndpoint('/tv/popular', { language })),
+    const responses = yield all([
       call(request, 'get', createEndpoint('/tv/airing_today', { language })),
-      call(request, 'get', createEndpoint('/tv/on_the_air', { language })),
       call(request, 'get', createEndpoint('/tv/top_rated', { language })),
+      call(request, 'get', createEndpoint('/tv/popular', { language })),
+      call(request, 'get', createEndpoint('/tv/on_the_air', { language })),
     ]);
 
-    yield put(
-      getCollections.success([
-        {
-          id: 'Popular On TV',
-          title: 'Popular On TV',
-          data: popular,
-        },
-        {
-          id: 'What are people watching?',
-          title: 'What are people watching?',
-          data: nowPlaying,
-        },
-        {
-          id: 'Worth the wait',
-          title: 'Worth the wait',
-          data: upcoming,
-        },
-        {
-          id: 'Top Rated',
-          title: 'Top Rated',
-          data: topRated,
-        },
-      ]),
-    );
+    const mediaObject = createMediaObject(responses, [
+      { title: 'What are people watching?', hasCounter: false },
+      { title: 'Top Rated', hasCounter: true },
+      { title: 'Popular On TV', hasCounter: false },
+      { title: 'Worth the wait', hasCounter: false },
+    ]);
+
+    yield put(getMediaObject.success(mediaObject));
   } catch ({ message }) {
-    yield put(getCollections.failure(message));
+    yield put(getMediaObject.failure(message));
   }
 }
 
-export function* watchCollections() {
-  yield takeLatest(GET_COLLECTIONS[REQUEST], fetchCollecttions);
+export function* watchMediaObject() {
+  yield takeLatest(GET_MEDIA_OBJECT[REQUEST], fetchMediaObject);
 }
 
 export default function* tvSaga() {
-  yield all([watchCollections()]);
+  yield all([watchMediaObject()]);
 }

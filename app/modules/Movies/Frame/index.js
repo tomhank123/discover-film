@@ -8,8 +8,8 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import Collections from 'components/Collections';
 
-function Frame({ whoami, ...restProps }) {
-  switch (whoami) {
+function Frame({ variant, ...restProps }) {
+  switch (variant) {
     case 'Collections':
       return <Collections {...restProps} />;
     default:
@@ -18,7 +18,7 @@ function Frame({ whoami, ...restProps }) {
 }
 
 Frame.propTypes = {
-  whoami: PropTypes.oneOf(['Collections']),
+  variant: PropTypes.oneOf(['Collections']),
 };
 
 export default Frame;
