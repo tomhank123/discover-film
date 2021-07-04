@@ -90,6 +90,10 @@ const GlobalStyle = createGlobalStyle`
       }
     }
   }
+
+  .anchor {
+    cursor: pointer;
+  }
 `;
 
 export default GlobalStyle;

@@ -9,7 +9,6 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { Button, Card } from 'react-bootstrap';
 import { FormattedMessage } from 'react-intl';
-import { Link } from 'react-router-dom';
 import * as mediaUtils from 'utils/mediaUtils';
 import messages from '../messages';
 import Counter from './Counter';
@@ -45,9 +44,7 @@ function Poster({
 
     return (
       <Card
-        className="border-0 shadow-sm h-100 rounded-3 flex-row text-decoration-none"
-        as={Link}
-        to=""
+        className="anchor border-0 shadow-sm h-100 rounded-3 flex-row"
         onClick={() => onOpenModal({ id, mediaType })}
       >
         {counter && (
